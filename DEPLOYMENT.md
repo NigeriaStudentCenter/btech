@@ -12,3 +12,8 @@
 
 Deploy API: `cd api && npm test && func azure functionapp publish btech-tutor-api --javascript`
 Turn tutor off: `az functionapp config appsettings set -n btech-tutor-api -g btech-tutor-rg --settings TUTOR_ENABLED=false`
+
+## Learning page "Go deeper" content
+`docs/learning.html` has a "Go deeper" block in each of the 16 sections (original text and SVG diagrams).
+Edit the content in `tools/deeper/section_*.py`, then run `python3 tools/build_learning.py` — it replaces the
+blocks between `<!-- deeper:ID -->` markers, so it is safe to run repeatedly.
