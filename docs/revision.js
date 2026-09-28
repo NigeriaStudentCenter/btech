@@ -63,6 +63,10 @@ function markOrder(p, ans) {
  const seq = p.steps.map(s => s.id).filter(id => ans[id]).sort((x, y) => ans[x] - ans[y]);
  const positions = new Set(p.steps.map(s => ans[s.id]).filter(Boolean));
  if (seq.length !== p.steps.length || positions.size !== p.steps.length) return {ok: {}, score: 0, note: 'Give every step a different number.'};
+ if (!p.floating) {
+  const right = seq.filter((id, i) => id === p.base[i]).length, full = right === p.base.length;
+  return {ok: {}, score: full ? p.marks : Math.min(p.marks - 1, Math.floor(right / p.base.length * p.marks)), note: full ? 'Correct order.' : `${right} of ${p.base.length} steps are in the right place.`};
+ }
  const baseRight = JSON.stringify(seq.filter(id => id !== p.floating)) === JSON.stringify(p.base);
  const fi = seq.indexOf(p.floating), floatRight = fi > seq.indexOf(p.floatAfter) && fi < seq.indexOf(p.floatBefore);
  const score = (baseRight ? p.marks - 1 : 0) + (floatRight ? 1 : 0);
@@ -151,7 +155,9 @@ function renderTruth(q, p, key) {
 function renderOrder(q, p, key) {
  const ans = state.answers[key] || {};
  // shuffled but stable display order
- const shown = [...p.steps].sort((x, y) => (x.id.charCodeAt(1) * 7 + x.id.length) % 11 - (y.id.charCodeAt(1) * 7 + y.id.length) % 11);
+ const hash = t => [...t].reduce((h, c) => (h * 31 + c.charCodeAt(0)) >>> 0, 7) % 9973;
+ let shown = [...p.steps].sort((x, y) => hash(key + x.id) - hash(key + y.id));
+ if (shown.every((s, i) => s.id === (p.base.includes(s.id) ? p.steps[i].id : s.id))) shown = shown.reverse();
  return el('ol', {class: 'order'}, shown.map(s => {
   const sel = el('select', {id: 's-' + key + '-' + s.id, 'aria-label': 'Position of: ' + s.text}, el('option', {value: '', text: '#'}), p.steps.map((_, i) => el('option', {value: String(i + 1), text: String(i + 1)})));
   sel.value = ans[s.id] || '';
