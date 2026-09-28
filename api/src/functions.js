@@ -15,6 +15,7 @@ app.http('chat',{methods:['POST','OPTIONS'],authLevel:'function',route:'chat',ha
  const url=endpoint(process.env.AZURE_OPENAI_ENDPOINT),deployment=process.env.AZURE_OPENAI_DEPLOYMENT;if(!deployment)throw Error('Not configured');
  const token=await credential.getToken('https://cognitiveservices.azure.com/.default');
  const r=await fetch(url,{method:'POST',headers:{Authorization:'Bearer '+token.token,'Content-Type':'application/json'},body:JSON.stringify({model:deployment,messages:messages(body),max_completion_tokens:600,store:false}),signal:AbortSignal.timeout(35000)});
+ if(r.status===400&&/content_filter|jailbreak/i.test(await r.text().catch(()=>'')))return reply(200,{reply:'I can only help with your computing work for this section. Try asking about the topic, or choose Hint for a next step.'});
  if(!r.ok)return reply(r.status===429?429:502,{error:r.status===429?'The tutor is busy. Try again shortly.':'The tutor cannot answer right now. Please ask your teacher.'});
  const data=await r.json(),text=data.choices?.[0]?.message?.content;
  return reply(200,{reply:typeof text==='string'&&text.trim()?text:'Please rephrase your computing question or ask your teacher.'});
