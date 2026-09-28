@@ -81,6 +81,7 @@ function questionScore(q) {
  for (const p of q.parts) {
   const key = pid(q, p);
   if (p.type === 'text') { selfMax += p.marks; self += selfScore(p, key); }
+  else if (p.type === 'essay') { selfMax += p.marks; self += Math.min(p.marks, Number(state.marked[key]) || 0); }
   else { autoMax += p.marks; if (state.marked[key] !== undefined) auto += state.marked[key]; }
  }
  return {auto, autoMax, self, selfMax, total: auto + self, max: autoMax + selfMax};
@@ -174,13 +175,60 @@ function showMarks(q, p, key, announce) {
  if (announce) result(key, text, full);
  return m.score;
 }
+// Extended answers are marked by level, so the student plans, writes, then judges the level.
+const LEVELS = [
+ {n: 1, text: 'Makes some relevant points, but few are explained. Little or no link to the scenario. Any conclusion is not supported.'},
+ {n: 2, text: 'Explains several relevant points with some links to the scenario. Looks at more than one side, but not evenly. Gives a conclusion with some support.'},
+ {n: 3, text: 'Develops a range of relevant points in detail, applied to the scenario throughout. Weighs up both sides and reaches a clear conclusion that follows from the argument.'}
+];
+function bands(marks) { const w = marks / 3; return LEVELS.map((l, i) => ({...l, lo: Math.round(i * w) + 1, hi: Math.round((i + 1) * w)})); }
+function words(t) { return (t.match(/[A-Za-z0-9’'-]+/g) || []).length; }
+function renderEssay(q, p, key) {
+ const ans = state.answers[key] && typeof state.answers[key] === 'object' ? state.answers[key] : {};
+ const put = (k, v) => { const a = state.answers[key] && typeof state.answers[key] === 'object' ? state.answers[key] : (state.answers[key] = {}); a[k] = v; save(); };
+ const plan = el('details', {class: 'plan', open: !ans.text}, el('summary', {text: 'Plan first (2–3 minutes)'}),
+  el('div', {class: 'planGrid'}, p.plan.map((h, i) => { const ta = el('textarea', {rows: 3, id: `pl-${key}-${i}`, placeholder: h.hint}); ta.value = ans['plan' + i] || ''; ta.addEventListener('input', () => put('plan' + i, ta.value)); return el('label', {class: 'field', for: ta.id}, el('span', {text: h.label}), ta); })));
+ const ta = el('textarea', {id: 'a-' + key, rows: 14, placeholder: 'Write your answer in paragraphs. Each paragraph: make a point, explain it, apply it to the scenario, then link it to the question.', 'aria-label': 'Answer ' + label(p)});
+ ta.value = ans.text || '';
+ const count = el('p', {class: 'small wc'});
+ const target = p.marks * 25;
+ const check = el('details', {class: 'check'});
+ const summary = el('summary');
+ const list = el('ul', {class: 'criteria'});
+ p.criteria.forEach((c, i) => {
+  const cb = el('input', {type: 'checkbox', id: 'c-' + key + '-' + i});
+  cb.checked = !!(state.ticks[key] || [])[i];
+  cb.addEventListener('change', () => { (state.ticks[key] ||= [])[i] = cb.checked; save(); });
+  list.append(el('li', {}, cb, el('label', {for: cb.id, text: ' ' + c})));
+ });
+ const sel = el('select', {id: 'lv-' + key}, el('option', {value: '', text: 'Choose a mark…'}), el('option', {value: '0', text: '0 — nothing relevant yet'}),
+  bands(p.marks).map(b => el('optgroup', {label: 'Level ' + b.n}, Array.from({length: b.hi - b.lo + 1}, (_, i) => el('option', {value: String(b.lo + i), text: `${b.lo + i} (level ${b.n})`})))));
+ sel.value = state.marked[key] !== undefined ? String(state.marked[key]) : '';
+ sel.addEventListener('change', () => { if (sel.value === '') delete state.marked[key]; else state.marked[key] = Number(sel.value); save(); updateScores(q); });
+ check.append(summary,
+  el('p', {class: 'small', text: '1. Tick the points your answer develops (explained and applied, not just mentioned). You do not need them all: a top answer covers a good range in depth.'}), list,
+  el('p', {class: 'small', text: '2. Decide which level best describes your answer as a whole, then choose a mark in that level: higher if it fits the level well, lower if it only just fits.'}),
+  el('table', {class: 'levels'}, el('tbody', {}, bands(p.marks).map(b => el('tr', {}, el('th', {scope: 'row', text: `Level ${b.n} (${b.lo}–${b.hi})`}), el('td', {text: b.text}))))),
+  el('label', {class: 'field', for: sel.id}, el('span', {text: 'My mark'}), sel));
+ const refresh = () => {
+  const n = words(ta.value), ready = n >= Math.min(60, target / 2);
+  count.textContent = `${n} words · a strong ${p.marks}-mark answer is often around ${target}–${target + 100} words, but depth matters more than length.`;
+  check.classList.toggle('locked', !ready); if (!ready) check.open = false;
+  summary.textContent = ready ? 'Check and mark my answer' : `Check and mark my answer (write at least ${Math.min(60, target / 2)} words first)`;
+ };
+ check.addEventListener('toggle', () => { if (check.open && check.classList.contains('locked')) check.open = false; });
+ ta.addEventListener('input', () => { put('text', ta.value); refresh(); });
+ refresh();
+ return el('div', {}, p.structure ? el('p', {class: 'hint'}, el('strong', {text: 'Structure: '}), p.structure) : null, plan, ta, count, check);
+}
+
 function renderPart(q, p, guided) {
  const key = pid(q, p);
- const kinds = {text: renderText, choice: renderChoice, fields: renderFields, truth: renderTruth, order: renderOrder};
- const auto = p.type !== 'text';
+ const kinds = {text: renderText, choice: renderChoice, fields: renderFields, truth: renderTruth, order: renderOrder, essay: renderEssay};
+ const auto = p.type !== 'text' && p.type !== 'essay';
  const checkBtn = auto ? el('button', {type: 'button', text: 'Check', onclick: () => { state.marked[key] = showMarks(q, p, key, true); save(); updateScores(q); }}) : null;
  const node = el('div', {class: 'part', id: 'p-' + key},
-  el('div', {class: 'phead'}, el('h4', {text: label(p)}), el('span', {class: 'marks', text: p.marks + (p.marks === 1 ? ' mark' : ' marks') + (auto ? ' · auto-marked' : ' · self-check')})),
+  el('div', {class: 'phead'}, el('h4', {text: label(p)}), el('span', {class: 'marks', text: p.marks + (p.marks === 1 ? ' mark' : ' marks') + (auto ? ' · auto-marked' : p.type === 'essay' ? ' · level-marked' : ' · self-check')})),
   p.context ? el('p', {class: 'context', text: p.context}) : null,
   el('p', {class: 'prompt', text: p.prompt}),
   hintBox(p, guided),
@@ -202,7 +250,7 @@ function renderTable(t) {
 function renderTest(t) {
  const wrap = $('test'); wrap.replaceChildren();
  const sumMax = t.questions.reduce((n, q) => n + q.parts.reduce((m, p) => m + p.marks, 0), 0);
- wrap.append(el('div', {class: 'intro'}, el('h2', {text: t.title}), el('p', {text: t.intro}), el('p', {class: 'total', id: 'testTotal', text: ''}), el('p', {class: 'small', text: `Total: ${sumMax} marks. Written answers are self-checked: tick only what your answer really says. Auto-marked answers are checked when you press Check.`})));
+ wrap.append(el('div', {class: 'intro'}, el('h2', {text: t.title}), el('p', {text: t.intro}), t.guide ? el('dl', {class: 'guide'}, t.guide.flatMap(g => [el("dt", {text: g.term}), el("dd", {text: g.text})])) : null, el('p', {class: 'total', id: 'testTotal', text: ''}), el('p', {class: 'small', text: `Total: ${sumMax} marks. Written answers are self-checked: tick only what your answer really says. Auto-marked answers are checked when you press Check.`})));
  t.questions.forEach((q, i) => {
   const qm = q.parts.reduce((m, p) => m + p.marks, 0);
   wrap.append(el('section', {class: 'question', id: q.id},
@@ -213,11 +261,11 @@ function renderTest(t) {
    q.parts.map(p => renderPart(q, p, t.guided)),
    el('p', {class: 'qtotal', id: 'qt-' + q.id, text: `Total for question ${i + 1}: ${qm} marks`})));
  });
- for (const q of t.questions) { for (const p of q.parts) if (p.type !== 'text' && state.marked[pid(q, p)] !== undefined) state.marked[pid(q, p)] = showMarks(q, p, pid(q, p), true); updateScores(q); }
+ for (const q of t.questions) { for (const p of q.parts) if (MARKERS[p.type] && state.marked[pid(q, p)] !== undefined) state.marked[pid(q, p)] = showMarks(q, p, pid(q, p), true); updateScores(q); }
 }
 function updateScores(q) {
  const t = TESTS.find(t => t.id === current);
- if (q && $('qt-' + q.id)) { const s = questionScore(q); $('qt-' + q.id).textContent = `Your score so far: ${s.total} / ${s.max} (auto-marked ${s.auto}/${s.autoMax}, self-checked ${s.self}/${s.selfMax})`; }
+ if (q && $('qt-' + q.id)) { const s = questionScore(q); $('qt-' + q.id).textContent = `Your score so far: ${s.total} / ${s.max}` + (s.autoMax && s.selfMax ? ` (auto-marked ${s.auto}/${s.autoMax}, self-checked ${s.self}/${s.selfMax})` : s.selfMax ? ' (self-checked)' : ' (auto-marked)'); }
  let total = 0, max = 0; for (const qq of t.questions) { const s = questionScore(qq); total += s.total; max += s.max; }
  if ($('testTotal')) $('testTotal').textContent = `Score so far: ${total} / ${max}`;
 }

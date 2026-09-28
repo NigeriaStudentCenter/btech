@@ -34,6 +34,10 @@ table.data td{text-align:left}
 ol.order{padding-left:0;list-style:none}ol.order li{display:flex;gap:8px;align-items:flex-start;margin:.45em 0}ol.order select{flex:none;padding:4px;border:1px solid #899eb3;border-radius:5px}
 .links{font-size:.88rem;color:var(--muted);margin:.6em 0 0}
 .qtotal,.total{font-weight:700;color:#163b62}
+.plan{margin:10px 0;border:1px solid var(--line);border-radius:8px;padding:8px 12px;background:#fafcfe}.plan summary{cursor:pointer;font-weight:650;color:var(--accent)}.planGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:8px}.planGrid textarea{font-size:.9rem;padding:8px}
+.wc{margin:.3em 0}table.levels th,table.levels td{text-align:left;vertical-align:top;font-size:.9rem}table.levels th{white-space:nowrap}
+dl.guide{display:grid;grid-template-columns:max-content 1fr;gap:6px 14px;font-size:.95rem}dl.guide dt{font-weight:700}dl.guide dd{margin:0}
+@media(max-width:640px){.planGrid{grid-template-columns:1fr}dl.guide{grid-template-columns:1fr}dl.guide dd{margin-bottom:6px}}
 figure.diagram{margin:12px 0;color:#163b62}figcaption{font-size:.88rem;color:var(--muted)}
 @media(max-width:640px){body{padding:16px;margin:10px auto;font-size:17px}.fields.grid3,.fields.grid2{grid-template-columns:1fr 1fr}.panel,.question,.intro{padding:16px}}
 @media print{nav,#tabs,.tools,.panel,details.check,.links{display:none}.question,.intro{border:0;padding:0}details.hint{display:block}textarea{border:1px solid #ccc}}
@@ -41,12 +45,12 @@ figure.diagram{margin:12px 0;color:#163b62}figcaption{font-size:.88rem;color:var
 <nav aria-label="Student pack"><a href="start.html">Start</a><a href="brief.html">1. Brief</a><a href="learning.html">2. Learn</a><a href="index.html">3. Workbook + tutor</a><a href="revision.html">4. Revision</a></nav>
 <h1>4. Revision practice</h1>
 <div class="panel">
-<p>Three practice tests. <strong>Test 1</strong> (with hints) and <strong>Test 2</strong> (on your own) are in the style of the Unit 2 exam: each question is built around one scenario, from 1-mark answers up to 12-mark discussions. <strong>Test 3</strong> goes deeper into topics the first two do not cover, and asks you to explain why and to spot mistakes.</p>
+<p>Four practice tests. <strong>Test 1</strong> (with hints) and <strong>Test 2</strong> (on your own) are in the style of the Unit 2 exam: each question is built around one scenario, from 1-mark answers up to 12-mark discussions. <strong>Test 3</strong> goes deeper into topics the first two do not cover, and asks you to explain why and to spot mistakes. <strong>Test 4</strong> practises the long 6–12 mark answers: plan, write, then mark yourself against the levels.</p>
 <p class="small">These are original practice questions for this course, not official Pearson papers. Answers save in this browser only. Do not type your name or personal details.</p>
 <div class="tools"><button id="download" type="button">Download my revision</button><button id="restore" type="button">Continue from a backup</button><button id="clear" type="button">Clear this device</button><button id="print" type="button">Print</button><input id="backup" type="file" accept="application/json,.json" hidden></div>
 <p id="status" role="status"></p>
 </div>
 <div id="tabs" role="group" aria-label="Choose a test"></div>
 <main id="test"></main>
-<script src="revision-data.js"></script><script src="revision-data-deeper.js"></script><script src="revision.js"></script>
+<script src="revision-data.js"></script><script src="revision-data-deeper.js"></script><script src="revision-data-extended.js"></script><script src="revision.js"></script>
 </body></html>
