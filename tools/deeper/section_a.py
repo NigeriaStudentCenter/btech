@@ -46,7 +46,7 @@ def phone():
     layers = [
         ("Cover glass + touch digitiser", "input: senses touch", "#eaf4fb"),
         ("OLED display panel", "output: pixels make light", "#e3eefa"),
-        ("Logic board", "SoC, RAM and NAND flash storage", "#e8f1e4"),
+        ("Logic board", "SoC, RAM, flash storage", "#e8f1e4"),
         ("Battery", "lithium-ion: limits run time", "#fbf0dd"),
         ("Back case", "cameras, antennas, charging coil", "#eef0f3"),
     ]
@@ -55,11 +55,11 @@ def phone():
         s.poly([(x, y + 20), (x + 230, y), (x + 290, y + 22), (x + 60, y + 42)], fill=f)
         s.text(x + 330, y + 18, a, size=14, anchor="start", bold=True)
         s.text(x + 330, y + 36, b, size=12, anchor="start")
-    s.box(580, 120, 170, 120, fill="white")
-    s.text(665, 140, "System on a Chip", size=13, bold=True)
+    s.box(608, 120, 146, 120, fill="white")
+    s.text(681, 140, "System on a Chip", size=13, bold=True)
     for j, t in enumerate(["CPU cores (fast + efficient)", "GPU (graphics)", "NPU (AI tasks)", "Image processor", "Cellular modem (4G/5G)"]):
-        s.text(590, 162 + j * 16, "• " + t, size=11, anchor="start")
-    s.arrow(530, 175, 576, 175, label="", color="#8aa5b8", width=1.5)
+        s.text(614, 162 + j * 16, "• " + t, size=10, anchor="start")
+    s.arrow(560, 196, 604, 196, label="", color="#8aa5b8", width=1.5)
     return s.render("Inside a smartphone. A System on a Chip (SoC) puts the CPU, GPU and other processors on one chip to save space and battery.")
 
 
