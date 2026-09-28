@@ -1,0 +1,210 @@
+[
+  {
+    "id": "A1",
+    "title": "Computer parts and choosing devices",
+    "learn": "A school needs computers for different jobs. A tablet is easy to carry; a desktop can have a larger screen; a server helps many people use a service at once; a printer and scanner in one box is a multifunction device. A computer has input, processing, storage and output. A keyboard is input, a CPU carries out instructions, RAM holds work in progress, storage keeps files when power is off, and a screen is output. A quick CPU cannot fix a slow internet connection. Choose parts by the job, cost, accessibility, compatibility, power use and security. RAID can keep a service running if a disk fails, but it does not replace a separate backup. NAS is storage shared over a network.",
+    "example": "A library checkout machine scans a book code, checks the record on a server and shows the return date. If the network fails, buying a faster screen will not help.",
+    "activity": "Draw arrows from scanner to processor to server to screen. Label one place data is stored. Then choose either a tablet or desktop for a school reception desk and give two reasons.",
+    "check": "Why does a school still need a backup if it uses mirrored disks?",
+    "prompt_labels": [
+      "My notes",
+      "My activity work",
+      "My answer to the quick check"
+    ]
+  },
+  {
+    "id": "A2",
+    "title": "Operating systems and programs",
+    "learn": "An operating system (OS) helps the computer run programs, use memory, find files, connect to networks and protect users. Its kernel is the central part that manages important jobs such as taking turns on the CPU and reacting to an interrupt. A driver helps the OS talk to a device. A real-time OS must respond within a deadline, for example in a control system. Other systems may run one task or many, for one user or many. A graphical interface has windows and icons; a command line uses typed instructions; a menu offers set choices. Utility software maintains the computer. Application software helps a person do a task. Open-source software can be inspected and changed under its licence, but that does not automatically mean it is free to run or easy to support.",
+    "example": "When you click Print, the application requests it, the OS manages the job and a driver helps send it to the printer.",
+    "activity": "Make a three-column table headed OS, utility and application. Add two examples to each. Then explain which interface might help a first-time user at a ticket machine.",
+    "check": "What does a device driver do?",
+    "prompt_labels": [
+      "My notes",
+      "My activity work",
+      "My answer to the quick check"
+    ]
+  },
+  {
+    "id": "A3",
+    "title": "Collecting and using data",
+    "learn": "A sensor or form collects data. Software can check it, sort it, combine it and show a report. Validation checks a rule: an age field may accept only whole numbers from 0 to 120. A valid answer could still be wrong if someone typed the wrong age. Aggregation combines results, such as total visitors each day. Analysis looks for patterns. Conversion changes a format. If two sites share records, users may get faster access, but they must keep records in step and protect them. A backup is a separate copy that can be restored. A restore test proves the copy works.",
+    "example": "A sports club records 12, 15 and 18 visitors on three days. The total is 45. A rule that accepts numbers 0 to 100 does not prove those counts are true.",
+    "activity": "Design a sign-in form for a club. Add two validation rules, one total and one report. Write a simple three-step backup and restore test.",
+    "check": "How can a number pass validation but still be incorrect?",
+    "prompt_labels": [
+      "My notes",
+      "My activity work",
+      "My answer to the quick check"
+    ]
+  },
+  {
+    "id": "B1",
+    "title": "Ways to build a computer system",
+    "learn": "A stored-program computer keeps instructions so the processor can follow them. In a simple Von Neumann model, instructions and data use the same path to memory. In a Harvard model, they have separate paths. Real devices may mix these ideas. A cluster joins several computers to share work or keep a service available if one fails. UMA means processors reach memory at roughly the same speed; in NUMA, memory close to one processor can be faster for it than distant memory. Emulation makes one system behave like another so an older program may run, although it might be slower or have compatibility problems. The best design depends on the job and cost.",
+    "example": "An old museum game can sometimes run in an emulator on a new PC. If it relies on an old graphics device, the picture or sound may still fail.",
+    "activity": "Draw two simple boxes for CPU and memory. Show one shared path for Von Neumann and separate instruction/data paths for Harvard. Then write one reason a busy ticket website might use a cluster.",
+    "check": "What could an emulator do, and what is one limit?",
+    "prompt_labels": [
+      "My notes",
+      "My activity work",
+      "My answer to the quick check"
+    ]
+  },
+  {
+    "id": "B2",
+    "title": "How a CPU works quickly",
+    "learn": "A CPU fetches an instruction, decodes what it means and executes it. Its instruction set is the list of operations it understands. A pipeline overlaps the steps of different instructions, like a line of people doing different stages of one job. A branch, missing data or a cache miss can interrupt this flow. Cache is a small, fast store for often-used data. A higher clock speed alone does not prove one CPU is faster: the instructions, cache, software and number of cores matter too. Multiprocessing uses more than one processing unit; multithreading lets a program have several flows of work. A phone CPU must often save battery and stay cool; a server CPU may focus on many requests and reliability.",
+    "example": "In a three-stage pipeline, instruction 2 can be fetched while instruction 1 is being decoded. Both are not finished at once.",
+    "activity": "Draw a table with columns Cycle, Fetch, Decode, Execute. Trace two instructions through it. Add a one-cycle pause when instruction 2 needs a result from instruction 1.",
+    "check": "Why can two CPUs with the same clock speed finish a task at different times?",
+    "prompt_labels": [
+      "My notes",
+      "My activity work",
+      "My answer to the quick check"
+    ]
+  },
+  {
+    "id": "B3",
+    "title": "Tiny storage inside the CPU",
+    "learn": "Registers are tiny, fast places inside the CPU. The program counter (PC) holds the address of the next instruction. The memory address register (MAR) holds an address to read or write. The memory data register (MDR) holds data being moved. The instruction register (IR) holds the current instruction. An accumulator can hold a calculation result. General-purpose registers can hold other temporary values. An interrupt asks the CPU to pause its normal work and deal with something important, then continue when possible. Do not confuse a register with the much larger RAM.",
+    "example": "If the next instruction is at address 204, the PC can pass 204 to MAR. Memory sends that instruction through MDR to IR.",
+    "activity": "Use five paper cards marked PC, MAR, MDR, IR and Memory. Act out a fetch. Write down which cards hold an address and which hold instruction data.",
+    "check": "Which register holds the address of the next instruction?",
+    "prompt_labels": [
+      "My notes",
+      "My activity work",
+      "My answer to the quick check"
+    ]
+  },
+  {
+    "id": "C1",
+    "title": "Binary numbers",
+    "learn": "Computers use bits, which can be 0 or 1. Eight bits make a byte. In binary, places from the right are 1, 2, 4, 8, 16 and so on. Binary 00101101 is 32+8+4+1=45. BCD works differently: it writes each decimal digit in four bits, so decimal 45 becomes 0100 0101. Check the question before using kB (1000 bytes) or KiB (1024 bytes). For addition, carry when a column reaches two: 1011 + 0110 = 10001. You can also subtract, multiply and divide in binary. To add BCD digits with a result above 9, a correction of 0110 may be needed. Negative numbers can use a fixed-width two’s-complement pattern. Floating point stores a number in a scaled form, which can round some values.",
+    "example": "Decimal 13 is binary 00001101 but BCD 0001 0011. The patterns differ because BCD encodes 1 and 3 separately.",
+    "activity": "Convert 26 to eight-bit binary and to BCD. Show the place values. Add 0101 + 0011 in binary. Explain which answer is a number and which is a coding of decimal digits.",
+    "check": "Why is binary 45 different from BCD 45?",
+    "prompt_labels": [
+      "My notes",
+      "My activity work",
+      "My answer to the quick check"
+    ]
+  },
+  {
+    "id": "C2",
+    "title": "Letters as numbers",
+    "learn": "Text is stored as number codes. ASCII covers a limited set of characters. Unicode gives codes for a much wider set of writing systems and symbols. UTF-8 is one way to turn Unicode characters into bytes; one visible character may take more than one byte. If a school system only accepts ASCII, it may fail to save some students’ names correctly. A code point and the bytes used to store it are related, but not the same thing.",
+    "example": "The letter A has a character code. A character such as é can take a different number of bytes in UTF-8 than A.",
+    "activity": "Write three names or place words from different languages, using fictional examples. Check whether each character can be stored by the chosen character set. Explain why a school should test a new database with many languages.",
+    "check": "Does every Unicode character always use one byte? Explain.",
+    "prompt_labels": [
+      "My notes",
+      "My activity work",
+      "My answer to the quick check"
+    ]
+  },
+  {
+    "id": "C3",
+    "title": "Pictures made from pixels",
+    "learn": "A bitmap or raster picture is a grid of tiny coloured squares called pixels. Resolution tells us how many pixels it has. Bit depth tells us how many bits describe each pixel. For an uncompressed picture, pixel-data bits = width × height × bit depth. Divide by 8 for bytes. A file may also have a header and metadata. Lossless compression makes a smaller file that can be restored exactly. Lossy compression removes some detail, often making an even smaller file. Keep a high-quality original if you may need to edit or print later.",
+    "example": "A 100 × 50 picture at 8 bits per pixel needs 100×50×8÷8 = 5,000 bytes of raw pixel data. The saved file may be a different size.",
+    "activity": "Draw a 5×5 pixel picture on squared paper. Colour it with only four colours. Then calculate raw pixel-data bytes for a 200×100 image at 8 bits per pixel.",
+    "check": "Why might a photographer keep an original image and a smaller web copy?",
+    "prompt_labels": [
+      "My notes",
+      "My activity work",
+      "My answer to the quick check"
+    ]
+  },
+  {
+    "id": "D1",
+    "title": "Stacks, queues, arrays and lists",
+    "learn": "A stack works like a pile of trays: the last item added is the first removed (LIFO). A queue works like an ordinary line: the first item in is the first served (FIFO). An array stores items at numbered positions. A list is an ordered collection that can be implemented in different ways. A call stack helps a program return to the right place; a queue can hold print jobs or data waiting in a device. The structure must suit the job. A simple queue is not enough if urgent items must jump ahead under a rule.",
+    "example": "Put A then B on a stack; remove one. A remains. Put A then B in a queue; serve one. B remains.",
+    "activity": "Use paper slips P, Q and R. Trace the slips as a stack and as a queue. Write the order in which they leave. Then choose a structure for a school printer and explain why.",
+    "check": "If A, B, C enter a queue and A leaves, who is at the front?",
+    "prompt_labels": [
+      "My notes",
+      "My activity work",
+      "My answer to the quick check"
+    ]
+  },
+  {
+    "id": "D2",
+    "title": "Grids, arrays and matrices",
+    "learn": "A two-dimensional array is like a table with rows and columns. A matrix is a rectangular table of numbers that you can calculate with. Arrays can also have one dimension or more than two. A computer may store a grid row by row (row-major) or column by column (column-major). For zero-based row-major positions in an R×C grid, offset = row×C+column. For column-major, offset = column×R+row. Matrix addition adds matching positions. Matrix multiplication uses a row from the first matrix and a column from the second. A square matrix may have an inverse, but only when the calculation allows it.",
+    "example": "In a 3×4 grid, position [2,1] has row-major offset 2×4+1=9 and column-major offset 1×3+2=5.",
+    "activity": "Draw a 3×4 seating grid and number its cells in both storage orders. Add two 2×2 matrices of your own. Show one row-by-column multiplication step.",
+    "check": "Why do you need to know the number of columns to find a row-major offset?",
+    "prompt_labels": [
+      "My notes",
+      "My activity work",
+      "My answer to the quick check"
+    ]
+  },
+  {
+    "id": "E1",
+    "title": "Sending data between computers",
+    "learn": "Simplex communication goes one way. Half-duplex goes both ways but takes turns. Full-duplex can go both ways at the same time. Point-to-point joins two devices; multi-drop shares a link among several. Serial sends bits one after another; parallel uses several lines at once. Synchronous sending shares timing, while asynchronous sending uses start/stop information or separate framing. Packet switching splits data into labelled pieces. Addresses say where they come from and go; a sequence number helps put them in order; a check value helps spot damage. Protocols are agreed rules. Compression reduces size: lossless restores the same data, lossy can lose detail. Encryption hides content from someone without the key. Symmetric methods share a secret; public-key methods use a related key pair. Caesar and Vigenère are historical teaching examples, not good protection for real personal data.",
+    "example": "A photo may travel as packets 1, 2 and 3. If 2 arrives last, sequence numbers help put it back in place. The photo is still private only if it is properly protected, not merely split into packets.",
+    "activity": "Make three paper packets with addresses, numbers and short messages. Shuffle them, rebuild the message, then describe what to do if one is missing. Decide whether a medical image should use lossy compression.",
+    "check": "What jobs do a sequence number and encryption do?",
+    "prompt_labels": [
+      "My notes",
+      "My activity work",
+      "My answer to the quick check"
+    ]
+  },
+  {
+    "id": "E2",
+    "title": "Spotting errors",
+    "learn": "Data can change accidentally while travelling. Even parity adds one bit so the total number of 1s is even. If the message changes by one bit, this check will usually notice. But two changed bits may leave the total even and go unnoticed. A checksum is another summary value used to spot a change. A cyclic redundancy check (CRC) uses a calculated remainder. Repeating information can also help reveal mismatches. Error detection says something is probably wrong; it does not necessarily repair the data.",
+    "example": "The data 1011001 has four 1s. Its even-parity bit is 0. If exactly two data bits flip, the total remains even.",
+    "activity": "Count the 1s in 1010110 and add an even-parity bit. Change one bit and check the result. Change a second bit and check again.",
+    "check": "Can parity always notice two changed bits? Why?",
+    "prompt_labels": [
+      "My notes",
+      "My activity work",
+      "My answer to the quick check"
+    ]
+  },
+  {
+    "id": "E3",
+    "title": "Fixing errors",
+    "learn": "Once a system spots an error, it needs a plan. Automatic repeat request (ARQ) asks for the damaged packet again. This can work well if a reply can get back quickly. Forward error correction (FEC) sends extra information that may allow the receiver to repair some errors without asking again. That can save time over a slow return path, but it uses more space on the link. The right method depends on delay, bandwidth and how many errors are likely.",
+    "example": "A video call with a long delay may not be able to wait for a missing packet to be sent again. Extra correction data might help, though it costs bandwidth.",
+    "activity": "Pass a message through three classmates. Deliberately damage one symbol. Compare the number of messages and the waiting time when you ask for it again versus when extra checking information was sent first.",
+    "check": "What is one benefit and one cost of FEC?",
+    "prompt_labels": [
+      "My notes",
+      "My activity work",
+      "My answer to the quick check"
+    ]
+  },
+  {
+    "id": "F1",
+    "title": "True and false decisions",
+    "learn": "Boolean logic works with two values: 0 (false) and 1 (true). AND gives 1 only when both inputs are 1. OR gives 1 when either input is 1. NOT reverses a value. XOR gives 1 when two inputs differ. Brackets help show which operation happens first. You can write a truth table to test every input combination. A half adder uses XOR for its sum and AND for its carry. A full adder also accepts a carry from the previous bit. Do not guess a whole table from one row: check each row.",
+    "example": "A door alarm rings if DoorOpen AND NOT Override. If the door is open (1) and override is off (0), the alarm is 1.",
+    "activity": "Make a truth table for A AND NOT B. Then draw a NOT gate on B and an AND gate using A and the result. Test all four rows.",
+    "check": "What does XOR give when both inputs are 1?",
+    "prompt_labels": [
+      "My notes",
+      "My activity work",
+      "My answer to the quick check"
+    ]
+  },
+  {
+    "id": "F2",
+    "title": "Drawing how data moves",
+    "learn": "A flow chart shows a set of steps. A decision diamond asks a question with clearly labelled outcomes, such as Yes and No. A system diagram shows parts of a system and how data moves between them. Label every input, output and arrow. Test normal values and edge cases. A good diagram should show what happens after invalid input and where the process ends or repeats. Use a ruler if you draw on paper, or clear shapes if you draw on screen.",
+    "example": "A quiz score of 50 is PASS if the rule says 50 or more. A score of 101 should first be rejected if only 0 to 100 is allowed.",
+    "activity": "Draw a flow chart that reads a score, rejects values outside 0–100, then gives PASS for 50 or more and RETAKE otherwise. Test −1, 49, 50 and 101 and write each output.",
+    "check": "Why must both branches of a decision be labelled?",
+    "prompt_labels": [
+      "My notes",
+      "My activity work",
+      "My answer to the quick check"
+    ]
+  }
+]

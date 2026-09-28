@@ -1,0 +1,1 @@
+{"name":"unit2-azure-tutor","version":"1.0.0","private":true,"main":"src/functions.js","engines":{"node":">=22"},"scripts":{"test":"node --test test.js"},"dependencies":{"@azure/functions":"^4.7.0","@azure/identity":"^4.0.0"}}
