@@ -1,0 +1,53 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>5. Past Exam Papers</title>
+<style>
+:root{--ink:#17334b;--muted:#405870;--line:#d2dce5;--card:#fff;--bg:#f5f8fc;--accent:#205f95;--good:#1d7a45;--warn:#a3560b}
+body{font:18px/1.6 system-ui,sans-serif;color:var(--ink);background:var(--bg);max-width:980px;margin:30px auto;padding:20px}
+a{color:#155b91}h1,h2,h3,h4{line-height:1.25}nav{display:flex;gap:20px;flex-wrap:wrap}
+.panel,.paper{background:var(--card);padding:22px;border:1px solid var(--line);border-radius:14px;margin:20px 0}
+button,select,input,textarea{font:inherit;color:inherit}
+button{cursor:pointer;padding:8px 14px;border-radius:7px;border:1px solid #9aaec2;background:#fff;color:#173f69}
+button:hover,button:focus-visible{outline:2px solid #235f9c}button:disabled{opacity:.55;cursor:wait}
+button.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+.tools{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:12px}
+#status{font-weight:650;min-height:1.6em}#status.error{color:#a12323}
+#tabs{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}#tabs button.current{background:var(--accent);color:#fff;border-color:var(--accent)}
+.links{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}.links a{display:inline-block;padding:9px 14px;border-radius:8px;text-decoration:none;border:1px solid #9aaec2;background:#fff}
+.links a.qp{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:650}
+details.after{margin:12px 0;border:1px solid var(--line);border-radius:10px;padding:10px 14px;background:#fafcfe}details.after summary{cursor:pointer;font-weight:650}
+.score{font-weight:700;color:#163b62}
+details.q{border:1px solid var(--line);border-radius:12px;margin:14px 0;background:#fff}
+details.q>summary{cursor:pointer;padding:14px 18px;font-weight:700;list-style:none;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+details.q>summary::before{content:"▸ ";color:var(--accent)}details.q[open]>summary::before{content:"▾ "}
+.qbody{padding:0 18px 16px}.scenario{background:#eef4fa;border-left:4px solid #4382b5;padding:10px 14px;border-radius:0 8px 8px 0;margin:0 0 10px}
+.part{border-top:1px solid #e1e8ef;padding-top:14px;margin-top:14px}
+.phead{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:baseline}.phead h4{margin:0}
+.badge{font-size:.8rem;font-weight:650;background:#163b62;color:#fff;border-radius:999px;padding:2px 10px;white-space:nowrap}
+.topic{color:var(--muted);margin:.3em 0}
+textarea,input[type=text]{width:100%;box-sizing:border-box;padding:10px;border:1px solid #899eb3;border-radius:7px;line-height:1.5}
+label.small,.small{font-size:.88rem;color:var(--muted)}
+details.qtext summary{cursor:pointer;font-size:.9rem;color:var(--accent);margin:8px 0}
+.tutor{background:#f4f8fb;border-radius:10px;padding:10px 12px;margin-top:10px}
+.tutorlog{white-space:pre-wrap;font-size:.95rem;margin-top:8px}.tutorlog .you{color:var(--muted);font-style:italic}.tutorlog .bot{margin:6px 0 10px}
+.mymark{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:10px}.mymark select{padding:6px;border:1px solid #899eb3;border-radius:6px;background:#fff}
+ol.steps{margin:.4em 0 .4em 1.2em;padding:0}ol.steps li{margin:.25em 0}
+@media(max-width:640px){body{padding:16px;margin:10px auto;font-size:17px}.panel,.paper{padding:16px}.qbody{padding:0 12px 14px}}
+@media print{nav,#tabs,.tools,.tutor,.links,details.after,.panel{display:none}details.q{border:0}}
+</style></head><body>
+<nav aria-label="Student pack"><a href="start.html">Start</a><a href="brief.html">1. Brief</a><a href="learning.html">2. Learn</a><a href="index.html">3. Workbook + tutor</a><a href="revision.html">4. Revision</a><a href="past-papers.html">5. Past Exam Papers</a></nav>
+<h1>5. Past Exam Papers</h1>
+<div class="panel">
+<p>Five real Unit 2 exam papers from Pearson. Each one is 80 marks and lasts 1 hour 45 minutes, just like your exam.</p>
+<ol class="steps">
+<li>Choose a paper and open the <strong>question paper</strong> (it opens on Pearson’s website).</li>
+<li>Answer each part in the boxes below. Your answers save on this device as you type.</li>
+<li>Stuck? Use the <strong>AI tutor</strong> on that part: <em>Help me start</em>, <em>Check my answer</em> or, for 6–12 mark questions, <em>Plan my long answer</em>. It will not write the answer for you.</li>
+<li>When you have finished, open the <strong>mark scheme</strong> and the <strong>examiner’s report</strong>, and record the mark you think you earned.</li>
+</ol>
+<p class="small">Question papers, mark schemes and examiner’s reports are © Pearson Education Ltd and are opened from Pearson’s own website. The topic notes on this page are our own summaries. Do not type your name or personal details.</p>
+<div class="tools"><button id="download" type="button">Download my answers</button><button id="restore" type="button">Continue from a backup</button><button id="clear" type="button">Clear this device</button><input id="backup" type="file" accept="application/json,.json" hidden></div>
+<p id="status" role="status"></p>
+</div>
+<div id="tabs" role="group" aria-label="Choose a paper"></div>
+<main id="paper"></main>
+<script src="config.js"></script><script src="past-papers.js"></script>
+</body></html>
