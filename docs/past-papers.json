@@ -1,0 +1,139 @@
+{
+ "note": "Index of public Pearson BTEC Level 3 Computing Unit 2 (31769H) past papers. Topics are our own short summaries; question wording and papers remain (c) Pearson and are opened from Pearson's website.",
+ "base": "https://qualifications.pearson.com/content/dam/pdf/BTEC-Nationals/computing/2016/External-assessments/",
+ "papers": [
+  {
+   "id": "jan21", "title": "January 2021", "date": "Tuesday 19 January 2021",
+   "qp": "btec-nqf-l3-computing-31769h-jan-2021.pdf", "ms": "31769h-unit2-rms-20210317.pdf", "er": "31769h-unit2-pef-20210317.pdf",
+   "questions": [
+    {"q": 1, "scenario": "An events venue: ticket checking, bookings, microphones and live video", "parts": [
+     {"p": "a", "marks": 4, "cmd": "Explain", "topic": "Features of a smartphone that suit checking tickets", "section": "A1"},
+     {"p": "b", "marks": 6, "cmd": "Draw", "topic": "System diagram of the ticket booking system: devices, connections and data flows", "section": "F2"},
+     {"p": "c", "marks": 2, "cmd": "Explain", "topic": "Why a simplex channel suits wireless microphones", "section": "E1"},
+     {"p": "d", "marks": 3, "cmd": "Give", "topic": "Benefits of lossless compression", "section": "C3"},
+     {"p": "e", "marks": 2, "cmd": "Explain", "topic": "A drawback of lossless compression", "section": "C3"},
+     {"p": "f", "marks": 3, "cmd": "Explain", "topic": "Why forward error correction suits live video better than ARQ", "section": "E3"}]},
+    {"q": 2, "scenario": "A scientist collecting wildlife sightings from the public", "parts": [
+     {"p": "a", "marks": 4, "cmd": "Describe", "topic": "Using software to distribute a questionnaire", "section": "A3"},
+     {"p": "b", "marks": 4, "cmd": "Explain", "topic": "Drawbacks of cloud-based backup", "section": "A3"},
+     {"p": "c", "marks": 3, "cmd": "Calculate", "topic": "Total file size converted from bytes to megabytes", "section": "C1"},
+     {"p": "d", "marks": 3, "cmd": "Explain", "topic": "Why a program using arrays produces an error", "section": "D1"},
+     {"p": "e", "marks": 6, "cmd": "Analyse", "topic": "Using validation when collecting and processing data", "section": "A3"}]},
+    {"q": 3, "scenario": "A freelance software developer and her computer", "parts": [
+     {"p": "a", "marks": 4, "cmd": "Describe", "topic": "How CPU cache improves performance", "section": "B2"},
+     {"p": "b", "marks": 6, "cmd": "Analyse", "topic": "Ways to increase execution speed and their implications", "section": "B2"},
+     {"p": "c", "marks": 8, "cmd": "Discuss", "topic": "Choosing software and systems for a developer's range of daily tasks", "section": "A2"}]},
+    {"q": 4, "scenario": "An independent travel agent handling personal data", "parts": [
+     {"p": "a", "marks": 10, "cmd": "Discuss", "topic": "Using software to protect data", "section": "A2"},
+     {"p": "b", "marks": 12, "cmd": "Evaluate", "topic": "Choosing a virtual cloud-based server instead of a physical server", "section": "A1"}]}
+   ]
+  },
+  {
+   "id": "jan20", "title": "January 2020", "date": "January 2020",
+   "qp": "31769h-unit2-que-20200318.pdf", "ms": "31769h-unit2-rms-20200318.pdf", "er": "31769h-unit2-pef-20200318.pdf",
+   "questions": [
+    {"q": 1, "scenario": "A handheld guide device at a tourist attraction", "parts": [
+     {"p": "a", "marks": 3, "cmd": "Give", "topic": "Why Wi-Fi was chosen instead of Bluetooth", "section": "E1"},
+     {"p": "b", "marks": 2, "cmd": "Explain", "topic": "Why a wireless feature fails inside a building", "section": "E1"},
+     {"p": "c", "marks": 3, "cmd": "Explain", "topic": "Using RFID chips to give location-based information", "section": "A3"},
+     {"p": "d", "marks": 2, "cmd": "Describe", "topic": "How the device could use audio", "section": "A1"},
+     {"p": "e", "marks": 3, "cmd": "Explain", "topic": "Why headphones are used instead of speakers", "section": "A1"},
+     {"p": "f", "marks": 4, "cmd": "Explain", "topic": "Drawbacks of a menu-based interface", "section": "A2"},
+     {"p": "g", "marks": 3, "cmd": "Explain", "topic": "How a single-user single-task OS can improve security", "section": "A2"}]},
+    {"q": 2, "scenario": "A computer-controlled car park barrier and pay station", "parts": [
+     {"p": "a", "marks": 4, "cmd": "Explain", "topic": "Additional input devices for the system", "section": "A1"},
+     {"p": "b", "marks": 3, "cmd": "Explain", "topic": "Why an array suits storing number plates", "section": "D1"},
+     {"p": "c", "marks": 4, "cmd": "Explain", "topic": "Why the pay station needs an external network connection", "section": "E1"},
+     {"p": "d", "marks": 2, "cmd": "Explain", "topic": "A problem caused by compressing camera images", "section": "C3"},
+     {"p": "e", "marks": 4, "cmd": "Complete", "topic": "Completing a flowchart that calculates a parking charge", "section": "F2"},
+     {"p": "f", "marks": 3, "cmd": "Draw", "topic": "Flowchart for a car leaving the car park", "section": "F2"}]},
+    {"q": 3, "scenario": "A trainee computer systems engineer", "parts": [
+     {"p": "a", "marks": 4, "cmd": "Describe", "topic": "How an instruction set controls hardware", "section": "B2"},
+     {"p": "b", "marks": 6, "cmd": "Analyse", "topic": "How general and special registers affect how a computer works", "section": "B3"},
+     {"p": "c", "marks": 8, "cmd": "Discuss", "topic": "Why the stored program model made computers available to all", "section": "B1"}]},
+    {"q": 4, "scenario": "A company building a wearable fitness tracker and app", "parts": [
+     {"p": "a", "marks": 10, "cmd": "Discuss", "topic": "Hardware factors for a good user experience", "section": "A1"},
+     {"p": "b", "marks": 12, "cmd": "Evaluate", "topic": "Collecting, processing and presenting the tracker's data", "section": "A3"}]}
+   ]
+  },
+  {
+   "id": "jan19", "title": "January 2019", "date": "January 2019",
+   "qp": "54060-btec-l3-computing-31769h-unit-2-jan-2019.pdf", "ms": "31769h-unit2-rms-20190313.pdf", "er": "31769h-unit2-pef-20190313.pdf",
+   "questions": [
+    {"q": 1, "scenario": "A professional printing shop's computer systems", "parts": [
+     {"p": "a", "marks": 4, "cmd": "Describe", "topic": "Two functions a server could perform", "section": "A1"},
+     {"p": "b", "marks": 2, "cmd": "Explain", "topic": "Why designers benefit from a large amount of RAM", "section": "A1"},
+     {"p": "c", "marks": 2, "cmd": "Explain", "topic": "Why large local secondary storage may not be needed", "section": "A1"},
+     {"p": "d", "marks": 3, "cmd": "Explain", "topic": "A benefit of continuing to use desktop PCs", "section": "A1"},
+     {"p": "e", "marks": 3, "cmd": "Explain", "topic": "How desktops instead of laptops can save money", "section": "A1"},
+     {"p": "f", "marks": 6, "cmd": "Explain", "topic": "The type of operating system for a till and for a server", "section": "A2"}]},
+    {"q": 2, "scenario": "A college teacher using matrices, arrays and a database", "parts": [
+     {"p": "a", "marks": 4, "cmd": "Calculate", "topic": "Using matrices to calculate weighted final scores", "section": "D2"},
+     {"p": "b", "marks": 2, "cmd": "Write", "topic": "Writing a matrix as an array in column-major order", "section": "D2"},
+     {"p": "c", "marks": 2, "cmd": "Complete", "topic": "Writing score differences, including a negative, as 8-bit binary", "section": "C1"},
+     {"p": "d", "marks": 4, "cmd": "Explain", "topic": "A benefit of using a relational database for student data", "section": "A3"},
+     {"p": "e", "marks": 6, "cmd": "Explain", "topic": "Impact of storing data across multiple computer systems", "section": "A3"}]},
+    {"q": 3, "scenario": "A multimedia designer working with clients online", "parts": [
+     {"p": "a", "marks": 4, "cmd": "Describe", "topic": "How VoIP carries voice calls over the internet", "section": "E1"},
+     {"p": "b", "marks": 6, "cmd": "Analyse", "topic": "How packet data reaches its destination", "section": "E1"},
+     {"p": "c", "marks": 10, "cmd": "Discuss", "topic": "Benefits and drawbacks of symmetric key encryption", "section": "E1"}]},
+    {"q": 4, "scenario": "A company designing a home entertainment system", "parts": [
+     {"p": "a", "marks": 10, "cmd": "Discuss", "topic": "Suitability of the stored program model (Von Neumann, Harvard)", "section": "B1"},
+     {"p": "b", "marks": 12, "cmd": "Evaluate", "topic": "Using a desktop (microcomputer) CPU instead of a mobile CPU", "section": "B2"}]}
+   ]
+  },
+  {
+   "id": "jun18", "title": "June 2018", "date": "Tuesday 12 June 2018",
+   "qp": "31769H_Unit2_que_20180612.pdf", "ms": "BTEC%20COMP_U2_1806_Post-stand%20MS.pdf", "er": "31769H_Unit2_pef_20180815.pdf",
+   "questions": [
+    {"q": 1, "scenario": "A digital artist creating graphics", "parts": [
+     {"p": "a", "marks": 2, "cmd": "Describe", "topic": "A feature of a graphics tablet that helps artists", "section": "A1"},
+     {"p": "b", "marks": 2, "cmd": "Describe", "topic": "A function of the GPU when generating graphics", "section": "B2"},
+     {"p": "c", "marks": 4, "cmd": "Describe", "topic": "How pipelining speeds up graphics generation", "section": "B2"},
+     {"p": "d", "marks": 2, "cmd": "Describe", "topic": "How a bitmap image is represented", "section": "C3"},
+     {"p": "e", "marks": 2, "cmd": "Explain", "topic": "Comparing two versions of an image with different resolutions", "section": "C3"},
+     {"p": "f", "marks": 2, "cmd": "Give", "topic": "Encoding a string of colours with lossless compression (run-length)", "section": "C3"},
+     {"p": "g", "marks": 6, "cmd": "Explain", "topic": "Why open hotel Wi-Fi may be a poor choice for editing files remotely", "section": "E1"}]},
+    {"q": 2, "scenario": "A laser tag venue using computers to run games", "parts": [
+     {"p": "a", "marks": 4, "cmd": "Explain", "topic": "The best communication channel for two connections", "section": "E1"},
+     {"p": "b", "marks": 3, "cmd": "Explain", "topic": "Why this type of array stores the game data", "section": "D2"},
+     {"p": "c", "marks": 4, "cmd": "Describe", "topic": "Two ways validation could be used when adding data to league tables", "section": "A3"},
+     {"p": "d", "marks": 2, "cmd": "Explain", "topic": "Why the data array must be converted before processing", "section": "D2"},
+     {"p": "e", "marks": 7, "cmd": "Draw", "topic": "Flowchart for programming an automatic device's rules", "section": "F2"}]},
+    {"q": 3, "scenario": "A music teacher who builds custom computers", "parts": [
+     {"p": "a", "marks": 4, "cmd": "Describe", "topic": "How device drivers support equipment from different makers", "section": "A2"},
+     {"p": "b", "marks": 6, "cmd": "Analyse", "topic": "How the choice of file system affects using a computer", "section": "A2"},
+     {"p": "c", "marks": 8, "cmd": "Discuss", "topic": "Benefits of a GUI for children and a CLI for administration", "section": "A2"}]},
+    {"q": 4, "scenario": "An IT manager at a medical research company", "parts": [
+     {"p": "a", "marks": 10, "cmd": "Discuss", "topic": "Implications of letting travelling staff connect to the company server", "section": "E1"},
+     {"p": "b", "marks": 12, "cmd": "Evaluate", "topic": "Using local storage instead of cloud for backup and recovery", "section": "A3"}]}
+   ]
+  },
+  {
+   "id": "jan18", "title": "January 2018", "date": "January 2018",
+   "qp": "54058-BTEC-L3-Computing-31769H-U2-Jan-2018-Proof-9.pdf", "ms": "31769H_unit2_rms_20180314.pdf", "er": "",
+   "questions": [
+    {"q": 1, "scenario": "A multifunctional computer system for cyclists", "parts": [
+     {"p": "a", "marks": 3, "cmd": "Describe", "topic": "Another way to provide an internet connection while cycling", "section": "E1"},
+     {"p": "b", "marks": 2, "cmd": "Give", "topic": "How public Wi-Fi hotspots can reduce performance", "section": "E1"},
+     {"p": "c", "marks": 4, "cmd": "Describe", "topic": "How an internal component can determine location", "section": "A1"},
+     {"p": "d", "marks": 4, "cmd": "Explain", "topic": "Why a mobile CPU suits the system", "section": "B2"},
+     {"p": "e", "marks": 3, "cmd": "Complete", "topic": "Truth table for lights that turn on if dark OR foggy", "section": "F1"},
+     {"p": "f", "marks": 4, "cmd": "Draw", "topic": "Logic for locking a touch screen while the bike is moving", "section": "F2"}]},
+    {"q": 2, "scenario": "A family home network with a server and NAS", "parts": [
+     {"p": "a", "marks": 4, "cmd": "Describe", "topic": "How the CPU and GPU share work", "section": "B2"},
+     {"p": "b", "marks": 2, "cmd": "Describe", "topic": "How lossy compression reduces video and audio file size", "section": "C3"},
+     {"p": "c", "marks": 3, "cmd": "Describe", "topic": "A negative effect of lossy compression on audio", "section": "C3"},
+     {"p": "d", "marks": 3, "cmd": "Explain", "topic": "A benefit of using FTP to transfer files", "section": "E1"},
+     {"p": "e", "marks": 6, "cmd": "Analyse", "topic": "Factors in setting up backup procedures for a family's devices", "section": "A3"}]},
+    {"q": 3, "scenario": "A fast-food restaurant's ordering terminals", "parts": [
+     {"p": "a", "marks": 4, "cmd": "Explain", "topic": "Why a queue suits order numbers better than a stack", "section": "D1"},
+     {"p": "b", "marks": 8, "cmd": "Discuss", "topic": "How the terminal hardware and layout affect security", "section": "A1"},
+     {"p": "c", "marks": 8, "cmd": "Analyse", "topic": "How features of two ordering interfaces affect their use", "section": "A2"}]},
+    {"q": 4, "scenario": "A scientist monitoring wildlife with sensors and cameras", "parts": [
+     {"p": "a", "marks": 10, "cmd": "Discuss", "topic": "Error correction systems for large amounts of transmitted data", "section": "E3"},
+     {"p": "b", "marks": 12, "cmd": "Discuss", "topic": "The role of the kernel in managing components and tasks", "section": "A2"}]}
+   ]
+  }
+ ]
+}
