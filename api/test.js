@@ -21,5 +21,7 @@ test('unit 19: workbook sections and the assignment coach use server-side data o
  const wb=JSON.parse(fs.readFileSync(__dirname+'/../docs/unit19/index.html','utf8').match(/<script id="courseData" type="application\/json">(.*?)<\/script>/s)[1]);assert.deepEqual(wb.map(s=>s.id),require('./sections-u19.json').map(s=>s.id));
  const u7=validate({course:'u7',section:'N6',mode:'explain',message:'What is a CRC?'});assert.equal(u7.course,'u7');const u7m=messages(u7)[0].content;assert.match(u7m,/T Level Digital/);assert.match(u7m,/packet/i);
  assert.throws(()=>validate({course:'u7',task:'a2t2',mode:'task-plan',message:'x'}));assert.throws(()=>validate({course:'u7',section:'A1',mode:'hint',message:'x'}));
+ const u8=validate({course:'u8',section:'M2',mode:'explain',message:'What is hashing?'});const u8m=messages(u8)[0].content;assert.match(u8m,/Never give working exploit code/);assert.match(u8m,/hash/i);assert.doesNotMatch(messages(u7)[0].content,/Security rule/);
+ const wb8=JSON.parse(fs.readFileSync(__dirname+'/../docs/unit8/index.html','utf8').match(/<script id="courseData" type="application\/json">(.*?)<\/script>/s)[1]);assert.deepEqual(wb8.map(s=>s.id),require('./sections-u8.json').map(s=>s.id));
  const wb7=JSON.parse(fs.readFileSync(__dirname+'/../docs/unit7/index.html','utf8').match(/<script id="courseData" type="application\/json">(.*?)<\/script>/s)[1]);assert.deepEqual(wb7.map(s=>s.id),require('./sections-u7.json').map(s=>s.id));
 });

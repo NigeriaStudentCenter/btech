@@ -1,0 +1,143 @@
+[
+ {
+  "heading": "8.1 Security risks"
+ },
+ {
+  "code": "8.1.1",
+  "text": "Know the type of confidential information held by organisations",
+  "points": [
+   "human resources: salaries and benefits, staff personal details",
+   "commercially sensitive information: client details, stakeholder details, intellectual property, sales numbers, contracts",
+   "access information: usernames, passwords, MFA details, PINs, access codes, passphrases, biometric data"
+  ]
+ },
+ {
+  "code": "8.1.2",
+  "text": "Understand why information must be kept confidential by organisations",
+  "points": [
+   "salaries and benefits",
+   "staff details",
+   "intellectual property",
+   "client details",
+   "sales numbers",
+   "access information: prevent unauthorised access"
+  ]
+ },
+ {
+  "code": "8.1.3",
+  "text": "Understand the potential impact to an organisation of failing to maintain privacy and confidentiality",
+  "points": [
+   "non-compliance with regulations: loss of licence to practise",
+   "loss of trust",
+   "damage to organisation’s image",
+   "financial loss: fines, refunds, loss of earnings/termination of contracts",
+   "legal action",
+   "reduced security"
+  ]
+ },
+ {
+  "heading": "8.2 Types of threats and vulnerabilities"
+ },
+ {
+  "code": "8.2.1",
+  "text": "Understand potential technical threats and their impacts on organisations and individuals, including prevention and mitigation methods",
+  "points": [
+   "botnets",
+   "DoS/DDoS",
+   "malicious hacking: hacktivists, nation states, organised crime, individuals; password cracking/brute force; cross-site scripting; SQL injection; buffer overflow",
+   "malware: viruses, worms, key loggers, ransomware, spyware, remote access trojans",
+   "social engineering: phishing, spear phishing, smishing, vishing, pharming, watering hole attacks, USB baiting",
+   "DNS attack/redirection of traffic",
+   "insecure APIs",
+   "man-in-the-middle attacks",
+   "open/unsecured Wi-Fi networks"
+  ]
+ },
+ {
+  "code": "8.2.2",
+  "text": "Understand potential technical vulnerabilities to systems and data",
+  "points": [
+   "inadequate security processes: weak encryption, inadequate password policy, failure to use MFA",
+   "out-of-date components: hardware; software (lack of support, legacy compatibility, zero-day bugs); firmware"
+  ]
+ },
+ {
+  "code": "8.2.3",
+  "text": "Understand potential human threats, including prevention and mitigation methods",
+  "points": [
+   "human error: file properties, confirmation boxes, staff training",
+   "malicious employee: immediate removal from premises, suspend user accounts immediately",
+   "disguised criminal: accompany all visitors, check identification",
+   "poor cyber hygiene: lock unattended machines, do not write down passwords, poor password management"
+  ]
+ },
+ {
+  "code": "8.2.4",
+  "text": "Understand potential physical vulnerabilities, including prevention and mitigation methods",
+  "points": [
+   "lack of access control: entry control systems",
+   "poor access control: no tailgating, complex access codes, change codes regularly, monitor access areas, audit staff access",
+   "nature of location: shoulder surfing, environment, vandalism",
+   "poor system robustness: rugged machines",
+   "natural disasters"
+  ]
+ },
+ {
+  "code": "8.2.5",
+  "text": "Understand the potential impact to an organisation of threats and vulnerabilities",
+  "points": [
+   "loss/leaking of sensitive data",
+   "unauthorised access to digital systems",
+   "data corruption",
+   "disruption of service",
+   "unauthorised access to restricted physical areas"
+  ]
+ },
+ {
+  "heading": "8.3 Threat mitigation"
+ },
+ {
+  "code": "8.3.1",
+  "text": "Understand the purposes, processes, benefits and drawbacks of common threat mitigation techniques",
+  "points": [
+   "security settings (hardware, software); anti-malware (function, actions); intrusion detection",
+   "encryption: hashing, symmetric, asymmetric",
+   "user access policies; staff vetting; staff training; software-based access control",
+   "device hardening; backups (full, incremental, differential; safe storage); software updates; firmware/driver updates; air gaps",
+   "certification of APIs; VPNs; multi-factor authentication; password managers",
+   "port scanning; penetration testing (ethical and unethical hacking)"
+  ]
+ },
+ {
+  "code": "8.3.2",
+  "text": "Understand the processes and procedures that assure internet security and the reasons why they are used",
+  "points": [
+   "firewall configuration: inbound and outbound rules, traffic type rules, application rules, IP address rules",
+   "network segregation: virtual, physical, offline network",
+   "network monitoring",
+   "port scanning"
+  ]
+ },
+ {
+  "heading": "8.4 Interrelationship of components required for effective security"
+ },
+ {
+  "code": "8.4.1",
+  "text": "Understand how the relationships in the CIA triad interrelate",
+  "points": [
+   "confidentiality: controlling who has access",
+   "integrity: data not tampered with; supported by confidentiality",
+   "availability: data available and useful; supported by integrity"
+  ]
+ },
+ {
+  "code": "8.4.2",
+  "text": "Understand the elements of the IAAA model, including techniques and their benefits and drawbacks",
+  "points": [
+   "identification: knowledge-, possession- and biometric-based",
+   "authentication: MFA, passwords and passphrases, biometrics",
+   "authorisation: role-based, access control lists",
+   "accountability: audit logs, user activity"
+  ]
+ }
+]
