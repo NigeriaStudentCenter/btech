@@ -1,4 +1,4 @@
-const COURSES={u2:{sections:require('../sections.json'),audience:'age 12–15'},u19:{sections:require('../sections-u19.json'),audience:'BTEC Level 3 students aged 16–18'}};
+const COURSES={u2:{sections:require('../sections.json'),audience:'age 12–15'},u19:{sections:require('../sections-u19.json'),audience:'BTEC Level 3 students aged 16–18'},u7:{sections:require('../sections-u7.json'),audience:'T Level Digital students aged 16–18 preparing for a written exam'}};
 const sections=COURSES.u2.sections;
 const assignments=require('../assignments-u19.json').assignments;
 const COACH_MODES=['task-explain','task-plan','task-review','task-accuracy'];

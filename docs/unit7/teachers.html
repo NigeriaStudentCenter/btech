@@ -1,0 +1,37 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Unit 7 for teachers</title><link rel="stylesheet" href="../unit19/u19.css"></head><body>
+<div class="packnav"><nav aria-label="Course pack"><a href="start.html">Start</a><a href="guide.html">1. Course guide</a><a href="learning.html">2. Learn</a><a href="index.html">3. Workbook + tutor</a><a href="practicals.html">4. Practicals</a><a href="exam.html">5. Exam practice</a><a href="quizzes.html">6. Quizzes</a><a href="videos.html">7. Videos</a><a href="teachers.html">Teachers</a></nav></div>
+<header class="hero"><h1>For teachers</h1><p>Everything you need to deliver content area 7 with this course: the teacher PowerPoint, how the pages map to the scheme of work, assessment, and the AI tutor.</p></header>
+<div class="wrap">
+<section class="card"><h2>Teacher PowerPoint</h2>
+<p>A 33-slide delivery deck with full speaker notes. Each lesson slide follows the department routine (starter, aim, teach, practical, task, check, flipped homework) with questioning, stretch and support ideas, and the matching workbook section, practical and quiz.</p>
+<div class="tools"><a class="primary" href="teacher/Unit7-Digital-Environments-Teacher-Deck.pptx" download style="display:inline-block;padding:10px 16px;border-radius:8px;background:var(--accent);color:#fff;text-decoration:none">Download the teacher deck (.pptx, 2.8 MB)</a></div>
+<p class="small">Contents: unit overview · how it is assessed · the course site · using the AI tutor · delivery plan · 18 lesson slides across 7.1–7.6 · practicals · exam technique and revision. Diagrams are the same originals used on the Learn page.</p></section>
+
+<section class="card"><h2>How the course maps to the scheme of work</h2>
+<div class="tablewrap"><table><thead><tr><th>Weeks (2025–26 SOW)</th><th>Topic</th><th>Learn lesson</th><th>Practical</th><th>Quiz</th></tr></thead><tbody>
+<tr><td>2</td><td>Introduction; number systems</td><td>NS</td><td>4</td><td>1</td></tr><tr><td>3</td><td>Physical computer systems; PC disassemble and reassemble</td><td>H1</td><td>1</td><td>2</td></tr><tr><td>4</td><td>IoT (Cisco Academy)</td><td>H1</td><td>12</td><td>2</td></tr><tr><td>5–7</td><td>Hardware devices; Raspberry Pi practical</td><td>H2</td><td>2, 3</td><td>2</td></tr><tr><td>8</td><td>Operating systems</td><td>SW1</td><td>–</td><td>3</td></tr><tr><td>9</td><td>Utilities</td><td>SW2</td><td>–</td><td>3</td></tr><tr><td>10</td><td>Code development tools; application software</td><td>SW3, SW4</td><td>–</td><td>3</td></tr><tr><td>11–12</td><td>Why network; network types; connectivity methods</td><td>N1, N2</td><td>5</td><td>4</td></tr><tr><td>13–16</td><td>Practicals; topologies and network models</td><td>N3</td><td>6, 7</td><td>4</td></tr><tr><td>17–20</td><td>Network components; internet connection and backbone</td><td>N4</td><td>6, 7</td><td>4</td></tr><tr><td>20–21</td><td>OSI and TCP/IP models; data packets</td><td>N5, N6</td><td>–</td><td>4</td></tr><tr><td>22–24</td><td>Protocols (incl. routing and application); bandwidth and latency</td><td>N7, N8</td><td>5, 8</td><td>4</td></tr><tr><td>25–27</td><td>Virtual environments</td><td>V1</td><td>9</td><td>5</td></tr><tr><td>28–29</td><td>Cloud types, benefits and delivery models</td><td>C1</td><td>10</td><td>5</td></tr><tr><td>30–31</td><td>Resilient environments</td><td>R1</td><td>11</td><td>5</td></tr><tr><td>32–33</td><td>Revision</td><td>all</td><td>–</td><td>Exam practice 1, 2</td></tr>
+</tbody></table></div>
+<p class="small">Your existing starters (Millionaire, Hollywood Squares, catchphrase), PowerPoints, Microsoft Forms checks, Packet Tracer files and the Cisco NetAcad IoT course stay on Teams. Copyrighted videos are embedded from their creators’ YouTube channels, not re-hosted.</p></section>
+
+<section class="card"><h2>Assessment</h2>
+<ul class="list">
+<li>Content area 7 is part of the T Level core and is assessed in the <strong>written core examination</strong>, alongside other core content areas. Questions range from short recall to extended, level-marked responses on a scenario.</li>
+<li>The <strong>Course guide</strong> gives students a red/amber/green checklist of every specification point (7.1.1–7.6.2), saved on their device. Ask them to screenshot it before one-to-ones.</li>
+<li><strong>Exam practice</strong> uses original scenarios with level descriptors and self-marking checklists. Pair it with the awarding organisation’s sample assessment materials and past papers for timed mocks.</li>
+</ul></section>
+
+<section class="card"><h2>AI study tutor</h2>
+<ul class="list">
+<li><strong>Workbook tutor</strong> (page 3): explains, diagnoses, hints and sets new practice questions for each of the 18 lessons. It will not simply give the answer to the lesson’s own activity.</li>
+<li>Because this unit is exam-assessed, there is no assignment coach; students are encouraged to use the tutor for revision and to check their understanding.</li>
+<li><strong>Tamper-resistant:</strong> the page sends only a lesson ID; the lesson notes and rules are held on the server.</li>
+<li><strong>Privacy:</strong> no student accounts, no names collected, and no conversation stored on the server.</li>
+<li><strong>Cost control:</strong> the tutor runs on the college’s Azure AI service behind a gateway with shared rate limits and a daily quota. If the service is off, every page still works and the tutor shows an “offline” message.</li>
+</ul>
+<div class="note"><strong>Status:</strong> the AI service needs the college Azure subscription to be active. When it is re-enabled, the Unit 7 tutor is deployed and switched on by the course administrator.</div></section>
+
+<section class="card"><h2>Maintaining the course</h2>
+<p class="small">All Unit 7 pages are generated from <code>tools/unit7/</code> in the course repository (<code>python3 tools/build_unit7.py</code>). Quiz and exam questions are in <code>docs/unit7/quiz-data.js</code> and <code>docs/unit7/exam-data.js</code>. The teacher deck is generated by <code>tools/unit7/teacher_deck.js</code>.</p></section>
+</div>
+<footer>Original course material written for the T Level in Digital Production, Design and Development, core content area 7: Digital environments. Not an awarding-organisation publication. Cisco Packet Tracer is available free through Cisco Networking Academy.</footer>
+</body></html>

@@ -1,0 +1,282 @@
+[
+ {
+  "heading": "7.1 Hardware"
+ },
+ {
+  "code": "7.1.1",
+  "text": "Understand the features and use of different types of physical computers",
+  "points": [
+   "personal computers",
+   "mobile devices (smartphones and tablets)",
+   "servers",
+   "embedded devices"
+  ]
+ },
+ {
+  "code": "7.1.2",
+  "text": "Understand the features and use of different types of hardware devices",
+  "points": [
+   "input devices",
+   "output devices",
+   "processors — number of cores, clock speed, cache size, mobile processors",
+   "Main memory — RAM (Random Access Memory), ROM (Read-only Memory)",
+   "secondary storage: — magnetic, solid state, optical",
+   "motherboard",
+   "graphics processing units",
+   "network interface devices: — PCI (Peripheral Component Interconnect), USB (Universal Serial Bus)",
+   "cooling — air cooling, liquid cooling",
+   "sensors"
+  ]
+ },
+ {
+  "heading": "7.2 Software"
+ },
+ {
+  "code": "7.2.1",
+  "text": "Understand the features and use of operating systems",
+  "points": [
+   "batch: — non-interactive applications, high volume, scheduling",
+   "multitasking: — concurrent execution of multiple tasks, time-slicing, interrupts",
+   "real-time operating system: — monitoring and control applications, transaction processing",
+   "network operating system: — resource sharing, user management, communication",
+   "mobile operating system: — smartphones and tablets, lower processing requirements, increased battery life"
+  ]
+ },
+ {
+  "code": "7.2.2",
+  "text": "Understand the features and use of common utilities",
+  "points": [
+   "file management",
+   "defragmenters",
+   "file compression",
+   "package managers",
+   "protection software",
+   "backup software"
+  ]
+ },
+ {
+  "code": "7.2.3",
+  "text": "Understand the features and use of common code development tools",
+  "points": [
+   "integrated development environments: — code editing tools, debugging tools, screen design tools",
+   "compilers",
+   "interpreters"
+  ]
+ },
+ {
+  "code": "7.2.4",
+  "text": "Understand the features and use of common application software",
+  "points": [
+   "word processors",
+   "spreadsheets",
+   "databases",
+   "email",
+   "project management software"
+  ]
+ },
+ {
+  "heading": "7.3 Networks"
+ },
+ {
+  "code": "7.3.1",
+  "text": "Understand the benefits and drawbacks of connecting devices to form networks.",
+  "points": []
+ },
+ {
+  "code": "7.3.2",
+  "text": "Understand the features of different types of networks",
+  "points": [
+   "number of users",
+   "connection media",
+   "coverage media",
+   "network types: — personal area network (PAN), local area network (LAN), metropolitan area network (MAN), wide area network (WAN), virtual private network (VPN)"
+  ]
+ },
+ {
+  "code": "7.3.3",
+  "text": "Understand the features, characteristics, benefits and drawbacks of connectivity methods",
+  "points": [
+   "wired: — copper/ethernet, fibre-optic",
+   "wireless: — wireless access points"
+  ]
+ },
+ {
+  "code": "7.3.4",
+  "text": "Understand the features, benefits and drawbacks of the common network topologies",
+  "points": [
+   "star",
+   "mesh",
+   "tree",
+   "logical versus physical"
+  ]
+ },
+ {
+  "code": "7.3.5",
+  "text": "Understand the features, benefits and drawbacks of different network models",
+  "points": [
+   "client-server",
+   "thin client",
+   "peer-to-peer"
+  ]
+ },
+ {
+  "code": "7.3.6",
+  "text": "Understand the role of common components of a network",
+  "points": [
+   "server",
+   "client",
+   "router",
+   "network switch",
+   "internet connection/internet backbone"
+  ]
+ },
+ {
+  "code": "7.3.7",
+  "text": "Understand the seven-layer OSI (open systems interconnection) model, including the function and related protocols of each layer",
+  "points": [
+   "application layer",
+   "presentation layer",
+   "session layer",
+   "transport layer",
+   "network layer",
+   "data link layer",
+   "physical layer"
+  ]
+ },
+ {
+  "code": "7.3.8",
+  "text": "Understand the four-layer TCP/IP (transmission control protocol/ internet protocol) model, including the function and related protocols of each layer",
+  "points": [
+   "application layer",
+   "transport layer",
+   "internet layer",
+   "network layer"
+  ]
+ },
+ {
+  "code": "7.3.9",
+  "text": "Understand the role of data packets in transmitting over a network, including",
+  "points": [
+   "contents and structure of a data packet",
+   "role of the components of a data packet",
+   "packet switching: — causes of packet loss",
+   "error handling: — cyclic redundancy check (CRC)"
+  ]
+ },
+ {
+  "code": "7.3.10",
+  "text": "Understand the role of common network protocols",
+  "points": [
+   "web protocols: — HTTP, HTTPS",
+   "mail protocols: — SMTP, POP, IMAP",
+   "routing protocols: — RIP, OSPF",
+   "application protocols: — FTP, SFTP, DHCP, DNS"
+  ]
+ },
+ {
+  "code": "7.3.11",
+  "text": "Understand the concepts of bandwidth and latency, and their effect on the performance of networks and connected systems.",
+  "points": []
+ },
+ {
+  "heading": "7.4 Virtual environments"
+ },
+ {
+  "code": "7.4.1",
+  "text": "Understand the role and characteristics of common virtual environment components",
+  "points": [
+   "virtual machines: — clients (virtual PC, virtual switch, virtual router), servers",
+   "hypervisors: — type 1, type 2"
+  ]
+ },
+ {
+  "code": "7.4.2",
+  "text": "Understand the key features of virtual environments",
+  "points": [
+   "increased security",
+   "managed execution",
+   "sharing",
+   "aggregation",
+   "emulation",
+   "isolation",
+   "portability"
+  ]
+ },
+ {
+  "code": "7.4.3",
+  "text": "Understand the benefits of the use of virtual environments",
+  "points": [
+   "cost effectiveness for large environments",
+   "easy management",
+   "resilience",
+   "potentially lower carbon footprint",
+   "improved disaster recovery options",
+   "better testing environments",
+   "provision of education and training options"
+  ]
+ },
+ {
+  "code": "7.4.4",
+  "text": "Understand the drawbacks of the use of virtual environments",
+  "points": [
+   "extra hardware load",
+   "slower execution time",
+   "potential for false representation of performance"
+  ]
+ },
+ {
+  "heading": "7.5 Cloud environments"
+ },
+ {
+  "code": "7.5.1",
+  "text": "Understand different types of cloud",
+  "points": [
+   "private",
+   "public"
+  ]
+ },
+ {
+  "code": "7.5.2",
+  "text": "Understand the benefits of the use of cloud",
+  "points": [
+   "portability",
+   "elasticity",
+   "fewer storage limitations",
+   "cost effectiveness"
+  ]
+ },
+ {
+  "code": "7.5.3",
+  "text": "Understand common cloud delivery models, their advantages and disadvantages, and the way in which responsibility and ownership of resources are distributed between the client and the cloud provider",
+  "points": [
+   "Infrastructure as a Service (IaaS): — client manages application software, system software (middleware and operating system), runtime, data and user accounts, cloud provider manages virtualisation and hardware (servers, network and storage)",
+   "Platform as a Service (PaaS): — client manages application software, data and user accounts, cloud provider manages virtualisation, hardware (servers, network and storage) and systems software (middleware and operating system) and runtime",
+   "Software as a Service (SaaS): — client manages user accounts and data, cloud provider manages virtualisation, hardware (servers, network and storage) systems software (middleware and operating system), runtime and application software"
+  ]
+ },
+ {
+  "heading": "7.6 Resilient digital environments"
+ },
+ {
+  "code": "7.6.1",
+  "text": "Understand the benefits of resilient environments and the impact on organisations and clients",
+  "points": [
+   "increased security: — data security (storage and transfer), reduced vulnerabilities",
+   "increased reputation: — protect brand/image, retain customer confidence",
+   "reduction in downtime"
+  ]
+ },
+ {
+  "code": "7.6.2",
+  "text": "Understand methods used to improve the resilience of digital environments",
+  "points": [
+   "software updates/upgrades: — planned updates/upgrades, patches in response to new vulnerabilities",
+   "hardware replacement: — rolling replacement plans, secure disposal",
+   "data and system redundancy",
+   "device hardening: — removal of unneeded ports, applications, permissions and access",
+   "backup systems and recovery procedures: — onsite, remote/offsite, cloud",
+   "hot, cold and warm sites",
+   "standard operating procedures: — effective staff training, induction, new digital systems, new or updated policies"
+  ]
+ }
+]

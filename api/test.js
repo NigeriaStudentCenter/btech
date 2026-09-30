@@ -19,4 +19,7 @@ test('unit 19: workbook sections and the assignment coach use server-side data o
  assert.equal(validate({section:'A1',mode:'hint',message:'Help'}).course,'u2');assert.match(messages(validate({section:'A1',mode:'hint',message:'Help'}))[0].content,/age 12–15/);
  assert.equal(fs.readFileSync(__dirname+'/assignments-u19.json','utf8'),fs.readFileSync(__dirname+'/../docs/unit19/assignments.json','utf8'),'docs/unit19/assignments.json must be a copy of api/assignments-u19.json');
  const wb=JSON.parse(fs.readFileSync(__dirname+'/../docs/unit19/index.html','utf8').match(/<script id="courseData" type="application\/json">(.*?)<\/script>/s)[1]);assert.deepEqual(wb.map(s=>s.id),require('./sections-u19.json').map(s=>s.id));
+ const u7=validate({course:'u7',section:'N6',mode:'explain',message:'What is a CRC?'});assert.equal(u7.course,'u7');const u7m=messages(u7)[0].content;assert.match(u7m,/T Level Digital/);assert.match(u7m,/packet/i);
+ assert.throws(()=>validate({course:'u7',task:'a2t2',mode:'task-plan',message:'x'}));assert.throws(()=>validate({course:'u7',section:'A1',mode:'hint',message:'x'}));
+ const wb7=JSON.parse(fs.readFileSync(__dirname+'/../docs/unit7/index.html','utf8').match(/<script id="courseData" type="application\/json">(.*?)<\/script>/s)[1]);assert.deepEqual(wb7.map(s=>s.id),require('./sections-u7.json').map(s=>s.id));
 });

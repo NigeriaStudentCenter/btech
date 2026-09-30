@@ -1,0 +1,146 @@
+[
+ {
+  "id": "NS",
+  "title": "Binary, denary, octal and hexadecimal",
+  "learn": "Computers store all data in binary (base 2). A bit is 0 or 1; a nibble is 4 bits; a byte is 8 bits. Denary is base 10, octal base 8, hexadecimal base 16 (0-9 then A=10 to F=15). Binary place values for a byte: 128, 64, 32, 16, 8, 4, 2, 1. To convert denary to binary, subtract the largest place values that fit. Each hex digit is one nibble, so a byte is two hex digits (00 to FF). Binary addition rules: 0+0=0, 0+1=1, 1+1=10 (0 carry 1), 1+1+1=11. Shifting left multiplies by 2. Overflow happens when a result is too big for the bits available. kB is 1,000 bytes; KiB is 1,024 bytes.",
+  "example": "173 in denary is 1010 1101 in binary (128+32+8+4+1) and AD in hexadecimal.",
+  "activity": "Convert 200 and 45 into 8-bit binary and hexadecimal. Then add the two binary numbers, showing the carries, and check your answer in denary. Does the result fit in 8 bits?",
+  "check": "Why is hexadecimal used for MAC addresses and colour codes instead of binary?"
+ },
+ {
+  "id": "H1",
+  "title": "Types of physical computer",
+  "learn": "Personal computers (desktops and laptops) are general purpose for one user; desktops are upgradable, laptops portable. Mobile devices (smartphones, tablets) are small, battery powered, touchscreen, with many sensors (GPS, accelerometer, camera), mobile processors and wireless connectivity. Servers provide services such as web, email, files, databases and authentication to many users; they have powerful processors, lots of RAM and storage, redundant parts and run 24/7. Embedded devices are computers inside other products, with a microcontroller running one fixed program, often real-time, low cost and low power (washing machines, cars, medical devices). IoT devices are embedded systems with network connections; they bring convenience but security risks.",
+  "example": "A smart thermostat reads a temperature sensor, runs a fixed program on a microcontroller and switches the boiler on or off.",
+  "activity": "For a hospital, list one example each of a personal computer, a mobile device, a server and an embedded device it would use, and explain one feature that makes each suitable for its job.",
+  "check": "Give two features that make a server different from a personal computer."
+ },
+ {
+  "id": "H2",
+  "title": "Hardware devices",
+  "learn": "Input devices (keyboard, mouse, touchscreen, microphone, scanner, webcam) and sensors (temperature, light, motion, GPS, accelerometer, pressure) get data in; output devices (monitor, printer, speakers, actuators) get results out. Processor performance depends on the number of cores, clock speed (GHz) and cache size; mobile processors are designed for low power. RAM is volatile working memory; ROM is non-volatile and holds start-up firmware. Secondary storage: magnetic (HDD, tape: cheap, large, moving parts), solid state (SSD, USB, SD: fast, tough, pricier), optical (CD/DVD/Blu-ray: cheap, small capacity). The motherboard connects all components. GPUs have many cores for graphics, video and AI. Network interface devices connect via PCI/PCIe slots or USB. Cooling: air (heatsink and fan, cheap) or liquid (pump, water block, radiator: quieter, handles more heat).",
+  "example": "A video editor needs a multi-core CPU, a powerful GPU, 32 GB RAM and a fast SSD, because rendering and large files are processor and memory heavy.",
+  "activity": "Choose components for a gamer, an office worker and a school server. For each, pick a processor feature, memory amount, storage type and cooling method, and justify each choice in one sentence.",
+  "check": "Explain the difference between RAM and ROM."
+ },
+ {
+  "id": "SW1",
+  "title": "Types of operating system",
+  "learn": "Batch operating systems run non-interactive, high-volume jobs on a schedule (payroll, bills). Multitasking operating systems run many tasks concurrently using time-slicing and handle events with interrupts (Windows, macOS, Linux). Real-time operating systems respond within a guaranteed time for monitoring and control (airbags, engine management, medical monitors) and transaction processing (seat bookings, card payments). Network operating systems share resources, manage users and support communication (Windows Server, Linux server). Mobile operating systems suit smartphones and tablets with lower processing requirements and increased battery life (Android, iOS).",
+  "example": "An online cinema booking system uses real-time transaction processing so two people cannot buy the same seat.",
+  "activity": "For each system, say which OS type it needs and why: a car's anti-lock brakes, a council's monthly council-tax bills, a college file server, a tablet, a designer's laptop.",
+  "check": "What is time-slicing and why does a multitasking OS use it?"
+ },
+ {
+  "id": "SW2",
+  "title": "Utility software",
+  "learn": "Utility software maintains and protects the computer. File management creates, copies, moves, renames, deletes and searches files and sets permissions. Defragmenters rearrange scattered file pieces on hard disks so they read faster (not needed for SSDs). File compression makes files smaller (lossless ZIP or lossy media). Package managers (apt, winget, npm, pip) install, update and remove software and dependencies from trusted repositories. Protection software includes antivirus/anti-malware, firewalls and encryption. Backup software copies data on a schedule (full, incremental, differential) and restores it.",
+  "example": "sudo apt upgrade updates every installed package on a Linux server in one command.",
+  "activity": "A small business has a slow old laptop with a hard disk, no backups, and staff who install software from random websites. Recommend three utilities, explain what each does and the problem it solves.",
+  "check": "Why is defragmenting an SSD unnecessary?"
+ },
+ {
+  "id": "SW3",
+  "title": "Code development tools",
+  "learn": "An integrated development environment (IDE) combines tools: code editing (syntax highlighting, auto-complete, error underlining, refactoring), debugging (breakpoints, stepping through code, watching variables), screen design (drag-and-drop interface building) and build/run tools. A compiler translates the whole program into machine code before it runs: fast execution, errors reported after compiling, source not needed to run. An interpreter translates and runs one line at a time: easy to test, stops at the first error, slower, needs the interpreter installed. Some languages compile to bytecode run by a virtual machine.",
+  "example": "Setting a breakpoint inside a loop lets a developer watch a total variable and spot where it goes wrong.",
+  "activity": "Explain to a new apprentice three IDE features that would help them find and fix a bug in a program that gives the wrong average, describing how they would use each one.",
+  "check": "Give one advantage of a compiler and one advantage of an interpreter."
+ },
+ {
+  "id": "SW4",
+  "title": "Application software",
+  "learn": "Word processors create and format documents with styles, templates, mail merge, track changes and comments. Spreadsheets use cells, formulas, functions, charts, sorting, filtering and what-if modelling for budgets and analysis. Databases store records in tables with fields, relationships, queries, forms, reports and validation for large data sets. Email sends messages and attachments with folders, contacts and calendars. Project management software plans tasks, deadlines and resources with Gantt charts and Kanban boards and tracks progress.",
+  "example": "A surgery mail-merges referral letters from its patient database into a word-processed template.",
+  "activity": "A small events company plans weddings. Describe how it could use each of the five application types, with one specific task for each.",
+  "check": "Why would a company use a database instead of a spreadsheet for its customer records?"
+ },
+ {
+  "id": "N1",
+  "title": "Why we network, and types of network",
+  "learn": "Benefits of networking: share files, printers and internet; communicate; central backups, logins and security; collaboration. Drawbacks: equipment and set-up costs, specialist staff, security risks and malware spreading, single points of failure, slower performance when busy. Network types differ by number of users, connection media and coverage: PAN (one person, metres, Bluetooth), LAN (one site, Ethernet and Wi-Fi), MAN (a city, fibre), WAN (countries, ISPs; the internet), VPN (an encrypted tunnel across a public network so remote users can reach private resources securely).",
+  "example": "Staff working from home connect through a VPN so their laptop acts as if it is on the office LAN, with traffic encrypted over the internet.",
+  "activity": "A charity has an office in Leeds, a warehouse in Bradford and volunteers working from home. Explain which network types it needs and why, and give one benefit and one drawback of networking its devices.",
+  "check": "What is the difference between a LAN and a WAN?"
+ },
+ {
+  "id": "N2",
+  "title": "Connectivity: copper, fibre and wireless",
+  "learn": "Copper Ethernet (e.g. Cat6 UTP) sends electrical signals over twisted pairs: cheap, reliable, 1-10 Gbps, can carry PoE, but limited to about 100 m and affected by interference. Fibre optic sends light pulses through glass: very high bandwidth, long distances, immune to interference, secure, but expensive and needs specialist installation. Wireless uses radio between devices and wireless access points (802.11 Wi-Fi): mobility and no cables, but slower, shorter range, affected by walls and interference, and must be secured with WPA2/WPA3.",
+  "example": "Offices use copper to desks, fibre between floors and buildings, and Wi-Fi for laptops and phones.",
+  "activity": "Recommend a connectivity method for: a link between two buildings 400 m apart, desks in an open-plan office, a warehouse where staff use handheld scanners, and a factory full of heavy electrical machinery. Justify each.",
+  "check": "Give two drawbacks of wireless compared with copper Ethernet."
+ },
+ {
+  "id": "N3",
+  "title": "Topologies and network models",
+  "learn": "Star: each device has its own cable to a central switch; a cable fault affects one device and devices are easy to add, but the switch is a single point of failure. Mesh: devices connect to many others; very resilient with many routes but expensive and complex. Tree (hierarchical): stars joined in layers; scalable, faults contained in a branch, but the root and trunk links are critical. The physical topology is the cable layout; the logical topology is how data flows. Models: client-server (central storage, logins, security, scalable; costly, servers can fail), thin client (cheap simple devices, data on the server; depends on network and server), peer-to-peer (cheap and easy, no server; hard to manage and secure beyond a few devices).",
+  "example": "A school uses a tree topology: each block is a star connected to a core switch in the server room.",
+  "activity": "Recommend a topology and a network model for a two-person design studio and for a 1,200-student college. Give a benefit and a drawback of each choice.",
+  "check": "Explain the difference between a physical and a logical topology."
+ },
+ {
+  "id": "N4",
+  "title": "Network components and the internet backbone",
+  "learn": "Servers provide services (file, web, mail, print, database, DHCP, DNS, proxy). Clients request and use services. Switches connect devices in a LAN and forward frames to the right port using MAC addresses. Routers connect different networks and forward packets using IP addresses, usually linking a LAN to the internet. The internet connection links an organisation to its ISP (fibre, cable, DSL, 4G/5G, leased line). The internet backbone is the high-capacity core of tier 1 networks, internet exchange points and undersea cables that joins networks worldwide.",
+  "example": "Home devices connect to a home router, which reaches the ISP over fibre; the ISP connects to the backbone and undersea cables to reach servers abroad.",
+  "activity": "Draw and label the path a web request takes from a laptop in a school to a website hosted in the USA, naming each component and its role.",
+  "check": "What is the role of a router compared with a switch?"
+ },
+ {
+  "id": "N5",
+  "title": "The OSI and TCP/IP models",
+  "learn": "The OSI model has seven layers: 7 application (network services for applications; HTTP, FTP, SMTP, DNS), 6 presentation (formats, encryption, compression; TLS), 5 session (start, manage and end sessions), 4 transport (end-to-end delivery, ports, segments; TCP reliable, UDP fast), 3 network (logical IP addressing and routing; routers; RIP, OSPF), 2 data link (frames, MAC addresses, error detection; Ethernet, Wi-Fi; switches), 1 physical (bits as signals over cables, fibre, radio). The TCP/IP model has four layers: application (OSI 5-7), transport, internet and network (access). Encapsulation adds a header at each layer. Layers give standards, interoperability and easier troubleshooting.",
+  "example": "An HTTPS request is encrypted (presentation), given port 443 (transport), IP addresses (network) and MAC addresses in a frame (data link) before being sent as bits.",
+  "activity": "Make a table of the seven OSI layers with each layer's job, one protocol or device, and which TCP/IP layer it maps to.",
+  "check": "Why is it useful to split networking into layers?"
+ },
+ {
+  "id": "N6",
+  "title": "Data packets, packet switching and error handling",
+  "learn": "A packet has a header (source and destination IP addresses, sequence number, protocol, time to live, length), a payload (the data) and a trailer (CRC or checksum and end marker). Packet switching splits data into packets that travel independently by the best available route and are reassembled in order using sequence numbers. Packet loss is caused by congestion, faulty hardware or cables, wireless interference, TTL expiring (e.g. routing loops) and misconfiguration. A cyclic redundancy check (CRC) is calculated from the data and appended; the receiver recalculates it and discards the packet if it does not match, and TCP re-sends lost or damaged packets.",
+  "example": "Packets from one video can arrive out of order; the receiver uses sequence numbers to put them back together.",
+  "activity": "Explain, step by step, what happens to an email as packet-switched data: splitting, headers, routing, one packet being corrupted, and reassembly.",
+  "check": "Give two causes of packet loss."
+ },
+ {
+  "id": "N7",
+  "title": "Common network protocols",
+  "learn": "Web: HTTP transfers web pages (port 80, not encrypted); HTTPS adds TLS encryption (port 443). Mail: SMTP sends email (25/587); POP3 downloads email to one device, usually removing it from the server (110/995); IMAP keeps email on the server and syncs devices (143/993). Routing: RIP shares routes and uses hop count (max 15); OSPF is link-state, builds a network map and picks the lowest-cost path, scaling better. Application: FTP transfers files unencrypted (20/21); SFTP transfers files securely over SSH (22); DHCP gives devices IP settings automatically (67/68) using Discover, Offer, Request, Acknowledge; DNS translates domain names into IP addresses (53).",
+  "example": "A worker using a phone and a laptop should use IMAP so both show the same inbox.",
+  "activity": "For a small business website and email system, explain which protocol is used at each step: a customer visiting the site, a customer paying, staff reading email on two devices, a designer uploading pages, a laptop joining the office network.",
+  "check": "Why is HTTPS used rather than HTTP for online payments?"
+ },
+ {
+  "id": "N8",
+  "title": "Bandwidth and latency",
+  "learn": "Bandwidth is the maximum amount of data a connection can carry per second (Mbps, Gbps): like the width of a pipe. Latency is the delay before data arrives (milliseconds), measured with ping: like the length of the pipe. Throughput is the data actually delivered. High bandwidth matters for streaming and large downloads; low latency matters for gaming, video calls, VoIP and remote control. Performance is also affected by contention (sharing bandwidth), distance and hops, congestion, packet loss and jitter. To calculate download time, convert bytes to bits (multiply by 8) and divide by the bandwidth.",
+  "example": "A 2 GB file on a 100 Mbps link takes 16,000 megabits / 100 = 160 seconds.",
+  "activity": "Calculate how long a 750 MB file takes to download at 25 Mbps and at 300 Mbps. Then explain whether bandwidth or latency matters more for online gaming, and why.",
+  "check": "Explain the difference between bandwidth and latency."
+ },
+ {
+  "id": "V1",
+  "title": "Virtual machines, hypervisors and virtual environments",
+  "learn": "Virtual machines are software computers: clients (virtual PCs, virtual switches, virtual routers) and servers. Type 1 hypervisors run directly on hardware (bare metal) for data centres; type 2 hypervisors run as an application on a normal OS for testing and learning. Key features: increased security, managed execution, sharing, aggregation, emulation, isolation and portability. Benefits: cost effective for large environments, easy management, resilience, potentially lower carbon footprint, improved disaster recovery, better testing environments, education and training. Drawbacks: extra hardware load, slower execution, and potential false representation of performance.",
+  "example": "A college runs 30 practice servers as VMs on two physical hosts and resets them from snapshots after each lesson.",
+  "activity": "A company wants to replace 12 old physical servers with VMs on 2 new hosts. Explain three benefits and two drawbacks for this company.",
+  "check": "What is the difference between a type 1 and a type 2 hypervisor?"
+ },
+ {
+  "id": "C1",
+  "title": "Cloud types, benefits and delivery models",
+  "learn": "A private cloud is used by one organisation (full control, higher cost); a public cloud shares a provider's infrastructure between many customers (pay as you go, huge scale, less control). Benefits of cloud: portability, elasticity, fewer storage limitations and cost effectiveness. Delivery models: IaaS, where the client manages application software, system software (middleware and OS), runtime, data and user accounts and the provider manages virtualisation and hardware; PaaS, where the client manages application software, data and user accounts and the provider also manages system software and runtime; SaaS, where the client manages only user accounts and data and the provider manages everything else including the application.",
+  "example": "Microsoft 365 is SaaS: the school only manages its user accounts and data.",
+  "activity": "A start-up needs email, a place to run its own web app code, and some virtual servers for testing. Match each need to a delivery model and explain who manages what in each case.",
+  "check": "Explain what elasticity means with an example."
+ },
+ {
+  "id": "R1",
+  "title": "Resilience: benefits and methods",
+  "learn": "A resilient digital environment keeps working or recovers quickly from failures, attacks and disasters. Benefits: increased security (data protected in storage and transfer, fewer vulnerabilities), increased reputation (protects brand and customer confidence) and reduced downtime. Methods: software updates and upgrades (planned updates and patches for new vulnerabilities); hardware replacement (rolling replacement plans and secure disposal); data and system redundancy; device hardening (remove unneeded ports, applications, permissions and access); backup systems and recovery procedures (onsite, remote/offsite, cloud); hot, warm and cold sites; standard operating procedures (effective staff training, induction, new systems and new or updated policies).",
+  "example": "An online shop hit by ransomware restores from offsite and cloud backups within hours because its recovery plan was tested.",
+  "activity": "A dental practice keeps all patient records on one old server in a back room with no backups. Recommend four resilience methods, explaining how each reduces risk and one cost or drawback.",
+  "check": "What is the difference between a hot site and a cold site?"
+ }
+]
