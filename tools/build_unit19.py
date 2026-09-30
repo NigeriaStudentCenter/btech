@@ -11,13 +11,13 @@ import sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "tools" / "unit19"))
-import sec_a, sec_bc, workbook_data  # noqa: E402
+import sec_a, sec_bc, workbook_data, videos  # noqa: E402
 
 OUT = ROOT / "docs" / "unit19"
 OUT.mkdir(parents=True, exist_ok=True)
 
 NAV_ITEMS = [("start.html", "Start"), ("brief.html", "1. Assignment guide"), ("learning.html", "2. Learn"), ("index.html", "3. Workbook + tutor"),
-             ("practicals.html", "4. Practicals"), ("assignment.html", "5. Assignment builder"), ("quizzes.html", "6. Quizzes"), ("teachers.html", "Teachers")]
+             ("practicals.html", "4. Practicals"), ("assignment.html", "5. Assignment builder"), ("quizzes.html", "6. Quizzes"), ("videos.html", "7. Videos"), ("teachers.html", "Teachers")]
 
 
 def pack_nav():
@@ -56,7 +56,11 @@ AIM_TITLES = {"A": "Learning aim A · Assignment 1", "B": "Learning aim B · Ass
 
 
 def build_learning():
-    lessons = sec_a.LESSONS + sec_bc.LESSONS
+    lessons = []
+    for l in sec_a.LESSONS + sec_bc.LESSONS:
+        lid = re.search(r'<article id="([^"]+)"', l).group(1)
+        anchor = f'<a class="next" href="index.html?section={lid}">'
+        lessons.append(l.replace(anchor, videos.for_lesson(lid) + anchor))
     ids = [re.search(r'<article id="([^"]+)"', l).group(1) for l in lessons]
     titles = [re.search(r"<h2>(.*?)</h2>", l).group(1) for l in lessons]
     side, last = [], None
@@ -65,11 +69,11 @@ def build_learning():
             side.append(f'<p class="aim">{AIM_TITLES[i[0]]}</p>')
             last = i[0]
         side.append(f'<a href="#{i}">{i} {t}</a>')
-    html = f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Unit 19 Learn: Computer Networking</title><style>{LEARN_CSS}</style></head><body>
+    html = f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Unit 19 Learn: Computer Networking</title><style>{LEARN_CSS}\n{videos.CSS}</style></head><body>
 <div class="packnav">{pack_nav()}</div>
 <header><h1>Unit 19: Computer Networking</h1><p>Learn the idea, look at the diagram, try it in Packet Tracer, then open the matching workbook section.</p><p>Each lesson shows which part of your assignment it helps with.</p></header>
 <main><nav aria-label="Lessons"><h2>Lessons</h2>{''.join(side)}</nav><div>{''.join(lessons)}</div></main>
-<footer>Original teaching material written for this course and aligned to the Pearson BTEC Level 3 Unit 19 specification. Diagrams are simplified learning models. Not a Pearson or Cisco publication.</footer></body></html>"""
+<footer>Original teaching material written for this course and aligned to the Pearson BTEC Level 3 Unit 19 specification. Diagrams are simplified learning models. Not a Pearson or Cisco publication. Videos are embedded from YouTube and belong to their publishers.</footer><script>{videos.JS}</script></body></html>"""
     (OUT / "learning.html").write_text(html)
     return ids
 
@@ -136,8 +140,25 @@ def build_brief():
     (OUT / "brief.html").write_text(page)
 
 
+def build_videos():
+    lesson_titles = {w["id"]: w["title"] for w in workbook_data.SECTIONS}
+    groups = []
+    for lid in [w["id"] for w in workbook_data.SECTIONS]:
+        vs = [v for v in videos.VIDEOS if v["lesson"] == lid]
+        if vs:
+            groups.append(f'<section class="card"><h2>{lid} {esc(lesson_titles[lid])}</h2><p class="small"><a href="learning.html#{lid}">Open the lesson →</a></p>{"".join(videos.card(v) for v in vs)}</section>')
+    page = f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Unit 19 Videos</title><link rel="stylesheet" href="u19.css"><style>{videos.CSS}</style></head><body>
+<div class="packnav">{pack_nav()}</div>
+<header class="hero"><h1>7. Videos</h1><p>{len(videos.VIDEOS)} short videos that bring the lessons to life. Watch, then answer the “watch and think” questions in your notes or workbook.</p></header>
+<div class="wrap"><div class="note">Videos play from YouTube in privacy-enhanced mode, and only when you press play. If YouTube is blocked on your network, ask your teacher for the copies on Teams.</div>{"".join(groups)}</div>
+<footer>Videos are embedded from YouTube and belong to their publishers (Ericsson, Cisco, AWS, the Port of Long Beach and others). They are not hosted on this site.</footer>
+<script>{videos.JS}</script></body></html>"""
+    (OUT / "videos.html").write_text(page)
+
+
 if __name__ == "__main__":
     ids = build_learning()
     build_workbook(ids)
     build_brief()
+    build_videos()
     print("Built Unit 19:", ", ".join(ids))
