@@ -1,0 +1,48 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Unit 19 for teachers</title><link rel="stylesheet" href="u19.css"></head><body>
+<div class="packnav"><nav aria-label="Course pack"><a href="start.html">Start</a><a href="brief.html">1. Assignment guide</a><a href="learning.html">2. Learn</a><a href="index.html">3. Workbook + tutor</a><a href="practicals.html">4. Practicals</a><a href="assignment.html">5. Assignment builder</a><a href="quizzes.html">6. Quizzes</a><a href="teachers.html">Teachers</a></nav></div>
+<header class="hero"><h1>For teachers</h1><p>Everything you need to deliver Unit 19 with this course: the teacher PowerPoint, how the pages map to the scheme of work, and how the AI tutor and assignment coach are set up.</p></header>
+<div class="wrap">
+<section class="card"><h2>Teacher PowerPoint</h2>
+<p>A 31-slide delivery deck with full speaker notes. Every lesson slide follows the department routine (starter, aim, teach, practical, task, check, flipped homework) and includes questioning, stretch and support ideas, and the matching workbook section and lab.</p>
+<div class="tools"><a class="primary" href="teacher/Unit19-Computer-Networking-Teacher-Deck.pptx" download style="display:inline-block;padding:10px 16px;border-radius:8px;background:var(--accent);color:#fff;text-decoration:none">Download the teacher deck (.pptx, 2.4 MB)</a></div>
+<p class="small">Contents: unit overview · assessment map · the course site · AI rules · delivery plan · 16 lesson slides across aims A, B and C · Assignment 1 and 2 launch slides · practicals overview. Diagrams are the same originals used on the Learn page.</p></section>
+
+<section class="card"><h2>How the course maps to the scheme of work</h2>
+<div class="tablewrap"><table><thead><tr><th>Weeks (2025–26 SOW)</th><th>Topic</th><th>Learn lesson</th><th>Lab</th><th>Quiz</th></tr></thead><tbody>
+<tr><td>2–3</td><td>Network types and characteristics; Packet Tracer intro</td><td>A1a</td><td>1, 3</td><td>1</td></tr>
+<tr><td>4</td><td>Topologies and 802 standards</td><td>A1b</td><td>2</td><td>1</td></tr>
+<tr><td>5</td><td>IP addressing; TCP/IP vs OSI</td><td>B1b, A3</td><td>6</td><td>2, 3</td></tr>
+<tr><td>6–7</td><td>Hardware: end devices, switches, routers, media, wireless</td><td>A2a</td><td>2, 6</td><td>4</td></tr>
+<tr><td>8</td><td>Modern trends: virtualisation, cloud, BYOD, SDN</td><td>A1c, A1d</td><td>–</td><td>1</td></tr>
+<tr><td>10</td><td>Standards and protocols</td><td>A3</td><td>–</td><td>2</td></tr>
+<tr><td>11</td><td>Infrastructure services</td><td>A4</td><td>4</td><td>4</td></tr>
+<tr><td>12</td><td>Software components and tools</td><td>A2b</td><td>–</td><td>4</td></tr>
+<tr><td>13–19</td><td>Design strategies, logical design, planning, access; Assignment 1</td><td>B1a, B1b, B2, B3</td><td>7, 8, 9</td><td>3, 5</td></tr>
+<tr><td>20–26</td><td>Implementation, configuration, testing</td><td>C1, C2</td><td>5–10</td><td>5</td></tr>
+<tr><td>27–33</td><td>Assignment 2: build, test, optimise, evaluate, portfolio</td><td>C3, C4</td><td>10</td><td>–</td></tr>
+</tbody></table></div>
+<p class="small">Your existing starters (Millionaire, catchphrase, Hollywood Squares, IP quizzes), Packet Tracer files and Cisco NetAcad activities stay on Teams. NetAcad .pka files are Cisco content and are not published on this public site.</p></section>
+
+<section class="card"><h2>AI study tutor and assignment coach</h2>
+<ul class="list">
+<li><strong>Workbook tutor</strong> (page 3): explains, diagnoses, hints and sets new practice questions for each lesson. It will not give the answer to the lesson’s own activity.</li>
+<li><strong>Assignment coach</strong> (page 5): explains the task, helps plan, reviews the student’s own draft against the success checklist, and checks technical accuracy. It is instructed never to write assessable content: no paragraphs, rewrites, tables, emails, IP schemes, configurations, test plans or evaluations for the client, and never to predict grades.</li>
+<li><strong>Tamper-resistant:</strong> the page sends only a task or lesson ID. The brief, checklist, course notes and integrity rules are held on the server, so students cannot edit them.</li>
+<li><strong>AI-use log:</strong> every coach question is saved on the student’s device with the date, task and a reply extract. Ask students to download and submit it with each assignment, and sample it during internal verification.</li>
+<li><strong>Privacy:</strong> no student accounts, no names collected, and no conversation stored on the server. Work stays in the student’s browser until they download it.</li>
+<li><strong>Cost control:</strong> the tutor runs on the college’s Azure AI service behind a gateway with shared rate limits and a daily quota. If the service is switched off, every page still works and the tutor shows an “offline” message.</li>
+</ul>
+<div class="note"><strong>Status:</strong> the AI service needs the college Azure subscription to be active. When it is re-enabled, the Unit 19 tutor and coach are deployed and switched on by the course administrator.</div></section>
+
+<section class="card"><h2>Academic integrity checklist</h2>
+<ol class="steps"><li>Share the plain-English Assignment guide with the official brief, and go through the “Your own work” section together.</li>
+<li>Explain what the AI may and may not do, using slide 6 of the deck.</li>
+<li>Collect the AI-use log with each submission. Compare it with the draft history if you have concerns.</li>
+<li>For BC.D3, check diaries weekly: portfolio evidence must be dated and built up during the project.</li>
+<li>Use witness statements for practical configuration and professional behaviour.</li></ol></section>
+
+<section class="card"><h2>Maintaining the course</h2>
+<p class="small">The Learn and Workbook pages are generated from <code>tools/unit19/</code> in the course repository (<code>python3 tools/build_unit19.py</code>). Assignment tasks and checklists live in <code>api/assignments-u19.json</code>, shared by the Assignment guide, the builder and the AI coach. The teacher deck is generated by <code>tools/unit19/teacher_deck.js</code>.</p></section>
+</div>
+<footer>Original course materials for the Pearson BTEC Level 3 Nationals in Computing, Unit 19. Not endorsed by Pearson or Cisco.</footer>
+</body></html>

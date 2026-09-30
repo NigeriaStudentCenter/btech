@@ -1,0 +1,157 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Unit 19 Practicals</title><link rel="stylesheet" href="u19.css">
+<style>.lab h2{margin-top:0}.meta{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 12px}.meta span{font-size:.8rem;background:#eaf2f9;border-radius:999px;padding:2px 10px}
+.evidence{background:#eaf6f3;border-radius:10px;padding:10px 16px;margin:12px 0}.check{background:#eef6ff;border-radius:10px;padding:10px 16px;margin:12px 0}
+#toc{columns:2;column-gap:30px}#toc li{break-inside:avoid;margin:.3em 0}@media(max-width:640px){#toc{columns:1}}</style></head><body>
+<div class="packnav"><nav aria-label="Course pack"><a href="start.html">Start</a><a href="brief.html">1. Assignment guide</a><a href="learning.html">2. Learn</a><a href="index.html">3. Workbook + tutor</a><a href="practicals.html">4. Practicals</a><a href="assignment.html">5. Assignment builder</a><a href="quizzes.html">6. Quizzes</a><a href="teachers.html">Teachers</a></nav></div>
+<header class="hero"><h1>4. Practicals</h1><p>Hands-on labs in Cisco Packet Tracer and Linux. Work through them in order: each one builds skills you need for Assignment 2.</p></header>
+<div class="wrap">
+<div class="card"><h2>Before you start</h2>
+<ul class="list"><li>Install <strong>Cisco Packet Tracer</strong> (free) by enrolling in the <em>Getting Started with Cisco Packet Tracer</em> course at <a href="https://www.netacad.com" rel="noopener" target="_blank">netacad.com</a>. Completing it also earns a digital badge.</li>
+<li>Save every lab with a version number, e.g. <code>lab6-two-lans-v2.pkt</code>, so you can go back if something breaks.</li>
+<li>Screenshots are your evidence. Name them clearly and write one line saying what each shows.</li>
+<li>Only scan or capture traffic on the lab network you have been given permission to use.</li></ul>
+<ol id="toc"><li><a href="#lab1">Getting around Packet Tracer</a></li><li><a href="#lab2">Build and test a small LAN</a></li><li><a href="#lab3">Wired and wireless together</a></li><li><a href="#lab4">DHCP, DNS, web and email servers</a></li><li><a href="#lab5">Secure a switch with IOS</a></li><li><a href="#lab6">Connect two LANs with a router</a></li><li><a href="#lab7">Two sites and a static route</a></li><li><a href="#lab8">VLANs on a switch</a></li><li><a href="#lab9">Linux users, groups and permissions</a></li><li><a href="#lab10">Troubleshooting challenge</a></li></ol></div>
+
+<section class="card lab" id="lab1"><h2>Lab 1: Getting around Packet Tracer</h2><div class="meta"><span>20 min</span><span>Lesson A1a</span></div>
+<ol class="steps"><li>Open Packet Tracer. Find the device boxes at the bottom left: <em>Network Devices</em> (routers, switches, wireless) and <em>End Devices</em> (PCs, laptops, servers).</li>
+<li>Drag in a PC and click it. Look at the <em>Physical</em>, <em>Config</em> and <em>Desktop</em> tabs. The <em>Desktop</em> tab has IP Configuration, Command Prompt and Web Browser.</li>
+<li>Find the <em>Connections</em> (lightning bolt) icon. The automatic connection picks the right cable for you; copper straight-through is the normal PC-to-switch cable.</li>
+<li>Find the <em>Realtime</em> / <em>Simulation</em> switch at the bottom right. Simulation mode lets you watch packets move one step at a time.</li>
+<li>Switch between the <em>Logical</em> and <em>Physical</em> workspace views at the top left.</li></ol>
+<div class="evidence"><strong>Evidence:</strong> none needed; this is practice.</div></section>
+
+<section class="card lab" id="lab2"><h2>Lab 2: Build and test a small LAN</h2><div class="meta"><span>30 min</span><span>Lessons A1b, A2a</span></div>
+<ol class="steps"><li>Add a 2960 switch and three PCs. Connect each PC's FastEthernet0 to a switch port.</li>
+<li>Wait for the link lights to turn green (orange means the switch port is still starting up).</li>
+<li>Give the PCs static addresses in <em>Desktop → IP Configuration</em>: 192.168.1.10, .11 and .12, all with mask 255.255.255.0.</li>
+<li>On PC0 open <em>Command Prompt</em> and type <code>ping 192.168.1.11</code>.</li>
+<li>Now change PC2's mask to 255.255.0.0 and its address to 192.168.2.12. Ping it again and explain why it fails.</li></ol>
+<div class="check"><strong>Check it works:</strong> four replies from each ping in the same network.</div>
+<div class="evidence"><strong>Evidence:</strong> screenshot of the topology and of one successful ping.</div></section>
+
+<section class="card lab" id="lab3"><h2>Lab 3: Wired and wireless together</h2><div class="meta"><span>30 min</span><span>Lessons A1a, A2a</span></div>
+<ol class="steps"><li>Start from Lab 2. Add an <em>AccessPoint-PT</em> and connect it to the switch.</li>
+<li>Click the access point: <em>Config → Port 1</em>. Set the SSID to <code>OFFICE-STAFF</code>, choose <em>WPA2-PSK</em> and a passphrase of at least 12 characters.</li>
+<li>Add a laptop. Power it off (button on the <em>Physical</em> tab), drag out the Ethernet module, drag in <em>WPC300N</em>, then power on.</li>
+<li>On the laptop: <em>Config → Wireless0</em>. Enter the same SSID, WPA2-PSK and passphrase.</li>
+<li>Give the laptop 192.168.1.20/24 and ping a wired PC.</li></ol>
+<div class="check"><strong>Check it works:</strong> a dotted wireless link appears and the ping succeeds. Try a wrong passphrase to prove the security works.</div>
+<div class="evidence"><strong>Evidence:</strong> the AP security settings and a successful ping from the laptop.</div></section>
+
+<section class="card lab" id="lab4"><h2>Lab 4: DHCP, DNS, web and email servers</h2><div class="meta"><span>45 min</span><span>Lesson A4</span></div>
+<ol class="steps"><li>Add a <em>Server-PT</em> to your LAN and give it the static address 192.168.1.2/24.</li>
+<li><strong>DHCP:</strong> <em>Services → DHCP</em>. Default gateway 192.168.1.1, DNS server 192.168.1.2, start address 192.168.1.100, maximum users 50. Save, and switch the service <em>On</em>.</li>
+<li><strong>DNS:</strong> <em>Services → DNS</em>. Add an A record: name <code>intranet.local</code>, address 192.168.1.2. Add <code>mail.local</code> the same way. Switch DNS <em>On</em>.</li>
+<li><strong>Web:</strong> <em>Services → HTTP</em>. Edit <code>index.html</code> so it shows your own intranet heading.</li>
+<li><strong>Email:</strong> <em>Services → EMAIL</em>. Domain name <code>mail.local</code>; add two users with passwords. On two PCs set up <em>Desktop → Email</em> with those accounts, incoming and outgoing server <code>mail.local</code>, and send a message between them.</li>
+<li>Set every PC to <em>DHCP</em> in IP Configuration.</li></ol>
+<div class="check"><strong>Check it works:</strong> PCs get addresses from .100 upwards; <code>intranet.local</code> opens in the browser; the email arrives.</div>
+<div class="evidence"><strong>Evidence:</strong> each service's settings; <code>ipconfig /all</code> on a PC; the web page; the received email.</div></section>
+
+<section class="card lab" id="lab5"><h2>Lab 5: Secure a switch with Cisco IOS</h2><div class="meta"><span>30 min</span><span>Lesson C1</span></div>
+<p>Click the switch, open the <em>CLI</em> tab and press Enter.</p>
+<pre class="cli"><code>enable
+configure terminal
+hostname LAB-SW01
+enable secret Lab-Enable-2026
+line console 0
+ password Lab-Console-26
+ login
+ exit
+line vty 0 15
+ password Lab-Remote-26
+ login
+ exit
+service password-encryption
+banner motd # Authorised users only #
+interface vlan 1
+ ip address 192.168.1.250 255.255.255.0
+ no shutdown
+ exit
+ip default-gateway 192.168.1.1
+end
+copy running-config startup-config</code></pre>
+<div class="check"><strong>Check it works:</strong> type <code>exit</code> and press Enter: the banner and a password prompt appear. <code>show running-config</code> shows encrypted (type 7 or secret) passwords.</div>
+<div class="evidence"><strong>Evidence:</strong> <code>show running-config</code> with passwords encrypted; the login prompt.</div></section>
+
+<section class="card lab" id="lab6"><h2>Lab 6: Connect two LANs with a router</h2><div class="meta"><span>45 min</span><span>Lessons A2a, B1b, C1</span></div>
+<ol class="steps"><li>Build two LANs, each with a switch and two PCs. Add a 2911 router and connect G0/0 to switch 1 and G0/1 to switch 2.</li>
+<li>Configure the router:</li></ol>
+<pre class="cli"><code>enable
+configure terminal
+hostname LAB-R1
+interface g0/0
+ ip address 192.168.10.1 255.255.255.0
+ no shutdown
+interface g0/1
+ ip address 192.168.20.1 255.255.255.0
+ no shutdown
+end
+show ip interface brief</code></pre>
+<ol class="steps" start="3"><li>LAN 1 PCs: 192.168.10.10 and .11, gateway 192.168.10.1. LAN 2 PCs: 192.168.20.10 and .11, gateway 192.168.20.1.</li>
+<li>Ping from a LAN 1 PC to a LAN 2 PC. Then run <code>tracert</code> to see the router in the path.</li>
+<li>Remove one PC's default gateway and ping again. Explain the result.</li></ol>
+<div class="check"><strong>Check it works:</strong> <code>show ip interface brief</code> shows both interfaces <em>up/up</em>, and cross-LAN pings succeed.</div>
+<div class="evidence"><strong>Evidence:</strong> <code>show ip interface brief</code>, a cross-network ping and the tracert output.</div></section>
+
+<section class="card lab" id="lab7"><h2>Lab 7: Two sites and a static route</h2><div class="meta"><span>45 min</span><span>Lessons B1b, C1</span></div>
+<p>This models a head office and a branch office, like Assignment 2.</p>
+<ol class="steps"><li>Add a second router (branch) with its own switch and PCs on 192.168.30.0/24.</li>
+<li>Connect the two routers with a cable between spare interfaces, and give that link its own small network, e.g. 10.0.0.1/30 on head office and 10.0.0.2/30 on the branch.</li>
+<li>Tell each router how to reach the other site's LAN:</li></ol>
+<pre class="cli"><code>! on the head-office router
+ip route 192.168.30.0 255.255.255.0 10.0.0.2
+! on the branch router
+ip route 192.168.10.0 255.255.255.0 10.0.0.1</code></pre>
+<ol class="steps" start="4"><li>Ping from a branch PC to a head-office PC. Check <code>show ip route</code> on both routers: static routes show as <code>S</code>.</li>
+<li>Stretch: remove the static routes and use <code>router rip</code> (version 2) with <code>network</code> statements instead. Compare the routing tables.</li></ol>
+<div class="evidence"><strong>Evidence:</strong> both routing tables and a ping between sites.</div></section>
+
+<section class="card lab" id="lab8"><h2>Lab 8: VLANs on a switch</h2><div class="meta"><span>40 min</span><span>Lesson B1b</span></div>
+<pre class="cli"><code>enable
+configure terminal
+vlan 10
+ name STAFF
+vlan 20
+ name GUEST
+interface range fa0/1 - 8
+ switchport mode access
+ switchport access vlan 10
+interface range fa0/9 - 12
+ switchport mode access
+ switchport access vlan 20
+interface range fa0/13 - 24
+ shutdown
+end
+show vlan brief</code></pre>
+<ol class="steps"><li>Put two PCs on ports 1–2 (VLAN 10) and two on ports 9–10 (VLAN 20), all in the same IP network.</li>
+<li>Ping within a VLAN (works) and across VLANs (fails). Explain why, and what would be needed to allow it.</li></ol>
+<div class="evidence"><strong>Evidence:</strong> <code>show vlan brief</code>, one working and one failed ping with your explanation.</div></section>
+
+<section class="card lab" id="lab9"><h2>Lab 9: Linux users, groups and permissions</h2><div class="meta"><span>45 min</span><span>Lesson B3</span></div>
+<p>Use the Linux terminal your teacher provides. Linux is case sensitive. This lab uses example names: use the names and groups from your own brief in your assignment.</p>
+<pre class="cli"><code>sudo groupadd sales
+sudo groupadd support
+sudo useradd -m -G sales ria
+sudo useradd -m -G support ben
+sudo passwd ria
+sudo mkdir -p /srv/share/sales /srv/share/support
+sudo chown $USER:sales /srv/share/sales
+sudo chown $USER:support /srv/share/support
+sudo chmod 770 /srv/share/sales
+sudo chmod 755 /srv/share/support
+ls -l /srv/share
+id ria</code></pre>
+<ol class="steps"><li>Read the <code>ls -l</code> output: which user owns each folder, which group, and what can <em>others</em> do?</li>
+<li>Switch user (<code>su - ria</code>) and try to open each folder with <code>cd</code> and <code>ls</code>. Record what is allowed and what is denied.</li>
+<li>Work out the <code>chmod</code> number that would let others read but not change a folder, and test it.</li></ol>
+<div class="evidence"><strong>Evidence:</strong> the <code>ls -l</code> output and your access tests (allowed and denied).</div></section>
+
+<section class="card lab" id="lab10"><h2>Lab 10: Troubleshooting challenge</h2><div class="meta"><span>40 min</span><span>Lesson C2</span></div>
+<p>Your teacher or a partner breaks a working network from Lab 6 or 7 in secret, using some of these faults. Find and fix each one using the method in lesson C2, and document it.</p>
+<ul class="list"><li>A router interface is shut down.</li><li>A PC has the wrong default gateway.</li><li>A PC has the wrong subnet mask.</li><li>The DHCP service is switched off.</li><li>A DNS record points to the wrong address.</li><li>A cable is in the wrong port.</li><li>A static route is missing.</li></ul>
+<div class="tablewrap"><table><thead><tr><th>Symptom</th><th>Test I ran</th><th>Cause I found</th><th>Fix</th><th>Re-test result</th></tr></thead><tbody><tr><td>&nbsp;</td><td></td><td></td><td></td><td></td></tr><tr><td>&nbsp;</td><td></td><td></td><td></td><td></td></tr></tbody></table></div>
+<div class="evidence"><strong>Evidence:</strong> this completed table: excellent practice for the C.P6 test evidence.</div></section>
+</div>
+<footer>Original lab instructions for this course. Cisco, IOS and Packet Tracer are trademarks of Cisco Systems. Only test networks you own or have permission to use.</footer>
+</body></html>

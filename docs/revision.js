@@ -1,6 +1,6 @@
 'use strict';
 (() => {
-const TESTS = window.REVISION_TESTS, KEY = 'unit2-revision-v1', FORMAT = 'unit2-revision-v1';
+const TESTS = window.REVISION_TESTS, KEY = window.REVISION_KEY || 'unit2-revision-v1', FORMAT = KEY;
 const $ = id => document.getElementById(id);
 let state = {answers: {}, ticks: {}, marked: {}}, saved = true, current = TESTS[0].id;
 
@@ -20,8 +20,8 @@ const norm = v => String(v ?? '').trim().replace(/\s+/g, ' ');
 
 function status(msg, error = false) { $('status').textContent = msg; $('status').className = error ? 'error' : ''; }
 function save() {
- try { localStorage.setItem(KEY, JSON.stringify(state)); saved = true; status('Saved on this device. Download your revision before changing computers.'); }
- catch { saved = false; status('Browser saving is unavailable. Download your revision before closing.', true); }
+ try { localStorage.setItem(KEY, JSON.stringify(state)); saved = true; status('Saved on this device. Download your answers before changing computers.'); }
+ catch { saved = false; status('Browser saving is unavailable. Download your answers before closing.', true); }
 }
 function validState(v) {
  if (!v || typeof v !== 'object' || Array.isArray(v)) throw Error('Invalid backup.');
@@ -280,7 +280,7 @@ function showTest(id) {
 function download() {
  save();
  const url = URL.createObjectURL(new Blob([JSON.stringify({format: FORMAT, ...state}, null, 2)], {type: 'application/json'}));
- const a = el('a', {href: url, download: 'my-computing-revision.json'}); a.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
+ const a = el('a', {href: url, download: window.REVISION_FILE || 'my-computing-revision.json'}); a.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 $('download').onclick = download;
 $('restore').onclick = () => $('backup').click();
@@ -289,25 +289,25 @@ $('backup').onchange = async e => {
   const file = e.target.files[0]; if (!file) return;
   if (file.size > 500000) throw Error('That backup is too large.');
   const data = JSON.parse(await file.text());
-  if (data.format !== FORMAT) throw Error(data.format === 'unit2-workbook-v1' ? 'That is a workbook backup. Restore it on the workbook page.' : 'Choose a backup from this revision page.');
+  if (data.format !== FORMAT) throw Error(data.format === 'unit2-workbook-v1' ? 'That is a workbook backup. Restore it on the workbook page.' : 'Choose a backup from this page.');
   const incoming = validState(data);
-  if (!confirm('This replaces the revision answers on this device with the backup. Continue?')) return;
+  if (!confirm('This replaces the answers on this device with the backup. Continue?')) return;
   state = incoming; save(); showTest(current); status('Backup restored.');
  } catch (err) { status(err.message || 'That file could not be read.', true); } finally { $('backup').value = ''; }
 };
 $('clear').onclick = () => {
- if (!confirm('Clear every revision answer saved in this browser? Download your revision first if you want to keep it.')) return;
+ if (!confirm('Clear every answer saved on this page in this browser? Download your answers first if you want to keep it.')) return;
  try { localStorage.removeItem(KEY); } catch { status('Could not clear browser storage. Use the browser’s site-data settings.', true); return; }
- state = {answers: {}, ticks: {}, marked: {}}; showTest(current); saved = true; status('Revision cleared from this browser. Your downloaded files are unchanged.');
+ state = {answers: {}, ticks: {}, marked: {}}; showTest(current); saved = true; status('Answers cleared from this browser. Your downloaded files are unchanged.');
 };
 $('print').onclick = () => window.print();
 window.addEventListener('beforeunload', e => { if (!saved) { e.preventDefault(); e.returnValue = ''; } });
-window.addEventListener('storage', e => { if (e.key === KEY) status('Revision changed in another tab. Use one revision tab at a time.', true); });
+window.addEventListener('storage', e => { if (e.key === KEY) status('Answers changed in another tab. Use one tab at a time.', true); });
 
 // ---------- start ----------
 let loadError = false;
 try { state = validState(JSON.parse(localStorage.getItem(KEY) || '{}')); } catch { loadError = true; }
 for (const t of TESTS) $('tabs').append(el('button', {type: 'button', 'data-test': t.id, text: t.short, onclick: () => showTest(t.id)}));
 showTest(TESTS.some(t => '#' + t.id === location.hash) ? location.hash.slice(1) : TESTS[0].id);
-status(loadError ? 'Saved revision could not load. Keep any backup safe.' : 'Ready. Answers save on this device as you type.', loadError);
+status(loadError ? 'Saved answers could not load. Keep any backup safe.' : 'Ready. Answers save on this device as you type.', loadError);
 })();

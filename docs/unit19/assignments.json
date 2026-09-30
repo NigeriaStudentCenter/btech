@@ -1,0 +1,64 @@
+{
+ "note": "Unit 19 assignment tasks in plain language, based on the centre's 2025-26 assignment briefs and the Pearson Unit 19 assessment guidance. Used by the Assignment guide, the Assignment builder and the AI assignment coach.",
+ "assignments": [
+  {
+   "id": "a1", "title": "Assignment 1: Investigating computer networks", "aim": "Learning aim A",
+   "scenario": "You are a junior network technician at a company that designs and installs networks. The company publishes detailed technical pages on its website to help new and existing customers understand networks.",
+   "evidence": "A report (written as website pages and a table)",
+   "tasks": [
+    {"id": "a1t1", "criteria": "A.P1", "grade": "Pass", "title": "Website pages: why different network types and models are needed",
+     "asks": "Explain why organisations need each network type (LAN, WLAN, WAN, SAN, intranet, extranet, internet, cloud, wired and wireless integration) and how those needs affect the choice of network model (peer-to-peer, client/server, thin client). Include why protocols and standards matter, why different topologies are used, and current trends such as BYOD and cloud computing.",
+     "checklist": ["Every network type is explained with a clear reason why an organisation would need it", "Each type has a realistic example organisation or situation", "Peer-to-peer, client/server and thin client are explained, and you show how an organisation's needs decide which model it chooses", "Topologies are covered, with why different ones are used", "You explain why protocols and standards (e.g. IEEE 802, TCP/IP) are needed to connect different networks", "Current trends are included: at least BYOD and cloud, ideally virtualisation and SDN too", "It is written for a customer reading a website: clear headings, plain explanations of technical terms", "It is in your own words, with any sources referenced"],
+     "lessons": ["A1a", "A1b", "A1c", "A1d"], "tool": "notes"},
+    {"id": "a1t2", "criteria": "A.P2", "grade": "Pass", "title": "Table: functions and characteristics of network components",
+     "asks": "Create a table explaining the general functions and characteristics of the hardware and software used to build and connect networks: end user devices (including mobile), switches, routers, access points; cable, wireless and fibre media; networking systems software, monitoring/management/troubleshooting tools, and network applications.",
+     "checklist": ["Every hardware item is included: end devices (including mobile), switch, router, access point", "Every media type is included: copper cable, wireless, fibre", "Every software type is included: systems software, monitoring/management/troubleshooting tools, network applications", "For each item you give its function (what it does)", "For each item you give its characteristics (features you would compare, e.g. speed, ports, range, cost)", "Examples are given for the software tools (e.g. ping, Wireshark, Event Viewer)"],
+     "lessons": ["A2a", "A2b"], "tool": "table"},
+    {"id": "a1t3", "criteria": "A.M1", "grade": "Merit", "title": "Report: analysing how the components work together",
+     "asks": "Using your table, write a report that thoroughly analyses the key functions of the hardware and software components, including those used in LAN, WAN and wireless networks. Show accurate understanding of why protocols and standards are needed to connect different networks, with examples and illustrations of how data is transferred within and between networks.",
+     "checklist": ["You go beyond describing: you explain how and why each component is needed and how components depend on each other", "LAN, WAN and wireless networks are all covered", "You explain the importance of protocols and standards with specific examples (e.g. Ethernet, 802.11, IP, TCP, DNS, DHCP)", "You illustrate data moving within a network (e.g. switch using MAC addresses) and between networks (e.g. router using IP addresses)", "Diagrams or illustrations support your explanation", "Technical terms are used accurately"],
+     "lessons": ["A2a", "A2b", "A3", "A4"], "tool": "notes"},
+    {"id": "a1t4", "criteria": "A.D1", "grade": "Distinction", "title": "Report: evaluating network models for different clients",
+     "asks": "Write a clear and balanced evaluation of peer-to-peer, client/server and thin client models and their suitability for different client requirements. Consider ease of use, ease of set-up, performance and suitability for different kinds of applications, with reasoned examples, benefits and drawbacks.",
+     "checklist": ["All three models are evaluated", "Each model has both benefits and drawbacks", "You compare them on ease of use, ease of set-up, performance and suitability for different applications", "Every point is supported with a reasoned example of a realistic client", "Your reasoning is connected (because… therefore… however…)", "You reach a justified conclusion about which model suits which kind of client", "Accurate, fluent technical vocabulary and a clear structure"],
+     "lessons": ["A1c"], "tool": "notes"}
+   ]
+  },
+  {
+   "id": "a2", "title": "Assignment 2: Design, build, test and evaluate a network", "aim": "Learning aims B and C",
+   "scenario": "You are a junior network engineer. Your supervisor has asked you to design, install, test and evaluate a network for a small branch office of a customer that creates web designs.",
+   "requirements": ["A server providing DHCP, DNS and web services", "At least 10 workstations", "A wired network plus secure Wi-Fi", "Wireless laptops at both sites", "Internet access, and a router connection between both sites (one off-site office)", "Suitable networking equipment, and an inventory of it", "Users and groups with folder permissions as specified in the brief's table (HR, ADMIN and IT_SERVICES groups; you own all folders)", "Scalable and secure for the future", "Static addressing, DHCP or both", "Low cost with reasonable performance", "VoIP", "Antivirus", "Facilities for e-commerce", "All network devices password protected", "Full documentation including test plans and results"],
+   "evidence": "Customer email; design documentation; written justification; implementation evidence (screenshots, photos); test evidence; evaluation; self-management portfolio",
+   "tasks": [
+    {"id": "a2t1", "criteria": "B.P3", "grade": "Pass", "title": "Email to the customer: why design and planning come first",
+     "asks": "Write a professional email to the customer explaining why a network design and planning strategies are needed before installation, and how they make sure the network meets the organisation's needs and design goals.",
+     "checklist": ["Written as a professional email for a non-technical customer", "Explains the purpose of a network design and of planning strategies", "Links design and planning to the customer's needs and business goals", "Mentions design goals such as scalability, availability, security and cost", "Explains the risks of installing without a plan", "Clear, polite tone with technical terms explained"],
+     "lessons": ["B1a"], "tool": "notes"},
+    {"id": "a2t2", "criteria": "B.P4", "grade": "Pass", "title": "Network design for the customer",
+     "asks": "Design a network that meets the customer's requirements, including their goals and technical requirements, design aims and constraints; a physical design with component selection, network diagrams and physical layout; and a logical design with IP addressing and naming schemes.",
+     "checklist": ["Organisation goals and technical requirements are listed", "Design aims and constraints (budget, time, environment) are stated", "Equipment is selected with a reason for each item, and an inventory is included", "A physical layout shows where equipment and cables go in the office", "A network diagram shows every device and connection at both sites", "A logical design gives an IP addressing table (networks, masks, gateways, static and DHCP ranges)", "A naming scheme is used for devices", "Users, groups and folder permissions from the brief are planned", "Every requirement in the brief is covered somewhere in the design"],
+     "lessons": ["B1a", "B1b", "B2", "B3"], "tool": "design"},
+    {"id": "a2t3", "criteria": "B.M2", "grade": "Merit", "title": "Justification of your design decisions",
+     "asks": "Justify the design decisions you made, referring both to technical considerations and to the customer's requirements, showing how the design fulfils its purpose.",
+     "checklist": ["Each major decision is justified: topology, devices, media, addressing, services, security, wireless", "Every justification links to a specific customer requirement", "Every justification also gives a technical reason", "Alternatives you rejected are mentioned, with why", "Trade-offs (cost versus performance or security) are explained"],
+     "lessons": ["B1a", "B2"], "tool": "notes"},
+    {"id": "a2t4", "criteria": "C.P5", "grade": "Pass", "title": "Build and configure the network",
+     "asks": "Develop, set up and configure the network following your design, including devices, services, users, groups and permissions.",
+     "checklist": ["The network is built to match your design (both sites)", "Router and switch configurations are done (names, addresses, routes, passwords)", "Server services are configured: DHCP, DNS and web", "Wireless is configured with security", "VoIP, antivirus and e-commerce facilities are addressed", "Users, groups and permissions are created as specified", "All network devices are password protected", "Screenshots or photos show each stage, with captions"],
+     "lessons": ["C1", "B3"], "tool": "notes"},
+    {"id": "a2t5", "criteria": "C.P6 · C.M3", "grade": "Pass / Merit", "title": "Test the network, then optimise it",
+     "asks": "Test the network using a completed test plan to make sure the functions the customer requires work. Then optimise the network to improve its performance, functionality or ease of use, based on your testing.",
+     "checklist": ["The test plan covers connectivity, services, access and security", "Each test has the method, expected result, actual result and pass/fail", "Evidence (screenshots) is referenced for each test", "Failed tests are recorded with the cause and the fix, then re-tested", "Merit: at least one optimisation is made because of what testing showed", "Merit: re-testing proves the optimisation improved performance, security or usability"],
+     "lessons": ["C2", "C3"], "tool": "testplan"},
+    {"id": "a2t6", "criteria": "C.P7 · BC.D2", "grade": "Pass / Distinction", "title": "Review and evaluate the network against the requirements",
+     "asks": "Review how far the network meets the client requirements. For Distinction, evaluate both the design and the implemented, optimised network against the requirements, using evidence from all stages, reaching conclusions and suggesting future developments.",
+     "checklist": ["Every client requirement is reviewed: met, partly met or not met", "Positive and negative points are included", "Distinction: the design and the implementation are both evaluated", "Distinction: evidence is used from design, build, testing and optimisation", "Distinction: you explain why things worked or did not", "Distinction: justified conclusions and realistic future developments"],
+     "lessons": ["C4", "C3"], "tool": "evaluation"},
+    {"id": "a2t7", "criteria": "BC.D3", "grade": "Distinction", "title": "Portfolio: individual responsibility and self-management",
+     "asks": "Throughout the assignment, show individual responsibility and effective self-management in planning and implementing the network, through a portfolio.",
+     "checklist": ["A plan with targets and deadlines, updated as you go", "Dated diary or log entries throughout the project", "Peer feedback gathered on your design, and what you changed as a result", "Evidence of professional behaviour: meeting deadlines, supporting others", "Problems you met and how you solved them", "Clear, professional communication in all documents"],
+     "lessons": ["C4"], "tool": "diary"}
+   ]
+  }
+ ]
+}
