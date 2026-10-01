@@ -41,3 +41,7 @@ Pages: start, brief (assignment guide), learning, index (workbook), practicals, 
 - Build every Unit 12 page: `python3 tools/build_unit12.py` (lessons in tools/unit12/u12_a.py and u12_b.py, workbook_u12.py, videos_u12.py, pages_u12.py). Writes api/sections-u12.json and copies api/assignments-u12.json to docs/unit12/assignments.json.
 - Coursework unit: Assignment guide (brief.html) and Assignment builder (assignment.html/.js, generated from the Unit 19 builder with Unit 12 planning tables). The AI coach is generic: each course in api/src/core.js COURSES can have a `coach` block (assignments, unit, learner, forbid, subject, extra). Unit 12's coach never writes or corrects code for the brief.
 - Quizzes: docs/unit12/quiz-data.js. Teacher deck: `FIGS=<PNG exports + dims.json> OUT=docs/unit12/teacher node tools/unit12/teacher_deck.js`.
+
+## Unit 2 extras (docs/tasks.html, videos.html, teachers.html)
+- After `python3 tools/build_learning.py`, run `python3 tools/build_unit2_extras.py`: adds videos and 'From your lessons' blocks to learning.html (marker-delimited, idempotent), updates the Unit 2 nav and start cards, and builds the diagram tasks, videos and teachers pages. Content in tools/unit2/ (videos_u2.py, enrich_u2.py, tasks_u2.py, teacher_deck.js).
+- Diagram tasks are original SVG redrawings of the department's Word labelling worksheets (the source photos are stock images and are not published).
