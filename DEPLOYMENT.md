@@ -36,3 +36,8 @@ Pages: start, brief (assignment guide), learning, index (workbook), practicals, 
 - Build every Unit 8 page: `python3 tools/build_unit8.py` (lessons in tools/unit8/u8_a.py and u8_b.py, workbook_u8.py, videos_u8.py, pages_u8.py, spec_u8.json). Writes api/sections-u8.json for the tutor (course `u8`, which adds a server-side security rule: no exploit code or attack instructions).
 - Quizzes and exam practice: docs/unit8/quiz-data.js and docs/unit8/exam-data.js (shared docs/revision.js).
 - Teacher deck: `FIGS=<PNG exports + dims.json> OUT=docs/unit8/teacher node tools/unit8/teacher_deck.js`.
+
+## Unit 12 Software Development, BTEC First ICT (docs/unit12/)
+- Build every Unit 12 page: `python3 tools/build_unit12.py` (lessons in tools/unit12/u12_a.py and u12_b.py, workbook_u12.py, videos_u12.py, pages_u12.py). Writes api/sections-u12.json and copies api/assignments-u12.json to docs/unit12/assignments.json.
+- Coursework unit: Assignment guide (brief.html) and Assignment builder (assignment.html/.js, generated from the Unit 19 builder with Unit 12 planning tables). The AI coach is generic: each course in api/src/core.js COURSES can have a `coach` block (assignments, unit, learner, forbid, subject, extra). Unit 12's coach never writes or corrects code for the brief.
+- Quizzes: docs/unit12/quiz-data.js. Teacher deck: `FIGS=<PNG exports + dims.json> OUT=docs/unit12/teacher node tools/unit12/teacher_deck.js`.

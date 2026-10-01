@@ -1,0 +1,335 @@
+{
+ "note": "Unit 12 assignment tasks in plain language, based on the Pearson BTEC First ICT Unit 12 specification and the centre scheme of work (three assignments). Used by the Assignment guide, the Assignment builder and the AI assignment coach. The teacher's official brief and client always take priority.",
+ "assignments": [
+  {
+   "id": "a1",
+   "title": "Assignment 1: Characteristics and uses of software programs",
+   "aim": "Learning aim A",
+   "scenario": "You are on work experience at a software development company. Your line manager gives you two simple programs the company has written and asks you to explain how they work and comment on their quality, before you are trusted to write code for a client. Your teacher supplies the two programs and the official brief.",
+   "evidence": "A report on the two programs (with annotated code and a flowchart)",
+   "tasks": [
+    {
+     "id": "a1t1",
+     "criteria": "1A.1 / 2A.P1",
+     "grade": "Pass",
+     "title": "Explain the purpose and characteristics of two programs",
+     "asks": "For each of the two simple programs, explain what it is for (its purpose) and its characteristics: the type of language, its inputs, processing and outputs, and the tools and techniques it uses (command words, subroutines, string handling, file handling, data structures, event handling, selection, loops, variables and data types). Level 1 (1A.1) only needs you to identify these; Level 2 Pass needs you to explain them.",
+     "checklist": [
+      "The purpose of each program is explained in your own words",
+      "Inputs, processing and outputs are identified for each program",
+      "The type of programming language is stated (e.g. event-driven Visual Basic) with a reason",
+      "Each construct or technique used is named AND you explain what it does in that program",
+      "You refer to specific lines or parts of the code (annotated screenshots help)",
+      "You have run the programs (or dry-run them with a trace table) and say what happens",
+      "It is written in your own words"
+     ],
+     "lessons": [
+      "A1",
+      "A2",
+      "A3"
+     ],
+     "tool": "analysis"
+    },
+    {
+     "id": "a1t2",
+     "criteria": "2A.M1",
+     "grade": "Merit",
+     "title": "Comment on quality, suggest improvements and draw a flowchart",
+     "asks": "Choose one of the programs and comment on its quality using the quality measures (efficiency, maintainability, portability, reliability, robustness, usability). Suggest improvements, and provide a flowchart showing how the program would process data once your improvements were made.",
+     "checklist": [
+      "Each quality measure is covered with evidence from the code (not general statements)",
+      "Weaknesses are identified, e.g. no validation, unclear names, repeated code, no comments",
+      "Each improvement is specific and linked to the weakness it fixes",
+      "The flowchart uses the correct symbols (start/end, input/output, process, decision)",
+      "The flowchart shows the improved processing, including any new validation or decisions",
+      "The flowchart has been checked with test values (a dry run)"
+     ],
+     "lessons": [
+      "A4",
+      "B4"
+     ],
+     "tool": "quality"
+    },
+    {
+     "id": "a1t3",
+     "criteria": "2A.D1",
+     "grade": "Distinction",
+     "title": "Discuss the strengths and weaknesses of the program",
+     "asks": "Discuss the strengths and weaknesses of the software program in a balanced way, considering its purpose, its users and the quality of its design and code, and reach a conclusion about how good it is.",
+     "checklist": [
+      "Strengths AND weaknesses are both covered, with evidence from the code",
+      "Points are linked to the program’s purpose and its users",
+      "Quality measures are used to structure the discussion",
+      "You weigh up which strengths and weaknesses matter most, and why",
+      "You reach a supported overall conclusion"
+     ],
+     "lessons": [
+      "A4"
+     ],
+     "tool": "notes"
+    }
+   ]
+  },
+  {
+   "id": "a2",
+   "title": "Assignment 2: Design, develop and test a software program",
+   "aim": "Learning aims B and C",
+   "scenario": "A client has given your company a brief describing a problem that a software program could solve, such as replacing a paper-based booking or ordering system. You will design the program, develop it in Visual Basic (or the language your teacher sets), and test and refine it. Your teacher gives you the official brief with the client’s requirements.",
+   "evidence": "Design documents, the working program (source code with comments and an executable), a completed test plan with screenshots, a feedback and changes log",
+   "tasks": [
+    {
+     "id": "a2t1",
+     "criteria": "1B.2 / 2B.P2",
+     "grade": "Pass",
+     "title": "Describe the purpose and user requirements",
+     "asks": "Show that you understand the brief: describe the intended purpose of the program and the user requirements. Level 1 identifies them; Level 2 describes them in detail.",
+     "checklist": [
+      "The intended purpose is described in your own words (not copied from the brief)",
+      "Every user requirement from the brief is listed",
+      "Each requirement is described: what it means and why the user needs it",
+      "You identify who the users are",
+      "It is presented clearly and professionally, as a report for the client"
+     ],
+     "lessons": [
+      "B1",
+      "B2"
+     ],
+     "tool": "requirements"
+    },
+    {
+     "id": "a2t2",
+     "criteria": "1B.3 / 2B.P3",
+     "grade": "Pass",
+     "title": "Produce a design for the program",
+     "asks": "Produce a design including a problem definition statement, a proposed solution (main tasks with inputs and outputs, screen layouts and navigation, algorithms in pseudocode or flowcharts, data structures and storage, validation), a list of any predefined functions/subroutines with sources, and a test plan.",
+     "checklist": [
+      "A problem definition statement describes the current problem and how the program will solve it",
+      "The main program tasks are described with inputs, processing and outputs",
+      "Screen layouts are annotated (every control labelled with its type and purpose)",
+      "A navigation diagram shows how the screens link",
+      "Algorithms are shown as pseudocode and/or flowcharts",
+      "Data structures, data storage and validation are planned",
+      "Predefined functions/subroutines are listed with their sources",
+      "A test plan lists tests, test data and expected results"
+     ],
+     "lessons": [
+      "B2",
+      "B3",
+      "B4",
+      "B5"
+     ],
+     "tool": "design"
+    },
+    {
+     "id": "a2t3",
+     "criteria": "2B.M2",
+     "grade": "Merit",
+     "title": "Produce a detailed design with alternatives",
+     "asks": "Produce a detailed design that includes alternative solutions, a detailed proposed solution using a range of design tools, and test data.",
+     "checklist": [
+      "At least two alternative solutions are shown (e.g. two screen layouts or two algorithms)",
+      "The differences between alternatives are explained",
+      "The proposed solution uses a range of tools: IPO table, annotated layouts, navigation diagram, pseudocode/flowcharts, data design",
+      "Control structures, validation and error handling are planned in detail",
+      "Test data covers normal, boundary and erroneous values for each input"
+     ],
+     "lessons": [
+      "B3",
+      "B4",
+      "B5"
+     ],
+     "tool": "design"
+    },
+    {
+     "id": "a2t4",
+     "criteria": "2B.D2",
+     "grade": "Distinction",
+     "title": "Justify the design decisions",
+     "asks": "Justify your design decisions, including how they will fulfil the stated purpose and user requirements, and any design constraints.",
+     "checklist": [
+      "Each major decision (layout, navigation, data structures, validation, algorithms) is justified",
+      "Justifications link back to specific user requirements and the purpose",
+      "You explain why the chosen alternative is better than the others",
+      "Constraints (language, time, device capabilities) are identified and you explain how they shaped the design"
+     ],
+     "lessons": [
+      "B2",
+      "B3",
+      "B5"
+     ],
+     "tool": "notes"
+    },
+    {
+     "id": "a2t5",
+     "criteria": "1C.4 / 2C.P4",
+     "grade": "Pass",
+     "title": "Develop the program",
+     "asks": "Develop a program for the brief which includes a user interface (input and output), constructs and techniques, and commentary (comments) throughout the code. Level 1 is developed with guidance.",
+     "checklist": [
+      "The program has a user interface with clear inputs and outputs",
+      "It uses a range of constructs: variables and data types, selection, iteration, subroutines",
+      "It uses techniques such as string handling, file handling, arrays/records and event handling where the brief needs them",
+      "Comments explain what each part of the code does",
+      "Controls and variables have meaningful names",
+      "The program has been compiled into an executable",
+      "Any predefined code is acknowledged in comments"
+     ],
+     "lessons": [
+      "C1",
+      "C2",
+      "C3",
+      "C4",
+      "C5",
+      "C6",
+      "C7"
+     ],
+     "tool": "develop"
+    },
+    {
+     "id": "a2t6",
+     "criteria": "2C.M3",
+     "grade": "Merit",
+     "title": "Develop a functional program that meets the brief",
+     "asks": "Develop a fully functional program that meets the given brief.",
+     "checklist": [
+      "Every user requirement in the brief is implemented",
+      "The program runs without crashing for normal use",
+      "Input is validated and errors are handled with helpful messages",
+      "Calculations and outputs are correct (checked by testing)",
+      "Data is stored and retrieved correctly where required"
+     ],
+     "lessons": [
+      "C3",
+      "C4",
+      "C5",
+      "C6",
+      "C7"
+     ],
+     "tool": "develop"
+    },
+    {
+     "id": "a2t7",
+     "criteria": "1C.5 / 2C.P5",
+     "grade": "Pass",
+     "title": "Test for functionality and repair faults",
+     "asks": "Test the program for functionality using the test plan and against the original requirements, and repair any faults.",
+     "checklist": [
+      "Every test in the test plan has been carried out",
+      "Actual results and pass/fail are recorded for each test",
+      "Screenshots provide evidence of the tests",
+      "The program is checked against each original requirement",
+      "Faults are repaired and the failed tests are re-run",
+      "The repairs are recorded (what was wrong and how it was fixed)"
+     ],
+     "lessons": [
+      "B5",
+      "C8"
+     ],
+     "tool": "testplan"
+    },
+    {
+     "id": "a2t8",
+     "criteria": "2C.M4",
+     "grade": "Merit",
+     "title": "Gather feedback and use it to improve",
+     "asks": "Test the program using the test data, gather feedback from others on the usability and quality of the program, and use it to improve the software program. Repair any faults.",
+     "checklist": [
+      "Feedback is gathered from real users or others (e.g. a questionnaire or interview)",
+      "Feedback covers usability and quality (reliability, efficiency, maintainability, portability)",
+      "The feedback is recorded with who gave it",
+      "Changes made because of feedback are described and re-tested",
+      "Faults found are repaired"
+     ],
+     "lessons": [
+      "C8"
+     ],
+     "tool": "feedback"
+    },
+    {
+     "id": "a2t9",
+     "criteria": "2C.D3",
+     "grade": "Distinction",
+     "title": "Refine the program using code quality and feedback",
+     "asks": "Refine the software program, taking account of the quality of the code and user feedback.",
+     "checklist": [
+      "The code is reviewed for quality: names, comments, structure, repetition, efficiency",
+      "Refinements improve code quality (e.g. subroutines instead of repeated code, constants, better validation)",
+      "Refinements respond to user feedback",
+      "Each refinement is explained and justified",
+      "The refined program is re-tested and still meets the requirements",
+      "Design documents are updated to match the final program"
+     ],
+     "lessons": [
+      "A4",
+      "C5",
+      "C8"
+     ],
+     "tool": "feedback"
+    }
+   ]
+  },
+  {
+   "id": "a3",
+   "title": "Assignment 3: Review the finished software program",
+   "aim": "Learning aim D",
+   "scenario": "The client wants to know how well the program you developed in Assignment 2 meets their needs before it is used every day. Your teacher gives you the official brief and the format (a report or a presentation).",
+   "evidence": "A review report or presentation, with evidence from testing and feedback",
+   "tasks": [
+    {
+     "id": "a3t1",
+     "criteria": "1D.6 / 2D.P6",
+     "grade": "Pass",
+     "title": "Explain how the program is suitable for the requirements and purpose",
+     "asks": "For the software program, explain how the final program is suitable for the original requirements and purpose. Level 1 identifies how; Level 2 explains.",
+     "checklist": [
+      "Each original requirement is listed with how the program meets it",
+      "Fitness for purpose is explained: does it solve the client’s problem?",
+      "Evidence is given (test results, screenshots)",
+      "It is written in your own words, for the client"
+     ],
+     "lessons": [
+      "D1"
+     ],
+     "tool": "evaluation"
+    },
+    {
+     "id": "a3t2",
+     "criteria": "2D.M5",
+     "grade": "Merit",
+     "title": "Review the extent to which requirements are met",
+     "asks": "Review the extent to which the software program meets the original requirements, considering feedback from others and any constraints.",
+     "checklist": [
+      "You judge how far each requirement is met (fully, partly, not met) with reasons",
+      "User feedback is used as evidence",
+      "User experience (ease of navigation, clarity) is reviewed",
+      "Constraints are discussed: how they affected the program and how you worked around them",
+      "Quality is reviewed using the quality measures"
+     ],
+     "lessons": [
+      "D1"
+     ],
+     "tool": "evaluation"
+    },
+    {
+     "id": "a3t3",
+     "criteria": "2D.D4",
+     "grade": "Distinction",
+     "title": "Evaluate against designs and code quality, and recommend improvements",
+     "asks": "Evaluate the final software program against the initial designs and the quality of the code, justify any changes made, and make recommendations for further improvement.",
+     "checklist": [
+      "The final program is compared with the initial design, element by element",
+      "Every change from the design is identified and justified",
+      "The quality of the code is evaluated with examples",
+      "Strengths and weaknesses are weighed to reach supported conclusions",
+      "Recommendations for further improvement are specific and justified"
+     ],
+     "lessons": [
+      "D1",
+      "A4"
+     ],
+     "tool": "evaluation"
+    }
+   ]
+  }
+ ]
+}

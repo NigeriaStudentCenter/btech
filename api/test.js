@@ -23,5 +23,11 @@ test('unit 19: workbook sections and the assignment coach use server-side data o
  assert.throws(()=>validate({course:'u7',task:'a2t2',mode:'task-plan',message:'x'}));assert.throws(()=>validate({course:'u7',section:'A1',mode:'hint',message:'x'}));
  const u8=validate({course:'u8',section:'M2',mode:'explain',message:'What is hashing?'});const u8m=messages(u8)[0].content;assert.match(u8m,/Never give working exploit code/);assert.match(u8m,/hash/i);assert.doesNotMatch(messages(u7)[0].content,/Security rule/);
  const wb8=JSON.parse(fs.readFileSync(__dirname+'/../docs/unit8/index.html','utf8').match(/<script id="courseData" type="application\/json">(.*?)<\/script>/s)[1]);assert.deepEqual(wb8.map(s=>s.id),require('./sections-u8.json').map(s=>s.id));
+ const k=validate({course:'u12',task:'a2t5',mode:'task-review',message:'My draft: I used an If statement to...'});assert.equal(k.task.id,'a2t5');const km=messages(k)[0].content;assert.match(km,/Unit 12 Software Development/);assert.match(km,/never paste back fixed code/);assert.match(km,/Develop the program/);assert.doesNotMatch(km,/IP addressing/);
+ const k19=messages(validate({course:'u19',task:'a2t2',mode:'task-plan',message:'x'}))[0].content;assert.match(k19,/Unit 19 Computer Networking/);assert.match(k19,/IP addressing schemes/);assert.doesNotMatch(k19,/Visual Basic/);
+ for(const bad of [{course:'u12',task:'a9t9',mode:'task-plan',message:'x'},{course:'u12',task:'a1t1',mode:'hint',message:'x'},{course:'u7',task:'a1t1',mode:'task-plan',message:'x'},{course:'u12',task:'a1t1',mode:'task-plan',message:'x'.repeat(6001)}])assert.throws(()=>validate(bad));
+ assert.ok(validate({course:'u12',section:'C4',mode:'hint',message:'How do loops work?'}));
+ assert.equal(fs.readFileSync(__dirname+'/assignments-u12.json','utf8'),fs.readFileSync(__dirname+'/../docs/unit12/assignments.json','utf8'));
+ const wb12=JSON.parse(fs.readFileSync(__dirname+'/../docs/unit12/index.html','utf8').match(/<script id="courseData" type="application\/json">(.*?)<\/script>/s)[1]);assert.deepEqual(wb12.map(s=>s.id),require('./sections-u12.json').map(s=>s.id));
  const wb7=JSON.parse(fs.readFileSync(__dirname+'/../docs/unit7/index.html','utf8').match(/<script id="courseData" type="application\/json">(.*?)<\/script>/s)[1]);assert.deepEqual(wb7.map(s=>s.id),require('./sections-u7.json').map(s=>s.id));
 });

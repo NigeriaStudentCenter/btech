@@ -6,7 +6,7 @@ from pages_u7 import HEAD, engine_page  # noqa: E402  shared page shell and quiz
 
 U19 = ROOT / "docs" / "unit19"
 FOOT = '<footer>Original course material written for the T Level in Digital Production, Design and Development, core content area 8: Security. Not an awarding-organisation publication. Cisco Packet Tracer is available free through Cisco Networking Academy.</footer>\n</body></html>\n'
-OTHER = '<p class="small" style="text-align:center">Also on this site: <a href="../start.html">Unit 2: Fundamentals of Computer Systems</a> · <a href="../unit19/start.html">Unit 19: Computer Networking</a> · <a href="../unit7/start.html">Unit 7: Digital environments</a></p>'
+OTHER = '<p class="small" style="text-align:center">Also on this site: <a href="../start.html">Unit 2: Fundamentals of Computer Systems</a> · <a href="../unit19/start.html">Unit 19: Computer Networking</a> · <a href="../unit7/start.html">Unit 7: Digital environments</a> · <a href="../unit12/start.html">Unit 12: Software Development</a></p>'
 
 
 def page(nav, title, h1, lead, body, style=""):

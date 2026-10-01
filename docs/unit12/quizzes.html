@@ -1,0 +1,55 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Unit 12 Quizzes</title><style>
+:root{--ink:#17334b;--muted:#405870;--line:#d2dce5;--card:#fff;--bg:#f5f8fc;--accent:#205f95;--good:#1d7a45;--goodbg:#e6f4ec;--try:#a3560b;--trybg:#fdf0e1}
+body{font:18px/1.6 system-ui,sans-serif;color:var(--ink);background:var(--bg);max-width:960px;margin:30px auto;padding:20px}
+a{color:#155b91}h1,h2,h3,h4{line-height:1.25}nav{display:flex;gap:20px;flex-wrap:wrap}
+.panel,.question,.intro{background:var(--card);padding:22px;border:1px solid var(--line);border-radius:14px;margin:20px 0}
+#tabs{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}
+button,select,input,textarea{font:inherit;color:inherit}
+button{cursor:pointer;padding:8px 14px;border-radius:7px;border:1px solid #9aaec2;background:#fff;color:#173f69}
+button:hover,button:focus-visible{outline:2px solid #235f9c}
+#tabs button.current{background:var(--accent);color:#fff;border-color:var(--accent)}
+.tools{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:12px}
+#status{font-weight:650;min-height:1.6em}#status.error{color:#a12323}
+.scenario{background:#eef4fa;border-left:4px solid #4382b5;padding:12px 16px;border-radius:0 8px 8px 0}
+.part{border-top:1px solid #e1e8ef;padding-top:14px;margin-top:18px}
+.phead{display:flex;justify-content:space-between;gap:12px;align-items:baseline;flex-wrap:wrap}.phead h4{margin:0;font-size:1.05rem}
+.marks{font-size:.8rem;font-weight:650;background:#163b62;color:#fff;border-radius:999px;padding:2px 10px;white-space:nowrap}
+.context{color:var(--muted);font-style:italic}.prompt{font-weight:600}
+.hint{background:#fff8e1;border:1px solid #ecd9a0;border-radius:8px;padding:8px 12px;font-size:.95rem}
+details.hint summary{cursor:pointer;font-weight:600}details.hint p{margin:.4em 0 0}
+textarea{width:100%;box-sizing:border-box;padding:12px;border:1px solid #899eb3;border-radius:7px;line-height:1.5}
+details.check{margin-top:8px;border:1px solid var(--line);border-radius:8px;padding:8px 12px;background:#fafcfe}
+details.check summary{cursor:pointer;font-weight:650;color:var(--accent)}details.check.locked summary{color:var(--muted);cursor:not-allowed}
+ul.criteria{list-style:none;padding:0;margin:.4em 0}ul.criteria li{display:flex;gap:6px;align-items:flex-start;margin:.35em 0}ul.criteria input{margin-top:.35em;flex:none;width:1.1em;height:1.1em}
+.small{font-size:.88rem;color:var(--muted)}
+.fields{display:grid;gap:10px}.fields.grid2{grid-template-columns:repeat(2,minmax(0,1fr))}.fields.grid3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.field{display:flex;flex-direction:column;gap:4px;font-size:.92rem}.field input,.field select{width:100%;box-sizing:border-box;padding:8px;border:1px solid #899eb3;border-radius:7px;min-width:0;background:#fff}
+.good{border-color:var(--good)!important;background:var(--goodbg)!important}.try{border-color:var(--try)!important;background:var(--trybg)!important}
+.result{font-weight:600}.result.good{color:var(--good);background:none!important}.result.try{color:var(--try);background:none!important}
+fieldset.choice{border:0;padding:0;margin:0}fieldset.choice div{margin:.3em 0}.sr{position:absolute;left:-9999px}
+.scroll{overflow-x:auto}table{border-collapse:collapse;margin:8px 0}th,td{border:1px solid #b9c7d5;padding:6px 10px;text-align:center}th{background:#eef4fa}
+table.truth select{padding:4px;border:1px solid #899eb3;border-radius:5px;background:#fff}td.given{background:#f5f8fb;font-weight:600}
+table.data td{text-align:left}
+ol.order{padding-left:0;list-style:none}ol.order li{display:flex;gap:8px;align-items:flex-start;margin:.45em 0}ol.order select{flex:none;padding:4px;border:1px solid #899eb3;border-radius:5px}
+.links{font-size:.88rem;color:var(--muted);margin:.6em 0 0}
+.qtotal,.total{font-weight:700;color:#163b62}
+.plan{margin:10px 0;border:1px solid var(--line);border-radius:8px;padding:8px 12px;background:#fafcfe}.plan summary{cursor:pointer;font-weight:650;color:var(--accent)}.planGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:8px}.planGrid textarea{font-size:.9rem;padding:8px}
+.wc{margin:.3em 0}table.levels th,table.levels td{text-align:left;vertical-align:top;font-size:.9rem}table.levels th{white-space:nowrap}
+dl.guide{display:grid;grid-template-columns:max-content 1fr;gap:6px 14px;font-size:.95rem}dl.guide dt{font-weight:700}dl.guide dd{margin:0}
+@media(max-width:640px){.planGrid{grid-template-columns:1fr}dl.guide{grid-template-columns:1fr}dl.guide dd{margin-bottom:6px}}
+figure.diagram{margin:12px 0;color:#163b62}figcaption{font-size:.88rem;color:var(--muted)}
+@media(max-width:640px){body{padding:16px;margin:10px auto;font-size:17px}.fields.grid3,.fields.grid2{grid-template-columns:repeat(2,minmax(0,1fr))}.panel,.question,.intro{padding:16px}}
+@media print{nav,#tabs,.tools,.panel,details.check,.links{display:none}.question,.intro{border:0;padding:0}details.hint{display:block}textarea{border:1px solid #ccc}}
+</style></head><body>
+<nav aria-label="Course pack"><a href="start.html">Start</a><a href="brief.html">1. Assignment guide</a><a href="learning.html">2. Learn</a><a href="index.html">3. Workbook + tutor</a><a href="practicals.html">4. Practicals</a><a href="assignment.html">5. Assignment builder</a><a href="quizzes.html">6. Quizzes</a><a href="videos.html">7. Videos</a><a href="teachers.html">Teachers</a></nav>
+<h1>6. Quizzes</h1>
+<div class="panel">
+<p>Quick quizzes to check your understanding. Answers are marked instantly when you press Check, and each question links to the lesson that teaches it and to the tutor.</p>
+<p class="small">Original practice questions for this course. Answers save in this browser only.</p>
+<div class="tools"><button id="download" type="button">Download my answers</button><button id="restore" type="button">Continue from a backup</button><button id="clear" type="button">Clear this device</button><button id="print" type="button">Print</button><input id="backup" type="file" accept="application/json,.json" hidden></div>
+<p id="status" role="status"></p>
+</div>
+<div id="tabs" role="group" aria-label="Choose a test"></div>
+<main id="test"></main>
+<script src="quiz-data.js"></script><script src="../revision.js"></script>
+</body></html>

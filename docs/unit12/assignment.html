@@ -1,0 +1,29 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Unit 12 Assignment builder</title><link rel="stylesheet" href="../unit19/u19.css">
+<style>
+.layout{display:grid;grid-template-columns:250px minmax(0,1fr);gap:22px}
+#tasklist{position:sticky;top:12px;align-self:start;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;max-height:calc(100vh - 24px);overflow:auto}
+#tasklist h3{font-size:.9rem;margin:12px 0 6px;color:var(--muted)}#tasklist button{display:block;width:100%;text-align:left;margin:4px 0;font-size:.88rem;padding:8px 10px}
+#tasklist button.current{background:var(--accent);color:#fff;border-color:var(--accent)}#tasklist .prog{font-size:.75rem;float:right;opacity:.85}
+.checklist{list-style:none;padding:0}.checklist li{display:flex;gap:8px;align-items:flex-start;margin:.35em 0}.checklist input{margin-top:.35em;width:1.1em;height:1.1em;flex:none}
+.grid-table input,.grid-table select{width:100%;border:1px solid #b7c6d4;border-radius:5px;padding:5px 6px;font-size:.88rem;background:#fff}
+.grid-table td{padding:4px}.grid-table th{font-size:.85rem}.grid-table td.del{width:34px}.grid-table td.del button{padding:4px 8px}
+.wc{font-size:.85rem;color:var(--muted);margin:4px 0}
+.coach{background:#f2f7ff;border:1px solid #bcd6f0;border-radius:12px;padding:16px;margin:18px 0}
+.coach .modes{display:flex;gap:8px;flex-wrap:wrap}.coachlog{white-space:pre-wrap;font-size:.95rem;margin-top:10px}.coachlog .you{color:var(--muted);font-style:italic;margin:8px 0 2px}.coachlog .bot{margin:2px 0 10px}
+.ailog{font-size:.85rem}.ailog li{margin:.3em 0}
+#status{font-weight:650;min-height:1.4em}#status.error{color:#a12323}
+@media(max-width:900px){.layout{display:block}#tasklist{position:static;max-height:none;margin-bottom:16px}}
+@media print{#tasklist,.coach .modes,.coach input,.tools,.grid-table td.del,.noprint{display:none}.layout{display:block}textarea{border:1px solid #ccc;min-height:0}}
+</style></head><body>
+<div class="packnav"><nav aria-label="Course pack"><a href="start.html">Start</a><a href="brief.html">1. Assignment guide</a><a href="learning.html">2. Learn</a><a href="index.html">3. Workbook + tutor</a><a href="practicals.html">4. Practicals</a><a href="assignment.html">5. Assignment builder</a><a href="quizzes.html">6. Quizzes</a><a href="videos.html">7. Videos</a><a href="teachers.html">Teachers</a></nav></div>
+<header class="hero"><h1>5. Assignment builder</h1><p>Plan each task, keep your evidence organised, and get feedback on your own drafts from the AI assignment coach. Your work saves on this device.</p></header>
+<div class="wrap">
+<div class="warnbox noprint"><strong>This is your workspace, not a shortcut.</strong> The coach explains, asks questions and tells you what is missing; it will not write your code, designs or reviews. Every coach question is saved in your <a href="#ailog">AI-use log</a>: download it and hand it in with your work, as your teacher asks.</div>
+<div class="tools noprint"><button id="download" type="button">Download all my assignment work</button><button id="restore" type="button">Continue from a backup</button><button id="clear" type="button">Clear this device</button><button id="print" type="button">Print this task</button><input id="backup" type="file" accept=".json,application/json" hidden></div>
+<p id="status" role="status"></p>
+<div class="layout"><div id="tasklist" aria-label="Choose a task"></div><main id="task"></main></div>
+<section class="card" id="ailog"><h2>My AI-use log</h2><p class="small">A record of every question you asked the assignment coach, with the date and task. Hand this in if your teacher asks how you used AI.</p><ol class="ailog" id="ailogList"></ol><div class="tools"><button id="downloadLog" type="button">Download my AI-use log</button></div></section>
+</div>
+<footer>The assignment coach uses an AI model provided by the course. It can make mistakes; check technical details against your lessons and test your own code. Your teacher assesses your work.</footer>
+<script src="../config.js"></script><script src="assignment.js"></script>
+</body></html>

@@ -1,0 +1,36 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Unit 12 for teachers</title><link rel="stylesheet" href="../unit19/u19.css"></head><body>
+<div class="packnav"><nav aria-label="Course pack"><a href="start.html">Start</a><a href="brief.html">1. Assignment guide</a><a href="learning.html">2. Learn</a><a href="index.html">3. Workbook + tutor</a><a href="practicals.html">4. Practicals</a><a href="assignment.html">5. Assignment builder</a><a href="quizzes.html">6. Quizzes</a><a href="videos.html">7. Videos</a><a href="teachers.html">Teachers</a></nav></div>
+<header class="hero"><h1>For teachers</h1><p>Everything you need to deliver Unit 12 with this course: the teacher PowerPoint, how the pages map to the scheme of work, the assignments and the AI tutor and coach.</p></header>
+<div class="wrap">
+<section class="card"><h2>Teacher PowerPoint</h2>
+<p>A 28-slide delivery deck with full speaker notes. Each lesson slide follows the department routine (starter, aim, teach, practical, task, check, flipped homework) with questioning, stretch and support ideas, and the matching workbook section, practical and quiz.</p>
+<div class="tools"><a class="primary" href="teacher/Unit12-Software-Development-Teacher-Deck.pptx" download style="display:inline-block;padding:10px 16px;border-radius:8px;background:var(--accent);color:#fff;text-decoration:none">Download the teacher deck (.pptx, 1.5 MB)</a></div>
+<p class="small">Contents: unit overview · assessment map · the course site · AI rules · delivery plan · 18 lesson slides across learning aims A–D · three assignment launch slides · practicals. Diagrams are the same originals used on the Learn page.</p></section>
+
+<section class="card"><h2>How the course maps to the scheme of work (20 × 3-hour lessons)</h2>
+<div class="tablewrap"><table><thead><tr><th>Lesson</th><th>Topic</th><th>Learn lesson</th><th>Practical</th><th>Quiz</th></tr></thead><tbody>
+<tr><td>1</td><td>Why is software used? Inputs, processes, outputs</td><td>A1</td><td>1</td><td>1</td></tr><tr><td>2–3</td><td>Characteristics, languages, constructs, compiling, design methods, flowcharts</td><td>A2, A3, B4</td><td>3</td><td>1</td></tr><tr><td>4</td><td>Quality of software programs</td><td>A4</td><td>–</td><td>1</td></tr><tr><td>5</td><td>Assignment 1 (2A.P1, 2A.M1, 2A.D1)</td><td>A1–A4</td><td>–</td><td>–</td></tr><tr><td>6–7</td><td>SDLC; assessing requirements; design specifications; quiz screen design</td><td>B1, B2, B3</td><td>10</td><td>2</td></tr><tr><td>8–10</td><td>Pseudocode; testing and maintaining; designing software</td><td>B4, B5</td><td>3</td><td>2</td></tr><tr><td>11</td><td>Introduction to Visual Basic and the development environment</td><td>C1</td><td>1, 2</td><td>3</td></tr><tr><td>12–13</td><td>Data types, variables, constants, operators, procedures and functions</td><td>C2, C5</td><td>2</td><td>3</td></tr><tr><td>14</td><td>Sequence, selection and iteration</td><td>C3, C4</td><td>4, 5</td><td>3</td></tr><tr><td>15</td><td>Event handling: forms, properties, actions</td><td>C1</td><td>1, 10</td><td>3</td></tr><tr><td>16</td><td>Data structures; testing and refining</td><td>C6, C7, C8</td><td>6–9</td><td>4</td></tr><tr><td>17–18</td><td>Assignment 2 (2B.P2 – 2C.D3)</td><td>B1–C8</td><td>–</td><td>–</td></tr><tr><td>19</td><td>Reviewing software</td><td>D1</td><td>10</td><td>5</td></tr><tr><td>20</td><td>Assignment 3 (2D.P6, 2D.M5, 2D.D4)</td><td>D1</td><td>–</td><td>–</td></tr>
+</tbody></table></div>
+<p class="small">The scheme of work uses Visual Basic 2010; every example on this site also works in current Visual Studio Community (Windows Forms App (.NET Framework), Visual Basic). The textbook chapters (Pearson BTEC First ICT student book) and specification stay on Teams and are not reproduced here.</p></section>
+
+<section class="card"><h2>Assignments</h2>
+<ul class="list">
+<li>The Assignment guide covers all criteria (1A.1–2D.D4) across the three assignments in the scheme of work. It uses a generic scenario so it works with your centre-devised briefs or Pearson’s authorised assignment briefs.</li>
+<li>The lessons use a leisure-centre booking program as the running example. If your Assignment 2 brief is similar, choose a different client so the lesson examples cannot be reused as assignment work.</li>
+<li>Practical 10 (quiz program) is a full practice project: design, develop, test, feedback and review, before the real assignment.</li>
+</ul></section>
+
+<section class="card"><h2>AI study tutor and assignment coach</h2>
+<ul class="list">
+<li><strong>Workbook tutor</strong> (page 3): explains, diagnoses, hints and sets new practice questions for each lesson.</li>
+<li><strong>Assignment coach</strong> (page 5): explains the task, helps plan, reviews the student’s own draft against the checklist, and checks technical accuracy. It is instructed never to write code, pseudocode, flowcharts, screen designs, test plans, justifications or reviews for the student’s brief, and never to paste back corrected code: it points to the line and asks a question instead.</li>
+<li><strong>AI-use log:</strong> every coach question is saved on the student’s device. Collect it with each assignment and sample it during internal verification.</li>
+<li><strong>Tamper-resistant and private:</strong> the page sends only a task ID; briefs, checklists and rules are held on the server. No accounts, no names, nothing stored on the server.</li>
+</ul>
+<div class="note"><strong>Status:</strong> the AI service needs the college Azure subscription to be active. When it is re-enabled, the Unit 12 tutor and coach are deployed and switched on by the course administrator.</div></section>
+
+<section class="card"><h2>Maintaining the course</h2>
+<p class="small">All Unit 12 pages are generated from <code>tools/unit12/</code> (<code>python3 tools/build_unit12.py</code>). Assignment tasks and checklists live in <code>api/assignments-u12.json</code>, shared by the guide, the builder and the coach. Quizzes are in <code>docs/unit12/quiz-data.js</code>. The teacher deck is generated by <code>tools/unit12/teacher_deck.js</code>.</p></section>
+</div>
+<footer>Original course material written for the Pearson BTEC Level 1/Level 2 First in Information and Creative Technology, Unit 12: Software Development. Not a Pearson publication. Visual Studio Community is free from Microsoft.</footer>
+</body></html>

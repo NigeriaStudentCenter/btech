@@ -31,7 +31,7 @@ def start(nav, n_lessons, n_videos):
 </ol>
 <div class="note"><strong>This content area is assessed by a written exam.</strong> There is no coursework to hand in, so use the AI tutor as much as you like: ask it to explain, quiz you, or check your practice answers. Do not type your name or personal details into the tutor.</div>
 <p class="small">Work saves in this browser only. Use the download buttons to keep a backup before changing computers.</p></div>
-<p class="small" style="text-align:center">Also on this site: <a href="../start.html">Unit 2: Fundamentals of Computer Systems</a> · <a href="../unit19/start.html">Unit 19: Computer Networking</a> · <a href="../unit8/start.html">Unit 8: Security</a></p>"""
+<p class="small" style="text-align:center">Also on this site: <a href="../start.html">Unit 2: Fundamentals of Computer Systems</a> · <a href="../unit19/start.html">Unit 19: Computer Networking</a> · <a href="../unit8/start.html">Unit 8: Security</a> · <a href="../unit12/start.html">Unit 12: Software Development</a></p>"""
     return page(nav, "Unit 7 Digital environments", "Unit 7: Digital environments", "Hardware, software, networks, virtual and cloud environments, and how organisations stay resilient. For T Level Digital students. No account needed.", body)
 
 
