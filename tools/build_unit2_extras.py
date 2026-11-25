@@ -42,7 +42,7 @@ def update_workbook():
 def update_start():
     p = DOCS / "start.html"
     t = re.sub(r"<!-- extras:cards -->.*?<!-- /extras:cards -->", "", p.read_text(), flags=re.S)
-    cards = ('<!-- extras:cards --><a href="mock-june-2024/index.html"><h2>June 2024 timed mock</h2><p>Sit the official Pearson paper in 105 minutes and download your answers for marking.</p></a>'
+    cards = ('<!-- extras:cards --><a href="mock-june-2024/index.html"><h2>June 2024 timed mock</h2><p>Read the June 2024 questions and type your answers in a 105-minute mock.</p></a>'
              '<a href="tasks.html"><h2>6. Diagram tasks</h2><p>Label the motherboard, connectors, ports, CPU, logic gates and RAID from the drop-down lists, with instant marking.</p></a>'
              f'<a href="videos.html"><h2>7. Videos</h2><p>{len(videos_u2.VIDEOS)} short videos for every topic, from binary to error correction.</p></a>'
              '<a href="teachers.html"><h2>For teachers</h2><p>The teacher PowerPoint, the scheme of work map and how the AI tutor works.</p></a><!-- /extras:cards -->')

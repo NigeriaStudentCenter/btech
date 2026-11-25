@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Unit 2 | June 2024 timed mock</title>
   <link rel="stylesheet" href="style.css">
+  <script src="layout.js" defer></script>
+  <script src="paper-data.js" defer></script>
+  <script src="paper.js" defer></script>
+  <script src="config.js" defer></script>
   <script src="app.js" defer></script>
 </head>
 <body>
@@ -18,9 +22,14 @@
   </header>
   <section id="intro" class="card">
     <h2>Before you start</h2>
-    <p><a id="paperLink" href="https://qualifications.pearson.com/content/dam/pdf/BTEC-Nationals/Computing/2016/External-assessments/p75938-btec-l3-computing-31769h-unit-2-jun-2024.pdf" target="_blank" rel="noopener">Open Pearson’s official question paper (PDF, new tab)</a> and keep it alongside this page. You may use a calculator.</p>
-    <p>Answers save in this browser. Download or print your answers to give to your teacher for marking. Leave your name and contact details out of your answers.</p>
-    <button id="start" class="primary">Start my 105-minute mock</button>
+    <p>Read the questions on this page and type directly into the answer fields. You may use a calculator.</p>
+    <p id="paperStatus" role="status">Loading the June 2024 question paper…</p>
+    <div id="choosePaper" hidden>
+      <p>Use the original June 2024 file from your centre or <a href="https://qualifications.pearson.com/content/dam/pdf/BTEC-Nationals/Computing/2016/External-assessments/p75938-btec-l3-computing-31769h-unit-2-jun-2024.pdf" target="_blank" rel="noopener">download it from Pearson</a>.</p>
+      <label>Load the source file <input id="sourceFile" type="file" accept="application/pdf,.pdf"></label>
+    </div>
+    <p>Answers save in this browser. Download or print your answers before leaving a shared device. Leave your name and contact details out of your answers.</p>
+    <button id="start" class="primary" disabled>Start my 105-minute mock</button>
     <button id="restore">Restore a backup</button>
     <input hidden type="file" accept="application/json,.json" id="file">
     <p id="introStatus" role="status"></p>
@@ -33,19 +42,30 @@
       <button id="download">Download answers</button>
       <button id="restoreDuringExam">Restore a backup</button>
       <button id="print">Print answers</button>
-      <button id="submit" class="primary">Finish mock</button>
+      <button id="submit" class="primary">Submit mock</button>
+      <button id="retryMarking" hidden>Retry marking</button>
+      <button id="downloadReport" hidden>Download marking report</button>
       <button id="clear">Clear this device</button>
       <p id="status" role="status"></p>
     </aside>
+    <section class="card question" aria-labelledby="questionTitle">
+      <h2 id="questionTitle">Question</h2>
+      <details id="scenario" hidden><summary>Read the scenario</summary><div id="scenarioText"></div></details>
+      <div id="question" aria-live="polite"></div>
+    </section>
     <section class="answer card">
       <h2 id="answerTitle"></h2>
-      <p><span id="pageNumber"></span> · <a id="questionLink" target="_blank" rel="noopener">Open question on Pearson (new tab)</a></p>
       <div id="fields"></div>
       <div class="actions">
         <button id="previous">Previous</button>
         <button id="next">Next</button>
       </div>
+      <section id="markingReport" hidden aria-labelledby="markingTitle">
+        <h2 id="markingTitle">Marking report</h2>
+        <div id="results"></div>
+      </section>
     </section>
   </main>
+  <footer>June 2024 paper © Pearson Education Ltd. Digital mock for formative practice.</footer>
 </body>
 </html>

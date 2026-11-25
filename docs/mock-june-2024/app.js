@@ -23,14 +23,14 @@ const EXAM = {
     { id: '4b', max: 12, pages: [22, 23] },
   ]
 };
-const paperUrl = document.getElementById('paperLink').href;
 const element = id => document.getElementById(id);
 const storageKey = 'mock-31769H-jun2024-v1';
 const questions = EXAM.questions;
 const tableRows = { '2e': 3, '2f': 4 };
-const initial = { version: 1, examId: EXAM.id, startedAt: null, deadline: null, submitted: false };
+const initial = { version: 1, examId: EXAM.id, startedAt: null, deadline: null, submitted: false, report: null };
 let state = { ...initial, answers: {} };
 let current = 0;
+let marking = false;
 
 function announce(message) {
   const target = element('exam').hidden ? 'introStatus' : 'status';
@@ -66,7 +66,7 @@ function validate(copy) {
     if (!valid) throw Error('Invalid answer in backup.');
     answers[id] = answer;
   }
-  return { ...initial, startedAt: copy.startedAt, deadline: copy.deadline, submitted: copy.submitted, answers };
+  return { ...initial, startedAt: copy.startedAt, deadline: copy.deadline, submitted: copy.submitted, answers, report: copy.submitted && validReport(copy.report) ? copy.report : null };
 }
 
 function attempted(id) {
@@ -90,9 +90,8 @@ function render() {
   const id = question.id;
   const rows = tableRows[id];
   const answer = state.answers[id];
-  element('answerTitle').textContent = 'Question ' + id + ' · ' + question.max + ' marks';
-  element('pageNumber').textContent = 'PDF page ' + question.pages.join('–');
-  element('questionLink').href = paperUrl + '#page=' + question.pages[0];
+  element('answerTitle').textContent = 'Your answer · ' + question.max + (question.max === 1 ? ' mark' : ' marks');
+  window.mockPaper.show(id);
   element('fields').replaceChildren();
 
   for (let row = 0; row < (rows ?? 1); row++) {
@@ -142,9 +141,10 @@ function finish(automatic = false) {
   const unanswered = questions.filter(question => !attempted(question.id)).length;
   if (!automatic && !confirm('Finish and lock your answers? ' + unanswered + ' parts have no answer.')) return;
   state.submitted = true;
-  if (save()) announce('Answers locked. Download or print a copy for your teacher.');
+  if (save()) announce('Answers submitted and saved on this device.');
   render();
   tick();
+  mark();
 }
 
 function start() {
@@ -157,6 +157,7 @@ function start() {
   }
   render();
   tick();
+  renderReport();
 }
 
 element('start').onclick = start;
@@ -182,14 +183,88 @@ element('file').onchange = async event => {
   }
 };
 
-element('download').onclick = () => {
-  const url = URL.createObjectURL(new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' }));
+function validReport(report) {
+  if (report?.examId !== EXAM.id || !Array.isArray(report.questions) || report.questions.length !== questions.length) return false;
+  const marks = new Map(report.questions.map(row => [row?.id, row]));
+  return questions.every(question => {
+    const row = marks.get(question.id);
+    return row && row.max === question.max && Number.isInteger(row.mark) &&
+      row.mark >= 0 && row.mark <= question.max && typeof row.feedback === 'string';
+  }) && report.total === report.questions.reduce((total, row) => total + row.mark, 0);
+}
+
+function renderReport() {
+  const report = state.report;
+  const endpoint = window.MOCK_MARKING_ENDPOINT;
+  element('retryMarking').hidden = !state.submitted || !!report || !endpoint;
+  element('retryMarking').disabled = marking;
+  element('downloadReport').hidden = !report;
+  element('markingReport').hidden = !report;
+  const results = element('results');
+  results.replaceChildren();
+  if (!report) return;
+  const total = document.createElement('p');
+  total.textContent = 'Provisional mark ' + report.total + ' / 80. Your teacher reviews the result.';
+  results.append(total);
+  for (const row of report.questions) {
+    const article = document.createElement('article');
+    const heading = document.createElement('h3');
+    const feedback = document.createElement('p');
+    heading.textContent = row.id + ' · ' + row.mark + ' / ' + row.max + (row.review ? ' · Teacher review' : '');
+    feedback.textContent = row.feedback;
+    article.append(heading, feedback);
+    results.append(article);
+  }
+}
+
+async function mark() {
+  if (marking || state.report || !state.submitted) return;
+  const endpoint = window.MOCK_MARKING_ENDPOINT;
+  if (!endpoint) {
+    announce('Answers saved. Automatic marking is available through the centre marking service. Download a copy for your teacher.');
+    return;
+  }
+  marking = true;
+  element('restoreDuringExam').disabled = true;
+  element('clear').disabled = true;
+  renderReport();
+  announce('Marking in progress. Your answers are saved on this device.');
+  try {
+    const response = await fetch(endpoint, {
+      method: 'POST',
+      credentials: 'same-origin',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ examId: EXAM.id, answers: state.answers }),
+      signal: AbortSignal.timeout(120000)
+    });
+    const report = await response.json();
+    if (!response.ok || !validReport(report)) throw Error('Marking did not complete.');
+    state.report = report;
+    if (save()) announce('Marking complete. Download the provisional report for your teacher.');
+  } catch {
+    announce('Marking could not finish. Your answers are saved. Retry or download a copy.');
+  } finally {
+    marking = false;
+    element('restoreDuringExam').disabled = false;
+    element('clear').disabled = false;
+    renderReport();
+  }
+}
+
+function downloadJson(value, name) {
+  const url = URL.createObjectURL(new Blob([JSON.stringify(value, null, 2)], { type: 'application/json' }));
   const link = document.createElement('a');
   link.href = url;
-  link.download = 'unit2-june2024-answers.json';
+  link.download = name;
   link.click();
   setTimeout(() => URL.revokeObjectURL(url), 1000);
-};
+}
+
+element('retryMarking').onclick = mark;
+element('downloadReport').onclick = () => downloadJson(
+  { examId: EXAM.id, answers: state.answers, report: state.report }, 'unit2-june2024-results.json'
+);
+element('download').onclick = () => downloadJson(state, 'unit2-june2024-answers.json');
 element('clear').onclick = () => {
   if (!confirm('Clear this mock and its answers from this browser? Download a copy first.')) return;
   try {
