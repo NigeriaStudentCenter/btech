@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Unit 2 | June 2024 timed mock</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header>
+    <div>
+      <a href="../start.html">Computing study pack</a>
+      <h1>Fundamentals of Computer Systems</h1>
+      <p>June 2024 timed mock · 31769H · 80 marks · 1 hour 45 minutes</p>
+    </div>
+    <div id="clock" role="timer" aria-label="Time remaining">105:00</div>
+  </header>
+  <section id="intro" class="card">
+    <h2>Before you start</h2>
+    <p><a id="paperLink" href="https://qualifications.pearson.com/content/dam/pdf/BTEC-Nationals/Computing/2016/External-assessments/p75938-btec-l3-computing-31769h-unit-2-jun-2024.pdf" target="_blank" rel="noopener">Open Pearson’s official question paper (PDF, new tab)</a> and keep it alongside this page. You may use a calculator.</p>
+    <p>Answers save in this browser. Download or print your answers to give to your teacher for marking. Leave your name and contact details out of your answers.</p>
+    <button id="start" class="primary">Start my 105-minute mock</button>
+    <button id="restore">Restore a backup</button>
+    <input hidden type="file" accept="application/json,.json" id="file">
+    <p id="introStatus" role="status"></p>
+  </section>
+  <main id="exam" hidden>
+    <aside>
+      <h2>Questions</h2>
+      <nav id="nav" aria-label="Question navigation"></nav>
+      <p id="progress"></p>
+      <button id="download">Download answers</button>
+      <button id="restoreDuringExam">Restore a backup</button>
+      <button id="print">Print answers</button>
+      <button id="submit" class="primary">Finish mock</button>
+      <button id="clear">Clear this device</button>
+      <p id="status" role="status"></p>
+    </aside>
+    <section class="answer card">
+      <h2 id="answerTitle"></h2>
+      <p><span id="pageNumber"></span> · <a id="questionLink" target="_blank" rel="noopener">Open question on Pearson (new tab)</a></p>
+      <div id="fields"></div>
+      <div class="actions">
+        <button id="previous">Previous</button>
+        <button id="next">Next</button>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

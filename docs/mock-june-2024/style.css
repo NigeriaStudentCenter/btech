@@ -1,0 +1,45 @@
+:root{font-family:system-ui,sans-serif;color:#183444;background:#edf2f4;line-height:1.55}
+*{box-sizing:border-box}
+body{margin:0}
+header{display:flex;align-items:center;justify-content:space-between;gap:20px;background:#143d4d;color:#fff;padding:24px 32px}
+h1{font-size:clamp(22px,2.3vw,34px);line-height:1.2;margin:8px 0}
+h2{font-size:21px;line-height:1.3}
+header p{margin:0}
+#clock{font-variant-numeric:tabular-nums;font-size:30px;white-space:nowrap;background:#0d2e3c;padding:14px;border-radius:10px}
+.card{background:white;padding:24px;border-radius:12px;border:1px solid #cfdae0}
+#intro{max-width:850px;margin:32px auto}
+button,a{font:inherit}
+button{border:1px solid #8aa3ae;background:white;color:#183444;border-radius:7px;padding:10px 13px;cursor:pointer}
+button:hover{background:#e8f1f4}
+button:focus-visible,a:focus-visible,textarea:focus-visible,input:focus-visible{outline:3px solid #e5a62c;outline-offset:2px}
+.primary{background:#146a71;color:white;border-color:#146a71}
+button:disabled{opacity:.6;cursor:default}
+main{display:grid;grid-template-columns:220px minmax(0,1fr);gap:20px;padding:24px;align-items:start;max-width:1160px;margin:auto}
+aside{position:sticky;top:16px}
+aside>button{display:block;width:100%;margin:10px 0}
+nav{display:grid;grid-template-columns:repeat(3,1fr);gap:5px}
+nav button{padding:8px 3px}
+nav .current{background:#143d4d;color:white}
+nav .answered{border-bottom:4px solid #299b80}
+a{color:#09606f}
+header a{color:#e3f7ff}
+textarea,input{font:17px/1.55 system-ui;padding:12px;width:100%;border:1px solid #91a8b1;border-radius:7px}
+textarea{min-height:300px;resize:vertical}
+label{display:block;font-weight:650;margin:15px 0 6px}
+.actions{display:flex;justify-content:space-between;margin-top:20px}
+pre{white-space:pre-wrap;font:inherit}
+#status{font-size:14px}
+[hidden]{display:none!important}
+.printOnly{display:none}
+@media(max-width:650px){header{padding:18px;align-items:start}
+#clock{font-size:22px;padding:8px}
+main{display:block;padding:12px}
+aside{position:static;margin-bottom:20px}
+nav{grid-template-columns:repeat(6,minmax(0,1fr))}
+#intro{margin:16px}
+.card{padding:18px}}
+@media print{body>*{display:none!important}
+body>.printOnly{display:block!important;padding:20px}
+pre{white-space:pre-wrap}
+article{break-inside:avoid}}
+
