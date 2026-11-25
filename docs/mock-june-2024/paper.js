@@ -9,6 +9,7 @@ window.mockPaper = (() => {
   const ready = new Promise(resolve => { resolvePaper = resolve; });
   const pages = new Map();
   let version = 0;
+  let loaded = false;
 
   function setStatus(message, canSelect = false) {
     get('paperStatus').textContent = message;
@@ -21,7 +22,7 @@ window.mockPaper = (() => {
     if (hex !== checksum) throw Error('Choose the original June 2024 31769H question paper.');
     const reader = await import(runtime + '/pdf.min.mjs');
     reader.GlobalWorkerOptions.workerSrc = runtime + '/pdf.worker.min.mjs';
-    return reader.getDocument({ data: bytes, isEvalSupported: false }).promise;
+    return reader.getDocument({ data: bytes.slice(0), isEvalSupported: false }).promise;
   }
 
   function paragraph(container, lines) {
@@ -132,9 +133,51 @@ window.mockPaper = (() => {
   }
 
   function finish(document) {
+    if (loaded) return;
+    loaded = true;
     resolvePaper(document);
+    get('paperSetup').hidden = true;
     setStatus('All 18 question parts are ready.');
     get('start').disabled = false;
+  }
+
+  function paperCache(bytes) {
+    return new Promise(resolve => {
+      let request;
+      try {
+        request = indexedDB.open('btech-mock-paper', 1);
+      } catch {
+        resolve(null);
+        return;
+      }
+      request.onupgradeneeded = () => request.result.createObjectStore('papers');
+      request.onerror = () => resolve(null);
+      request.onsuccess = () => {
+        const database = request.result;
+        const transaction = database.transaction('papers', bytes ? 'readwrite' : 'readonly');
+        const store = transaction.objectStore('papers');
+        const result = bytes ? store.put(bytes, checksum) : store.get(checksum);
+        transaction.oncomplete = () => { database.close(); resolve(bytes ? null : result.result); };
+        transaction.onabort = () => { database.close(); resolve(null); };
+      };
+    });
+  }
+
+  async function loadPaper() {
+    try {
+      const saved = await paperCache();
+      if (saved) {
+        finish({ pdf: await open(saved) });
+        return;
+      }
+      const response = await fetch(source, { signal: AbortSignal.timeout(12000) });
+      if (!response.ok) throw Error('Source paper unavailable.');
+      const bytes = await response.arrayBuffer();
+      finish({ pdf: await open(bytes) });
+      paperCache(bytes);
+    } catch {
+      if (!loaded) setStatus('Select the original June 2024 paper to load the questions.', true);
+    }
   }
 
   if (window.MOCK_PREPARED_PAPER) finish({ prepared: window.MOCK_PREPARED_PAPER });
@@ -143,21 +186,16 @@ window.mockPaper = (() => {
       const file = event.target.files[0];
       if (!file) return;
       try {
-        finish({ pdf: await open(await file.arrayBuffer()) });
+        const bytes = await file.arrayBuffer();
+        finish({ pdf: await open(bytes) });
+        paperCache(bytes);
       } catch (error) {
-        setStatus(error.message, true);
+        if (!loaded) setStatus(error.message, true);
       } finally {
         event.target.value = '';
       }
     };
-    fetch(source, { signal: AbortSignal.timeout(12000) })
-      .then(response => {
-        if (!response.ok) throw Error('Source paper unavailable.');
-        return response.arrayBuffer();
-      })
-      .then(open)
-      .then(pdf => finish({ pdf }))
-      .catch(() => setStatus('The source paper could not be loaded. Select your centre’s original June 2024 paper to continue.', true));
+    loadPaper();
   }
   return { show };
 })();
