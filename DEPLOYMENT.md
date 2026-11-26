@@ -45,3 +45,19 @@ Pages: start, brief (assignment guide), learning, index (workbook), practicals, 
 ## Unit 2 extras (docs/tasks.html, videos.html, teachers.html)
 - After `python3 tools/build_learning.py`, run `python3 tools/build_unit2_extras.py`: adds videos and 'From your lessons' blocks to learning.html (marker-delimited, idempotent), updates the Unit 2 nav and start cards, and builds the diagram tasks, videos and teachers pages. Content in tools/unit2/ (videos_u2.py, enrich_u2.py, tasks_u2.py, teacher_deck.js).
 - Diagram tasks are original SVG redrawings of the department's Word labelling worksheets (the source photos are stock images and are not published).
+
+## June 2024 Unit 2 mock with automatic marking (25 Nov 2026)
+- Web App `btech-mock-marking` (Linux B1 plan `btech-mock-plan`, rg `btech-tutor-rg`, West Europe — Sweden Central had no B1 capacity): https://btech-mock-marking.azurewebsites.net
+- Serves `docs/mock-june-2024/` and `POST /api/mark` from `backend/app.py` (FastAPI). It overrides `config.js` so the page posts to `/api/mark`; the GitHub Pages copy stays without marking.
+- Sign-in: App Service Authentication, Microsoft Entra, single tenant (bsoedu), app registration "BTEC Unit 2 mock (centre sign-in)". Client secret is the app setting `MICROSOFT_PROVIDER_AUTHENTICATION_SECRET` and expires after 6 months.
+- Model: same `btech-tutor-gpt41mini` deployment as the tutor (20K tokens/min shared). The Web App's system identity has Cognitive Services OpenAI User on `AI-Tutor-Agent`. One paper ≈ 7K tokens, so expect roughly 2 papers a minute; the service retries a busy model for up to 100 s.
+- Limits: `MARKING_REQUESTS_PER_MINUTE` papers per minute for the whole app, 3 papers per student per 10 minutes. Levels-based answers (3b, 3c, 4a, 4b) and answers that try to instruct the marker are always flagged for teacher review.
+- The marking guide (question text + mark scheme) is `backend/guides/31769H-2024-06.json`. It is git-ignored because this repo is public; rebuild it with
+  `python3 tools/mock_marking/build_guide.py "<June 2024 paper>.pdf" "<June 2024 mark scheme>.pdf"`.
+- Deploy: `zip -qr mock-deploy.zip requirements.txt backend/app.py backend/guides/31769H-2024-06.json docs/mock-june-2024 -x '*.DS_Store'` then `az webapp deploy -g btech-tutor-rg -n btech-mock-marking --src-path mock-deploy.zip --type zip`.
+- Turn marking off (the page still saves answers): `az webapp config appsettings set -g btech-tutor-rg -n btech-mock-marking --settings MARKING_ENABLED=false`
+- Organisation-wide sign-in consent was granted for the app registration (openid profile email offline_access), so students get no permission prompt.
+- App Service Authentication refuses POSTs that carry only the sign-in cookie (403, empty body). The `config.js` that `backend/app.py` serves therefore adds the student's own ID token (from `/.auth/me`) as a Bearer header on `/api/mark`, renewing it with `/.auth/refresh` when it is near expiry. Sign-in stays required on every path; the login parameters request `offline_access` so refresh works.
+- Deploys: run one `az webapp deploy` at a time. Two overlapping deploys failed the Oryx build and left the app without its `antenv` (log shows "No module named uvicorn").
+- 1e, 2e and 2f have single right answers, so `backend/app.py` marks them itself (`exact()`); the model only marks the written questions.
+- After a deploy the app keeps serving the old build until its container restarts (Oryx packs the build into `output.tar.zst`). Check with a test paper before telling students; `az webapp restart` if needed.

@@ -2,3 +2,6 @@ node_modules/
 .DS_Store
 local.settings.json
 __pycache__/
+backend/guides/*.json
+.venv/
+mock-deploy.zip
