@@ -165,13 +165,35 @@ function tick() {
   const seconds = Math.max(0, Math.ceil((state.deadline - Date.now()) / 1000));
   element('clock').textContent = String(Math.floor(seconds / 60)).padStart(2, '0') + ':' +
     String(seconds % 60).padStart(2, '0');
-  if (seconds === 0) finish(true);
+  if (seconds === 0) {
+    if (element('ask').open) element('askNo').click();
+    finish(true);
+  }
 }
 
-function finish(automatic = false) {
+// On-page confirmation, because some browsers (in-app and embedded ones) block pop-ups.
+function ask(message, yes) {
+  const box = element('ask');
+  element('askText').textContent = message;
+  element('askYes').textContent = yes;
+  return new Promise(resolve => {
+    const done = answer => { box.close(); element('askYes').onclick = element('askNo').onclick = box.oncancel = null; resolve(answer); };
+    element('askYes').onclick = () => done(true);
+    element('askNo').onclick = () => done(false);
+    box.oncancel = event => { event.preventDefault(); done(false); };
+    box.showModal();
+    element('askNo').focus();
+  });
+}
+
+async function finish(automatic = false) {
   if (state.submitted) return;
   const unanswered = questions.filter(question => !attempted(question.id)).length;
-  if (!automatic && !confirm('Finish and lock your answers? ' + unanswered + ' parts have no answer.')) return;
+  if (!automatic) {
+    if (element('ask').open) return;
+    const sure = await ask('Finish and lock your answers? ' + (unanswered ? unanswered + (unanswered === 1 ? ' part has' : ' parts have') + ' no answer.' : 'Every part has an answer.') + ' You cannot change them after this.', 'Yes, submit');
+    if (!sure || state.submitted) return;
+  }
   state.submitted = true;
   if (save()) announce('Answers submitted and saved on this device.');
   render();
@@ -216,7 +238,7 @@ element('file').onchange = async event => {
   try {
     if (file.size > 400000) throw Error('The backup file is too large.');
     const copy = validate(JSON.parse(await file.text()));
-    if (!confirm('Replace the answers saved in this browser with this backup?')) return;
+    if (!await ask('Replace the answers saved in this browser with this backup?', 'Replace')) return;
     state = copy;
     start();
     if (save()) announce('Backup restored.');
@@ -322,8 +344,8 @@ async function downloadPdf(withMarks) {
 element('downloadReport').onclick = () => downloadPdf(true);
 element('download').onclick = () => downloadPdf(false);
 element('backup').onclick = () => downloadJson(state, 'unit2-june2024-backup-' + (state.candidate?.candidateNumber ?? 'candidate') + '.json');
-element('clear').onclick = () => {
-  if (!confirm('Clear this mock and its answers from this browser? Download a copy first.')) return;
+element('clear').onclick = async () => {
+  if (!await ask('Clear this mock and its answers from this browser? Download a copy first.', 'Clear')) return;
   try {
     localStorage.removeItem(storageKey);
     location.reload();
