@@ -27,7 +27,8 @@ const element = id => document.getElementById(id);
 const storageKey = 'mock-31769H-jun2024-v1';
 const questions = EXAM.questions;
 const tableRows = { '2e': 3, '2f': 4 };
-const initial = { version: 1, examId: EXAM.id, startedAt: null, deadline: null, submitted: false, report: null };
+const initial = { version: 1, examId: EXAM.id, candidate: null, startedAt: null, deadline: null, submitted: false, report: null };
+const candidateFields = ['surname', 'otherNames', 'centre', 'candidateNumber'];
 let state = { ...initial, answers: {} };
 let current = 0;
 let marking = false;
@@ -45,6 +46,37 @@ function save() {
     announce('Browser saving failed. Download a copy before leaving.');
     return false;
   }
+}
+
+function cleanCandidate(value) {
+  if (!value || typeof value !== 'object') return null;
+  const surname = String(value.surname ?? '').trim().slice(0, 60);
+  const otherNames = String(value.otherNames ?? '').trim().slice(0, 60);
+  const centre = String(value.centre ?? '').trim();
+  const candidateNumber = String(value.candidateNumber ?? '').trim();
+  if (!surname || !otherNames || !/^\d{5}$/.test(centre) || !/^\d{4}$/.test(candidateNumber)) return null;
+  return { surname, otherNames, centre, candidateNumber };
+}
+
+function candidateFromForm() {
+  const values = Object.fromEntries(candidateFields.map(id => [id, element(id).value]));
+  const candidate = cleanCandidate(values);
+  if (candidate) return candidate;
+  if (!values.surname.trim()) throw Error('Enter your surname.');
+  if (!values.otherNames.trim()) throw Error('Enter your other names.');
+  if (!/^\d{5}$/.test(values.centre.trim())) throw Error('Enter your 5-digit centre number.');
+  throw Error('Enter your 4-digit candidate number.');
+}
+
+function showCandidate() {
+  const candidate = state.candidate;
+  for (const id of candidateFields) {
+    element(id).value = candidate?.[id] ?? element(id).value;
+    element(id).readOnly = state.startedAt !== null;
+  }
+  element('candidateBadge').textContent = candidate
+    ? candidate.surname + ', ' + candidate.otherNames + ' · Centre ' + candidate.centre + ' · Candidate ' + candidate.candidateNumber
+    : '';
 }
 
 function validate(copy) {
@@ -66,7 +98,7 @@ function validate(copy) {
     if (!valid) throw Error('Invalid answer in backup.');
     answers[id] = answer;
   }
-  return { ...initial, startedAt: copy.startedAt, deadline: copy.deadline, submitted: copy.submitted, answers, report: copy.submitted && validReport(copy.report) ? copy.report : null };
+  return { ...initial, candidate: cleanCandidate(copy.candidate), startedAt: copy.startedAt, deadline: copy.deadline, submitted: copy.submitted, answers, report: copy.submitted && validReport(copy.report) ? copy.report : null };
 }
 
 function attempted(id) {
@@ -148,8 +180,20 @@ function finish(automatic = false) {
 }
 
 function start() {
+  if (state.startedAt === null || !state.candidate) {
+    try {
+      state.candidate = candidateFromForm();
+    } catch (error) {
+      if (state.startedAt === null) {
+        announce(error.message);
+        element(candidateFields.find(id => !element(id).checkValidity() || !element(id).value.trim()) ?? 'surname').focus();
+        return;
+      }
+    }
+  }
   element('intro').hidden = true;
   element('exam').hidden = false;
+  showCandidate();
   if (state.startedAt === null) {
     state.startedAt = Date.now();
     state.deadline = state.startedAt + EXAM.minutes * 60000;
@@ -234,7 +278,7 @@ async function mark() {
       method: 'POST',
       credentials: 'same-origin',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ examId: EXAM.id, answers: state.answers }),
+      body: JSON.stringify({ examId: EXAM.id, candidate: state.candidate, answers: state.answers }),
       signal: AbortSignal.timeout(120000)
     });
     const report = await response.json();
@@ -262,9 +306,10 @@ function downloadJson(value, name) {
 
 element('retryMarking').onclick = mark;
 element('downloadReport').onclick = () => downloadJson(
-  { examId: EXAM.id, answers: state.answers, report: state.report }, 'unit2-june2024-results.json'
+  { examId: EXAM.id, candidate: state.candidate, answers: state.answers, report: state.report },
+  'unit2-june2024-results-' + (state.candidate?.candidateNumber ?? 'candidate') + '.json'
 );
-element('download').onclick = () => downloadJson(state, 'unit2-june2024-answers.json');
+element('download').onclick = () => downloadJson(state, 'unit2-june2024-answers-' + (state.candidate?.candidateNumber ?? 'candidate') + '.json');
 element('clear').onclick = () => {
   if (!confirm('Clear this mock and its answers from this browser? Download a copy first.')) return;
   try {
@@ -280,7 +325,9 @@ element('print').onclick = () => {
   output.className = 'printOnly';
   const title = document.createElement('h1');
   title.textContent = 'Unit 2 June 2024 mock answers';
-  output.append(title);
+  const who = document.createElement('p');
+  who.textContent = element('candidateBadge').textContent;
+  output.append(title, who);
   for (const question of questions) {
     const article = document.createElement('article');
     const heading = document.createElement('h2');
@@ -310,6 +357,11 @@ try {
   if (saved) state = validate(JSON.parse(saved));
 } catch {
   announce('Saved work is unavailable. You can restore a backup or start a new mock.');
+}
+showCandidate();
+element('candidateForm').onsubmit = event => { event.preventDefault(); start(); };
+for (const id of ['centre', 'candidateNumber']) {
+  element(id).addEventListener('input', () => { element(id).value = element(id).value.replace(/\D/g, ''); });
 }
 if (state.startedAt !== null) start();
 setInterval(tick, 1000);

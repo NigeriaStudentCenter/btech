@@ -27,10 +27,49 @@
       <label>Load the source file <input id="sourceFile" type="file" accept="application/pdf,.pdf"></label>
     </div>
   </section>
-  <section id="intro" class="card">
-    <h2>Before you start</h2>
-    <p>Read the questions on this page and type directly into the answer fields. You may use a calculator.</p>
-    <p>Answers save in this browser. Download or print your answers before leaving a shared device. Leave your name and contact details out of your answers.</p>
+  <section id="intro" class="card cover" aria-labelledby="coverTitle">
+    <form id="candidateForm" class="candidate" novalidate>
+      <p class="checkLine">Please check the examination details below before entering your candidate information</p>
+      <div class="candidateGrid">
+        <label>Candidate surname <input id="surname" name="surname" maxlength="60" autocomplete="off" required></label>
+        <label>Other names <input id="otherNames" name="otherNames" maxlength="60" autocomplete="off" required></label>
+        <label>Centre Number <input id="centre" name="centre" class="digits five" inputmode="numeric" pattern="[0-9]{5}" maxlength="5" autocomplete="off" required></label>
+        <label>Candidate Number <input id="candidateNumber" name="candidateNumber" class="digits four" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" autocomplete="off" required></label>
+      </div>
+    </form>
+    <div class="paperDetails">
+      <p class="level">Level 3</p>
+      <h2 id="coverTitle">Pearson BTEC Nationals</h2>
+      <dl>
+        <div><dt>Paper reference</dt><dd>31769H</dd></div>
+        <div><dt>Time</dt><dd>1 hour 45 minutes</dd></div>
+        <div><dt>Total marks</dt><dd>80</dd></div>
+      </dl>
+      <p class="subject">Computing</p>
+      <p class="unit">Unit 2: Fundamentals of Computer Systems</p>
+      <p class="series">June 2024 paper · timed mock</p>
+      <p class="mustHave"><strong>You may use:</strong> a calculator.</p>
+    </div>
+    <div class="instructions">
+      <h3>Instructions</h3>
+      <ul>
+        <li>Fill in the boxes at the top of this page with your name, centre number and candidate number.</li>
+        <li>Answer <strong>all</strong> questions. Type your answers in the answer box for each part.</li>
+        <li>The clock starts when you press Start and the paper locks when the time runs out.</li>
+      </ul>
+      <h3>Information</h3>
+      <ul>
+        <li>The total mark for this paper is 80.</li>
+        <li>The marks for <strong>each</strong> question are shown next to the answer box.</li>
+        <li>Answers save in this browser. Download or print your answers before leaving a shared device.</li>
+      </ul>
+      <h3>Advice</h3>
+      <ul>
+        <li>Read each question carefully before you start to answer it.</li>
+        <li>Try to answer every question.</li>
+        <li>Check your answers if you have time at the end.</li>
+      </ul>
+    </div>
     <button id="start" class="primary" disabled>Start my 105-minute mock</button>
     <button id="restore">Restore a backup</button>
     <input hidden type="file" accept="application/json,.json" id="file">
@@ -38,6 +77,7 @@
   </section>
   <main id="exam" hidden>
     <aside>
+      <p id="candidateBadge" class="badge"></p>
       <h2>Questions</h2>
       <nav id="nav" aria-label="Question navigation"></nav>
       <p id="progress"></p>

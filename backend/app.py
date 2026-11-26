@@ -1,9 +1,11 @@
 """Marking service for the June 2024 Unit 2 digital mock (31769H).
 
 Serves the mock page from docs/mock-june-2024 and marks submitted answers at
-POST /api/mark with the centre's Azure OpenAI deployment. Sign-in is handled in
-front of this app by App Service Authentication (Microsoft Entra ID), and the
-app reaches the model with its managed identity, so it holds no keys.
+POST /api/mark with the centre's Azure OpenAI deployment. Students identify
+themselves on the exam-style cover (surname, other names, centre number,
+candidate number) instead of signing in; those details are checked here, used
+for the per-candidate limit and never sent to the model. The app reaches the
+model with its managed identity, so it holds no keys.
 
 Settings (App Service app settings):
   AZURE_OPENAI_ENDPOINT        resource URL, e.g. https://name.openai.azure.com
@@ -11,7 +13,8 @@ Settings (App Service app settings):
   ALLOWED_ORIGINS              comma-separated origins allowed to POST
   MARKING_ENABLED              'false' switches marking off (the page still works)
   MARKING_REQUESTS_PER_MINUTE  papers accepted per minute across the whole app
-  REQUIRE_SIGN_IN              'false' only for local testing
+  CENTRE_NUMBER                optional; when set, only this centre number is marked
+  REQUIRE_SIGN_IN              'true' only if App Service Authentication is switched on
 """
 import asyncio
 import json
@@ -33,7 +36,7 @@ GUIDE = json.loads((ROOT / 'guides' / f'{EXAM_ID}.json').read_text())
 QUESTIONS = {q['id']: q for q in GUIDE['questions']}
 COURSE_START = 'https://nigeriastudentcenter.github.io/btech/start.html'
 MAX_BODY = 400_000
-PER_USER = (3, 600)  # papers per signed-in student per 10 minutes
+PER_USER = (3, 600)  # papers per candidate per 10 minutes
 MODEL_WAIT = 100  # seconds to keep retrying a busy model (the page waits 120)
 # Answers that try to instruct the marker always go to the teacher.
 STEERING = re.compile(r'\b(ignore|disregard)\b.{0,40}\b(instruction|prompt|rules?)|full marks|'
@@ -103,6 +106,23 @@ async def headers(request: Request, call_next):
 
 def error(status, message):
     return JSONResponse({'error': message}, status_code=status, headers={'Cache-Control': 'no-store'})
+
+
+def clean_candidate(value):
+    """Return the candidate's details, or raise ValueError."""
+    if not isinstance(value, dict):
+        raise ValueError('Enter your name, centre number and candidate number on the front cover.')
+    names = [str(value.get(k) or '').strip() for k in ('surname', 'otherNames')]
+    centre = str(value.get('centre') or '').strip()
+    number = str(value.get('candidateNumber') or '').strip()
+    if not all(names) or any(len(n) > 60 for n in names):
+        raise ValueError('Enter your surname and other names on the front cover.')
+    if not re.fullmatch(r'\d{5}', centre) or not re.fullmatch(r'\d{4}', number):
+        raise ValueError('Check your 5-digit centre number and 4-digit candidate number.')
+    expected = setting('CENTRE_NUMBER')
+    if expected and centre != expected:
+        raise ValueError('That centre number is not registered for this mock. Check it with your teacher.')
+    return {'surname': names[0], 'otherNames': names[1], 'centre': centre, 'candidateNumber': number}
 
 
 def clean_answers(answers):
@@ -291,7 +311,7 @@ async def mark(request: Request):
     if allowed and request.headers.get('origin', '').rstrip('/') not in allowed:
         return error(403, 'This page is not allowed to use the marking service.')
     user = request.headers.get('x-ms-client-principal-id', '')
-    if flag('REQUIRE_SIGN_IN', 'true') and not user:
+    if flag('REQUIRE_SIGN_IN', 'false') and not user:
         return error(401, 'Sign in with your centre account first.')
     if not flag('MARKING_ENABLED', 'false'):
         return error(503, 'Automatic marking is switched off. Download your answers for your teacher.')
@@ -304,13 +324,15 @@ async def mark(request: Request):
         data = json.loads(body)
         if not isinstance(data, dict) or data.get('examId') != EXAM_ID:
             raise ValueError('This service marks the June 2024 mock only.')
+        candidate = clean_candidate(data.get('candidate'))
         answers = clean_answers(data.get('answers'))
     except (ValueError, json.JSONDecodeError) as exc:
         return error(400, str(exc) if isinstance(exc, ValueError) else 'Invalid request.')
 
     if not any(answers.values()):
         return report(answers, [])
-    if user and not limits.allow('user:' + user, *PER_USER):
+    who = 'user:' + user if user else f"candidate:{candidate['centre']}-{candidate['candidateNumber']}"
+    if not limits.allow(who, *PER_USER):
         return error(429, 'You have asked for marking several times. Wait a few minutes and retry.')
     per_minute = int(setting('MARKING_REQUESTS_PER_MINUTE', '12') or 12)
     if not limits.allow('all', per_minute, 60):
@@ -328,37 +350,7 @@ def health():
     return {'ok': True, 'marking': flag('MARKING_ENABLED', 'false')}
 
 
-# App Service Authentication refuses POSTs that carry only the sign-in cookie (CSRF
-# protection), so the page sends the student's own ID token with marking requests,
-# renewing it first when it is close to expiry (the exam outlasts a one-hour token).
-CONFIG_JS = """window.MOCK_MARKING_ENDPOINT = '/api/mark';
-(() => {
-  const plain = window.fetch.bind(window);
-  const expiry = token => {
-    try { return JSON.parse(atob(token.split('.')[1].replace(/-/g, '+').replace(/_/g, '/'))).exp * 1000; }
-    catch { return 0; }
-  };
-  const read = async () => {
-    const response = await plain('/.auth/me', { credentials: 'same-origin', cache: 'no-store' });
-    return response.ok ? (await response.json())[0]?.id_token || '' : '';
-  };
-  async function idToken() {
-    let token = await read();
-    if (expiry(token) < Date.now() + 5 * 60000) {
-      await plain('/.auth/refresh', { credentials: 'same-origin', cache: 'no-store' }).catch(() => {});
-      token = await read();
-    }
-    return token;
-  }
-  window.fetch = async (input, init = {}) => {
-    if (input === window.MOCK_MARKING_ENDPOINT) {
-      const token = await idToken().catch(() => '');
-      if (token) init = { ...init, headers: { ...(init.headers || {}), Authorization: 'Bearer ' + token } };
-    }
-    return plain(input, init);
-  };
-})();
-"""
+CONFIG_JS = "window.MOCK_MARKING_ENDPOINT = '/api/mark';\n"
 
 
 @app.get('/mock-june-2024/config.js')
