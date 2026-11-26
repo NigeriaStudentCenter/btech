@@ -279,6 +279,13 @@ function renderReport() {
     heading.textContent = row.id + ' · ' + row.mark + ' / ' + row.max + (row.review ? ' · Teacher review' : '');
     feedback.textContent = row.feedback;
     article.append(heading, feedback);
+    const reasons = Array.isArray(row.reviewReasons) ? row.reviewReasons.filter(r => typeof r === 'string') : [];
+    if (row.review && (reasons.length || row.teacherNote)) {
+      const note = document.createElement('p');
+      note.className = 'teacherNote';
+      note.textContent = 'For the teacher: ' + [reasons.join('; '), typeof row.teacherNote === 'string' ? row.teacherNote : ''].filter(Boolean).join('. ');
+      article.append(note);
+    }
     results.append(article);
   }
 }

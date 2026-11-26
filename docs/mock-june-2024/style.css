@@ -100,3 +100,4 @@ footer{padding:18px;text-align:center;font-size:.85rem}
 dialog#ask{border:1px solid #8aa3ae;border-radius:10px;padding:20px;max-width:min(440px,calc(100vw - 32px))}
 dialog#ask::backdrop{background:rgba(10,30,40,.45)}
 dialog#ask .actions{display:flex;gap:10px;justify-content:flex-end;margin-top:14px}
+.teacherNote{background:#fff6e0;border-left:4px solid #e5a62c;padding:6px 10px;font-size:.92em}

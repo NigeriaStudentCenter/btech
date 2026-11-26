@@ -91,7 +91,14 @@ window.mockReport = (() => {
       const review = report.questions.filter(row => row.review).map(row => row.id);
       text('Provisional mark: ' + report.total + ' / 80', 16, 'bold', 1);
       text('Marked automatically against the June 2024 mark scheme. Your teacher reviews every result before it is final.', 9, 'italic', 1);
-      if (review.length) text('Parts for teacher review: ' + review.join(', '), 9, 'normal', 3);
+      if (review.length) {
+        text('For the teacher - ' + review.length + (review.length === 1 ? ' part needs' : ' parts need') + ' review:', 10, 'bold', 1);
+        for (const row of report.questions.filter(row => row.review)) {
+          const reasons = Array.isArray(row.reviewReasons) ? row.reviewReasons.join('; ') : '';
+          text(row.id + ' (' + row.mark + ' / ' + row.max + ')' + (reasons ? ': ' + reasons : ''), 9, 'normal', 0.5);
+        }
+        y += 2.5;
+      }
 
       // Mark summary table: question, mark, out of.
       const cols = [page.margin, page.margin + 40, page.margin + 80];
@@ -131,6 +138,12 @@ window.mockReport = (() => {
       if (row) {
         text('Feedback', 9, 'bold', 0.5);
         text(row.feedback, 10, 'italic', 2);
+        const reasons = Array.isArray(row.reviewReasons) ? row.reviewReasons.join('; ') : '';
+        const note = [reasons && 'Review: ' + reasons, row.teacherNote].filter(Boolean).join('. ');
+        if (note && row.review) {
+          text('Teacher note', 9, 'bold', 0.5);
+          text(note, 9.5, 'normal', 2);
+        }
       }
     }
 
