@@ -265,7 +265,7 @@ async function mark() {
   if (marking || state.report || !state.submitted) return;
   const endpoint = window.MOCK_MARKING_ENDPOINT;
   if (!endpoint) {
-    announce('Answers saved. Automatic marking is available through the centre marking service. Download a copy for your teacher.');
+    announce('Answers saved. Automatic marking is available through the centre marking service. Download your answers for your teacher.');
     return;
   }
   marking = true;
@@ -305,11 +305,23 @@ function downloadJson(value, name) {
 }
 
 element('retryMarking').onclick = mark;
-element('downloadReport').onclick = () => downloadJson(
-  { examId: EXAM.id, candidate: state.candidate, answers: state.answers, report: state.report },
-  'unit2-june2024-results-' + (state.candidate?.candidateNumber ?? 'candidate') + '.json'
-);
-element('download').onclick = () => downloadJson(state, 'unit2-june2024-answers-' + (state.candidate?.candidateNumber ?? 'candidate') + '.json');
+async function downloadPdf(withMarks) {
+  const button = element(withMarks ? 'downloadReport' : 'download');
+  button.disabled = true;
+  announce('Preparing the PDF…');
+  try {
+    await window.mockReport.download(withMarks);
+    announce(withMarks ? 'Marking report downloaded.' : 'Answers downloaded.');
+  } catch {
+    announce('The PDF could not be made. Use Print answers or Save backup file instead.');
+  } finally {
+    button.disabled = false;
+  }
+}
+
+element('downloadReport').onclick = () => downloadPdf(true);
+element('download').onclick = () => downloadPdf(false);
+element('backup').onclick = () => downloadJson(state, 'unit2-june2024-backup-' + (state.candidate?.candidateNumber ?? 'candidate') + '.json');
 element('clear').onclick = () => {
   if (!confirm('Clear this mock and its answers from this browser? Download a copy first.')) return;
   try {

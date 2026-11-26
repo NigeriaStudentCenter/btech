@@ -9,6 +9,7 @@
   <script src="paper-data.js" defer></script>
   <script src="paper.js" defer></script>
   <script src="config.js" defer></script>
+  <script src="report.js" defer></script>
   <script src="app.js" defer></script>
 </head>
 <body>
@@ -81,12 +82,13 @@
       <h2>Questions</h2>
       <nav id="nav" aria-label="Question navigation"></nav>
       <p id="progress"></p>
-      <button id="download">Download answers</button>
+      <button id="download">Download answers (PDF)</button>
       <button id="restoreDuringExam">Restore a backup</button>
       <button id="print">Print answers</button>
       <button id="submit" class="primary">Submit mock</button>
       <button id="retryMarking" hidden>Retry marking</button>
-      <button id="downloadReport" hidden>Download marking report</button>
+      <button id="downloadReport" hidden>Download marking report (PDF)</button>
+      <button id="backup">Save backup file</button>
       <button id="clear">Clear this device</button>
       <p id="status" role="status"></p>
     </aside>
